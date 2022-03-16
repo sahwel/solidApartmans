@@ -4,7 +4,16 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        montserrat: ['Montserrat', 'sans-serif'],
+      },
+      colors: {
+        'main-blue': 'rgba(22, 29, 111, .85)',
+        'main-text': 'rgba(22, 29, 111, .95)',
+        'main-gray': '#FCFCFC',
+      },
+    },
   },
   plugins: [],
 }
