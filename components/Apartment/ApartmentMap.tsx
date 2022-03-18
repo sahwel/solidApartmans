@@ -1,4 +1,6 @@
-const ApartmentMap = () => {
+import { memo } from "react"
+
+const ApartmentMap = memo(function ApartmentMap() {
   return (
     <div className="bg-white p-3 lg:h-full lg:bg-transparent lg:py-0">
       <h1 className="text-lg font-bold lg:hidden">Where to find</h1>
@@ -9,6 +11,6 @@ const ApartmentMap = () => {
       ></iframe>
     </div>
   )
-}
+})
 
 export default ApartmentMap

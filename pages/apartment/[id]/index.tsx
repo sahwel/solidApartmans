@@ -19,7 +19,6 @@ const index: FunctionComponent<ExtendedApartmentDefinition> = memo(
     address,
     facilities,
     capacity,
-    image,
     price,
     details,
     images,
@@ -161,13 +160,23 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     reviews: [
       {
         customer: 'John Doe',
-        review: 'asd',
+        review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+        efficitur leo tortor, ac sollicitudin arcu vestibulum et. Ut faucibus,
+        tellus non ultrices rhoncus, dolor sit amet, consectetur adipiscing
+        elit. nteger efficitur leo tortor, ac sollicitudin arcu vestibulum et.
+        Ut faucibus, tellus non ultrices rhoncus, dolor sit amet, consectetur
+        adipiscing elit.`,
         timeAgo: '2 days ago',
         stars: 5,
       },
       {
         customer: 'John Doe',
-        review: 'asd',
+        review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+        efficitur leo tortor, ac sollicitudin arcu vestibulum et. Ut faucibus,
+        tellus non ultrices rhoncus, dolor sit amet, consectetur adipiscing
+        elit. nteger efficitur leo tortor, ac sollicitudin arcu vestibulum et.
+        Ut faucibus, tellus non ultrices rhoncus, dolor sit amet, consectetur
+        adipiscing elit.`,
         timeAgo: '2 days ago',
         stars: 3,
       },
