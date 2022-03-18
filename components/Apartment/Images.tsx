@@ -3,9 +3,19 @@ import { ArrowCircleLeftIcon } from '@heroicons/react/outline'
 import { ArrowCircleRightIcon } from '@heroicons/react/outline'
 import { ArrowCircleRightIcon as SolidRight } from '@heroicons/react/solid'
 import { ArrowCircleLeftIcon as SolidLeft } from '@heroicons/react/solid'
-import { Dispatch, SetStateAction, useCallback, useState } from 'react'
+import {
+  Dispatch,
+  FunctionComponent,
+  SetStateAction,
+  useCallback,
+  useState,
+} from 'react'
 
-const Images = () => {
+interface ImagesProps {
+  images: string[]
+}
+
+const Images: FunctionComponent<ImagesProps> = ({ images }) => {
   const [scndHover, setScndHover] = useState(false)
   const [firstHover, setFirstHover] = useState(false)
 
@@ -33,11 +43,7 @@ const Images = () => {
       )}
       <div className=" flex h-full w-[87%] justify-between space-x-4">
         <div className="relative w-1/3">
-          <Image
-            src={'/static-apart.png'}
-            layout="fill"
-            alt="image of the apartment"
-          />
+          <Image src={images[1]} layout="fill" alt="image of the apartment" />
         </div>
         <div className="relative w-1/3">
           <Image

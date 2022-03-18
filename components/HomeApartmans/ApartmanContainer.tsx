@@ -61,6 +61,10 @@ export const ApartmanContainer: FunctionComponent<ApartmentDefinitions> = memo(
     oldProps.image === newProps.image &&
     oldProps.price === newProps.price &&
     (oldProps.facilities.length === newProps.facilities.length
-      ? oldProps.facilities.every((e, i) => e === newProps.facilities[i])
+      ? oldProps.facilities.every(
+          (e, i) =>
+            e.name === newProps.facilities[i].name &&
+            e.url === newProps.facilities[i].url
+        )
       : false)
 )
