@@ -51,21 +51,16 @@ export const ApartmanContainer: FunctionComponent<ApartmentDefinitions> = memo(
       </div>
     )
   },
-  (oldProps: ApartmentDefinitions, newProps: ApartmentDefinitions) => {
-    console.log({ oldProps, newProps })
-
-    return (
-      oldProps.id === newProps.id &&
-      oldProps.address === newProps.address &&
-      oldProps.name === newProps.name &&
-      oldProps.stars === newProps.stars &&
-      oldProps.capacity.capacity === newProps.capacity.capacity &&
-      oldProps.capacity.bedrooms === newProps.capacity.bedrooms &&
-      oldProps.image === newProps.image &&
-      oldProps.price === newProps.price &&
-      (oldProps.facilities.length === newProps.facilities.length
-        ? oldProps.facilities.every((e, i) => e === newProps.facilities[i])
-        : false)
-    )
-  }
+  (oldProps: ApartmentDefinitions, newProps: ApartmentDefinitions) =>
+    oldProps.id === newProps.id &&
+    oldProps.address === newProps.address &&
+    oldProps.name === newProps.name &&
+    oldProps.stars === newProps.stars &&
+    oldProps.capacity.capacity === newProps.capacity.capacity &&
+    oldProps.capacity.bedrooms === newProps.capacity.bedrooms &&
+    oldProps.image === newProps.image &&
+    oldProps.price === newProps.price &&
+    (oldProps.facilities.length === newProps.facilities.length
+      ? oldProps.facilities.every((e, i) => e === newProps.facilities[i])
+      : false)
 )
