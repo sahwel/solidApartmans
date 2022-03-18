@@ -10,12 +10,7 @@ const HomeFacilities: FunctionComponent<HomeFacilitesProps> = memo(
     return (
       <div className="col-start-1 col-end-3 flex  w-full justify-evenly lg:w-1/2">
         {facilities.map((e, i) => (
-          <img
-            src={e}
-            /* width={30} height={30} */ alt="icon"
-            key={i}
-            className="w-7"
-          />
+          <Image src={e} width={30} height={30} alt="icon" key={i} />
         ))}
       </div>
     )

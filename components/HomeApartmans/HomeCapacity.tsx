@@ -24,7 +24,7 @@ const HomeCapacity: FunctionComponent<HomeCapacityProps> = memo(
             <span>{bedrooms}</span>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <div className="relative h-6 w-6">
-              <img src={'/bed.svg'} alt="icon of a bed" /* layout="fill" */ />
+              <Image src={'/bed.svg'} alt="icon of a bed" layout="fill" />
             </div>
           </div>
         </div>

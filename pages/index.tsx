@@ -8,16 +8,11 @@ interface HomeProps {
 }
 
 const Home: NextPage<HomeProps> = ({ _apartments }) => {
-  const [first, setfirst] = useState(false)
   const [apartments, setApartments] =
     useState<ApartmentDefinitions[]>(_apartments)
-  const asd = useCallback(() => {
-    setfirst(true)
-  }, [])
 
   return (
     <div className="m-auto mt-8 mb-9 w-[90%] space-y-8 rounded-3xl drop-shadow-xl md:bg-main-gray md:p-7">
-      <button onClick={asd}>asd</button>
       {apartments.map((e, i) => (
         <ApartmanContainer {...e} key={i} />
       ))}

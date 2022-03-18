@@ -11,12 +11,12 @@ const ImageHome: FunctionComponent<ImageHomeProps> = memo(
   function ImageHome({ stars, image }) {
     return (
       <div className="relative h-[60%] w-full md:h-full md:w-[40%]">
-        <img
+        <Image
           src={image}
-          /*  layout="fill" */ /* 
-          quality={100} */
+          layout="fill"
+          quality={100}
           loading="lazy"
-          className="h-full rounded-tr-2xl  rounded-tl-2xl md:rounded-bl-2xl md:rounded-tr-none"
+          className="rounded-tr-2xl rounded-tl-2xl  md:rounded-bl-2xl md:rounded-tr-none "
           alt="Picture of the apartment"
         />
         <p className="absolute top-5 right-5 rounded-3xl bg-main-blue p-1 px-4 text-white md:hidden">
