@@ -3,4 +3,11 @@ export interface ApartmentDefinitions {
   name: string
   address: string
   stars: number
+  facilities: string[]
+  capacity: {
+    capacity: number
+    bedrooms: number
+  }
+  price: number
+  image: string
 }

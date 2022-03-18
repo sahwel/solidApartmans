@@ -1,9 +1,10 @@
 import { MenuAlt1Icon } from '@heroicons/react/outline'
 import { XIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
+import { memo } from 'react'
 import { useCallback, useState } from 'react'
 
-export const Navbar = () => {
+export const Navbar = memo(function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const setOpen = useCallback(() => {
     setIsOpen((oldState) => !oldState)
@@ -11,7 +12,7 @@ export const Navbar = () => {
 
   return (
     <div className="border-b-[1px] border-main-blue text-main-text md:flex md:justify-between md:border-0 md:text-white">
-      <div className="flex items-center justify-between p-3 md:items-start">
+      <div className="flex items-center justify-between p-3 py-2 md:items-start">
         <h1 className="cursor-pointer text-2xl font-bold">
           <Link href={'/'} passHref>
             Solid
@@ -63,4 +64,4 @@ export const Navbar = () => {
       />
     </div>
   )
-}
+})
