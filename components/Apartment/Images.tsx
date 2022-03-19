@@ -30,21 +30,30 @@ const Images: FunctionComponent<ImagesProps> = memo(
       []
     )
 
+    const [firstImage, setFirstImage] = useState(images[0])
+    const [secondImage, setSecondImage] = useState(images[1])
+    const handleMove = useCallback(() => {
+      setFirstImage(images[1])
+    }, [images])
+
     return (
       <div className="hidden h-[6rem] items-center justify-between px-5 py-3 lg:flex">
         {firstHover ? (
           <SolidLeft
+            onClick={handleMove}
             className="w-6 cursor-pointer"
             onMouseLeave={handleHover(setFirstHover)}
           />
         ) : (
           <ArrowCircleLeftIcon
+            onClick={handleMove}
             className="w-6 cursor-pointer"
             onMouseEnter={handleHover(setFirstHover)}
           />
         )}
         <div className=" flex h-full w-[87%] justify-between space-x-4">
           <div className="relative w-1/3">
+            {/* Todo: create an component for image */}
             <Image src={images[1]} layout="fill" alt="image of the apartment" />
           </div>
           <div className="relative w-1/3">
@@ -56,7 +65,7 @@ const Images: FunctionComponent<ImagesProps> = memo(
           </div>
           <div className="relative w-1/3">
             <Image
-              src={'/static-apart.png'}
+              src={firstImage}
               layout="fill"
               alt="image of the apartment"
             />
