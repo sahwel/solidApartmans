@@ -1,4 +1,5 @@
 import { FunctionComponent, memo } from 'react'
+import cl from 'classnames'
 
 interface ButtonProps {
   title: string
@@ -10,7 +11,10 @@ export const Button: FunctionComponent<ButtonProps> = memo(
   function Button({ title, onClick = () => ({}), classNames = '' }) {
     return (
       <button
-        className={`rounded-xl bg-main-blue text-white ${classNames} border-2 border-main-blue font-bold hover:bg-white hover:text-main-text`}
+        className={cl(
+          'cursor-pointer rounded-xl border-2 border-main-blue bg-main-blue font-bold text-white hover:bg-white hover:text-main-text',
+          classNames
+        )}
         onClick={onClick}
       >
         {title}

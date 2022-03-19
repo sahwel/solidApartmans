@@ -3,7 +3,7 @@ import { Navbar } from '../Navbar/Navbar'
 
 export const Layout: FunctionComponent = ({ children }) => {
   return (
-    <div className="min-h-screen font-montserrat text-main-text">
+    <div className="min-h-screen font-montserrat text-main-text placeholder:text-main-text">
       <Navbar />
       {children}
     </div>

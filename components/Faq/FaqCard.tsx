@@ -20,7 +20,7 @@ const FaqCard: FunctionComponent<Faq> = memo(
           <p className="cursor-auto text-[108%] font-medium">{question}</p>
           <div
             className={cl(
-              'flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border-2 border-main-blue transition delay-75 ease-in-out',
+              'flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border-2 border-main-blue transition duration-75 ease-in-out',
               isOpen && 'rotate-180'
             )}
           >

@@ -47,7 +47,7 @@ export const Navbar = memo(function Navbar() {
             <Link href={'/faq'} passHref>
               <li className="cursor-pointer">FAQ</li>
             </Link>
-            <Link href={'/'} passHref>
+            <Link href={'/contact'} passHref>
               <li className="cursor-pointer">Contact us</li>
             </Link>
           </ul>
