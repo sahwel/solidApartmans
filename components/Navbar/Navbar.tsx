@@ -44,11 +44,8 @@ export const Navbar = memo(function Navbar() {
                 onClick={setOpen}
               ></XIcon>
             </li>
-            <Link href={'/'} passHref>
+            <Link href={'/faq'} passHref>
               <li className="cursor-pointer">FAQ</li>
-            </Link>
-            <Link href={'/'} passHref>
-              <li className="cursor-pointer">About us</li>
             </Link>
             <Link href={'/'} passHref>
               <li className="cursor-pointer">Contact us</li>
