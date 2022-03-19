@@ -7,6 +7,8 @@ import { useCallback, useState } from 'react'
 export const Navbar = memo(function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const setOpen = useCallback(() => {
+    console.log('test')
+
     setIsOpen((oldState) => !oldState)
   }, [])
 
