@@ -8,8 +8,7 @@ interface HomeProps {
 }
 
 const Home: NextPage<HomeProps> = ({ _apartments }) => {
-  const [apartments, setApartments] =
-    useState<ApartmentDefinitions[]>(_apartments)
+  const [apartments] = useState<ApartmentDefinitions[]>(_apartments)
 
   return (
     <div className="m-auto mt-8 mb-9 w-[90%] space-y-8 rounded-3xl drop-shadow-xl md:bg-main-gray md:p-7 lg:w-[80%] 2xl:w-[70%]">

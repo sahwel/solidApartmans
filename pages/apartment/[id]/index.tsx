@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next'
-import React, { FunctionComponent, memo } from 'react'
+import { useRouter } from 'next/router'
+import React, { FunctionComponent, memo, useCallback } from 'react'
 import ApartmentCapacity from '../../../components/Apartment/ApartmentCapacity'
 import ApartmentDatas from '../../../components/Apartment/ApartmentDatas'
 import ApartmentDeatils from '../../../components/Apartment/ApartmentDeatils'
@@ -24,6 +25,11 @@ const index: FunctionComponent<ExtendedApartmentDefinition> = memo(
     images,
     reviews,
   }) {
+    const router = useRouter()
+    const handleOpenBook = useCallback(() => {
+      router.push(`/book/${id}`)
+    }, [id, router])
+
     return (
       <Container>
         <div className=" space-y-5 lg:flex lg:h-[25rem] lg:justify-between">
@@ -36,7 +42,11 @@ const index: FunctionComponent<ExtendedApartmentDefinition> = memo(
                 address={address}
                 stars={stars}
               />
-              <Button title="Book" classNames="px-12 py-2 hidden lg:block " />
+              <Button
+                title="Book"
+                classNames="px-12 py-2 hidden lg:block "
+                onClick={handleOpenBook}
+              />
             </div>
             <ApartmentDeatils details={details} />
           </div>
@@ -50,7 +60,11 @@ const index: FunctionComponent<ExtendedApartmentDefinition> = memo(
             </div>
           </div>
           <div className="col-start-12 col-end-13 row-end-2 flex justify-center lg:hidden">
-            <Button title="Book" classNames="px-16 py-2 " />
+            <Button
+              title="Book"
+              classNames="px-16 py-2 "
+              onClick={handleOpenBook}
+            />
           </div>
           <ApartmentReviews reviews={reviews} />
         </div>

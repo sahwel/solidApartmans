@@ -23,7 +23,9 @@ export const ApartmanContainer: FunctionComponent<ApartmentDefinitions> = memo(
     const open = useCallback(() => {
       router.push(`apartment/${id}`)
     }, [id, router])
-
+    const handleOpenBook = useCallback(() => {
+      router.push(`/book/${id}`)
+    }, [id, router])
     return (
       <div className=" h-[23rem] w-full rounded-2xl bg-white text-main-text drop-shadow-md sm:m-auto sm:w-[80%] md:flex md:h-[20rem] md:w-full">
         <ImageHome stars={stars} image={image} />
@@ -42,7 +44,11 @@ export const ApartmanContainer: FunctionComponent<ApartmentDefinitions> = memo(
             <HomeCapacity {...capacity} />
           </div>
           <div className=" mx-auto flex w-4/5 justify-between space-x-9">
-            <Button title="Book" classNames="w-1/2 p-2 px-5" />
+            <Button
+              title="Book"
+              classNames="w-1/2 p-2 px-5"
+              onClick={handleOpenBook}
+            />
             <button className="w-1/2  p-2 px-5 underline" onClick={open}>
               More
             </button>
