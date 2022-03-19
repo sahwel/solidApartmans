@@ -3,6 +3,7 @@ import { ArrowCircleLeftIcon } from '@heroicons/react/solid'
 import { ArrowCircleRightIcon } from '@heroicons/react/solid'
 import Images from './Images'
 import { FunctionComponent, memo } from 'react'
+import CustomImage from '../Image/CustomImage'
 
 interface ApartmentImageProps {
   images: string[]
@@ -14,11 +15,11 @@ const ApartmentImage: FunctionComponent<ApartmentImageProps> = memo(
       <div className="h-[18rem] w-full lg:h-[25rem] lg:w-1/2">
         <div className="relative h-[18rem] w-full lg:h-[19rem] ">
           <ArrowCircleLeftIcon className="absolute top-1/2 left-5 z-50 h-7 w-7 -translate-y-1/2 cursor-pointer text-white hover:text-main-text lg:hidden" />
-          <Image
-            src={images[0]}
-            layout="fill"
-            className=" md:rounded-tl-2xl md:rounded-tr-2xl  lg:rounded-none"
+          <CustomImage
+            url={images[0]}
             alt="image of the apartment"
+            classNames="w-full h-full "
+            imageClassName="  md:rounded-tl-2xl md:rounded-tr-2xl  lg:rounded-none"
           />
           <ArrowCircleRightIcon className="hover:text-main-textlg:hidden absolute top-1/2 right-5 z-50 h-7 w-7 -translate-y-1/2 cursor-pointer text-white hover:text-main-text lg:hidden" />
         </div>

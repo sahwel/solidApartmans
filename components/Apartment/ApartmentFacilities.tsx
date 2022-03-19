@@ -1,6 +1,6 @@
-import Image from 'next/image'
 import { FunctionComponent, memo } from 'react'
 import { Facility } from '../../services/apartmentDefinitions'
+import CustomImage from '../Image/CustomImage'
 
 interface ApartmentFacilitiesProps {
   facilities: Facility[]
@@ -17,9 +17,11 @@ const ApartmentFacilities: FunctionComponent<ApartmentFacilitiesProps> = memo(
               className="grid w-[7rem] justify-start lg:flex lg:w-full lg:items-center lg:space-x-3"
               key={i}
             >
-              <div className="relative h-7 w-8">
-                <Image src={e.url} alt="icon" layout="fill" />
-              </div>
+              <CustomImage
+                url={e.url}
+                alt={`icon: ${e.name}`}
+                classNames="h-7 w-8"
+              />
               <p className="mt-2  text-left lg:m-0">{e.name}</p>
             </div>
           ))}

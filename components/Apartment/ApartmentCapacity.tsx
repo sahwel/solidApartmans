@@ -1,6 +1,6 @@
 import { UserIcon } from '@heroicons/react/outline'
-import Image from 'next/image'
 import { FunctionComponent, memo } from 'react'
+import CustomImage from '../Image/CustomImage'
 
 interface ApartmentCapacityProps {
   capacity: number
@@ -22,9 +22,11 @@ const ApartmentCapacity: FunctionComponent<ApartmentCapacityProps> = memo(
           <p className="text-lg">Bedrooms</p>
           <div className="m-auto mt-4 flex">
             <span>{bedrooms}</span>
-            <div className="relative h-6 w-6">
-              <Image src={'/bed.svg'} layout="fill" alt="icon of a bed" />
-            </div>
+            <CustomImage
+              url="/bed.svg"
+              alt="image of a bed"
+              classNames="h-6 w-6"
+            />
           </div>
         </div>
       </div>
