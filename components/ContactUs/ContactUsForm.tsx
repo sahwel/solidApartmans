@@ -54,7 +54,7 @@ const ContactUsForm = memo(function ContactUsForm() {
         <button
           onClick={handleClick}
           onMouseLeave={handleMouseLeft}
-          className="group relative  flex w-1/3 cursor-pointer  items-center justify-center space-x-2 overflow-hidden rounded-xl border-2 border-main-blue bg-main-blue py-2 px-4 font-bold text-white duration-300 hover:bg-white hover:text-main-text"
+          className="group relative  flex w-1/2 cursor-pointer  items-center justify-center space-x-2 overflow-hidden rounded-xl border-2 border-main-blue bg-main-blue py-2 px-4 font-bold text-white duration-300 hover:bg-white hover:text-main-text"
         >
           <p>Send</p>
           <CustomImage
