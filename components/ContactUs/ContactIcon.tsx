@@ -7,15 +7,14 @@ interface ContactIconProps {
 const ContactIcon: FunctionComponent<ContactIconProps> = memo(
   function ContactIcon({ children, title }) {
     return (
-      <div className="grid place-items-center space-y-2">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-main-blue bg-main-blue">
-          {children}
-        </div>
+      <div className="grid justify-items-center">
+        {children}
         <p className="text-sm">{title}</p>
       </div>
     )
   },
-  (oldProps, newProps) => oldProps.title === newProps.title
+  (oldProps, newProps) =>
+    oldProps.title === newProps.title && oldProps.children === newProps.children
 )
 
 export default ContactIcon
