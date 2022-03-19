@@ -1,5 +1,5 @@
 import type { GetServerSideProps, NextPage } from 'next'
-import { memo, useCallback, useEffect, useState } from 'react'
+import { useState } from 'react'
 import { ApartmanContainer } from '../components/HomeApartmans'
 import { ApartmentDefinitions } from '../services/apartmentDefinitions'
 

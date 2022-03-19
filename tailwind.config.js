@@ -13,6 +13,9 @@ module.exports = {
         'main-text': 'rgba(22, 29, 111, .95)',
         'main-gray': '#FCFCFC',
       },
+      screens: {
+        xmd: '950px',
+      },
     },
   },
   plugins: [],
