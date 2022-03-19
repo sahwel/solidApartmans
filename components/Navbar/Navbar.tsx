@@ -3,6 +3,7 @@ import { XIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { memo } from 'react'
 import { useCallback, useState } from 'react'
+import cl from 'classnames'
 
 export const Navbar = memo(function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -30,9 +31,10 @@ export const Navbar = memo(function Navbar() {
         />
       </div>
       <div
-        className={`fixed -right-[200%] top-0 z-[1000000000] flex h-screen w-full transition-all duration-500 ease-in-out md:static md:right-0 md:h-auto md:w-auto md:transition-none ${
-          isOpen && 'right-0'
-        }`}
+        className={cl(
+          'fixed -right-[200%] top-0 z-[1000000000] flex h-screen w-full transition-all duration-500 ease-in-out md:static md:right-0 md:h-auto md:w-auto md:transition-none',
+          isOpen && '!right-0'
+        )}
       >
         <div className="mw:w-0 w-1/2 md:hidden" onClick={setOpen}></div>
         <div className=" w-1/2  border-l-2 bg-white  p-4 md:flex md:w-full md:border-0 md:bg-transparent">
