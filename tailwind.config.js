@@ -14,6 +14,7 @@ module.exports = {
         'main-gray': '#FCFCFC',
       },
       screens: {
+        xms: '0px',
         xmd: '950px',
       },
     },

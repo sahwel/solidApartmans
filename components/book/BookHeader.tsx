@@ -19,7 +19,7 @@ const BookHeader: FunctionComponent<BookHeaderProps> = memo(
           className="absolute top-0 w-full md:hidden"
         />
         <div className=" flex h-[10rem] w-full flex-col items-center justify-center sm:h-[14rem] lg:h-fit">
-          <h1 className="relative z-40 w-full pt-5 text-center text-2xl font-bold md:pt-0 lg:py-3">
+          <h1 className="relative z-40 w-full text-center text-2xl font-bold md:pt-0 lg:py-3">
             {address}
           </h1>
           <p className="text-md relative mb-5 font-medium ">{name}</p>
