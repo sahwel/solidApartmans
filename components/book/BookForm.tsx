@@ -1,25 +1,52 @@
-import { FunctionComponent, memo, useCallback, useState } from 'react'
+import {
+  FunctionComponent,
+  memo,
+  useCallback,
+  useState,
+  lazy,
+  Suspense,
+} from 'react'
 import { useForm } from 'react-hook-form'
 import CustomImage from '../Image/CustomImage'
 import BookCheckbox from './BookCheckbox'
 import BookInput from './BookInput'
 import { BookFormModel } from './definitions'
 import cl from 'classnames'
+import { useModal } from '../Modal/ModalProvider'
+
+const ModalHeader = lazy(() => import('./BookModalHeader'))
+const BookModal = lazy(() => import('./BookModal'))
 
 interface BookFormProps {
   isCompany: boolean
+  address: string
+  name: string
 }
 
 const BookForm: FunctionComponent<BookFormProps> = memo(
-  function BookForm({ isCompany }) {
+  function BookForm({ isCompany, address, name }) {
     const { register, formState, handleSubmit } = useForm<BookFormModel>()
-    const onSubmit = (data: BookFormModel) => console.log(data)
+    const onSubmit = (data: BookFormModel) =>
+      modal.show(
+        <Suspense fallback={<p>Loading...</p>}>
+          <BookModal
+            arrive="2022-11-02"
+            left="2022-11-07"
+            numberOfAdults={1}
+            numberOfKids={1}
+          />
+        </Suspense>,
+        <Suspense fallback={<p>Loading...</p>}>
+          <ModalHeader address={address} name={name} />
+        </Suspense>
+      )
 
     const [isUnderTwoYears, setIsUnderTwoYears] = useState(false)
     const _setIsUnderTwoYears = useCallback(() => {
       setIsUnderTwoYears((oldState) => !oldState)
     }, [])
 
+    const modal = useModal()
     return (
       <form
         className="!mt-24 grid w-full space-y-5 px-5 pb-10 md:!mt-0 lg:grid-cols-12 lg:gap-4 lg:space-y-0"
@@ -190,7 +217,10 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
           register={register}
           property={'left'}
         />
-        <button className="p flex w-2/3 items-center justify-center space-x-3 justify-self-center bg-main-blue py-2 text-white lg:col-start-5 lg:col-end-9 lg:row-start-7 lg:max-w-[15rem]">
+        <button
+          type="submit"
+          className="p flex w-2/3 items-center justify-center space-x-3 justify-self-center bg-main-blue py-2 text-white lg:col-start-5 lg:col-end-9 lg:row-start-7 lg:max-w-[15rem]"
+        >
           <p>Book</p>
           <CustomImage
             url="/calendarSolid.svg"
@@ -201,7 +231,10 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
       </form>
     )
   },
-  (oldProps, newProps) => oldProps.isCompany === newProps.isCompany
+  (oldProps, newProps) =>
+    oldProps.isCompany === newProps.isCompany &&
+    oldProps.address === newProps.address &&
+    oldProps.name === newProps.name
 )
 
 export default BookForm

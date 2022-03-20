@@ -30,7 +30,7 @@ const index: FunctionComponent<ExtendedApartmentDefinition> = memo(
           isCompany={isCompany}
           setIsCompany={handleTypeChange}
         />
-        <BookForm isCompany={isCompany} />
+        <BookForm isCompany={isCompany} address={address} name={name} />
       </Container>
     )
   },
