@@ -23,8 +23,9 @@ const index: FunctionComponent<ExtendedApartmentDefinition> = memo(
       return () => setIsComapny(newState)
     }, [])
     return (
-      <Container classNames="bg-white">
+      <Container classNames="!bg-white">
         <BookHeader
+          name={name}
           address={address}
           isCompany={isCompany}
           setIsCompany={handleTypeChange}

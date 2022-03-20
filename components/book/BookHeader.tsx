@@ -4,11 +4,13 @@ import cl from 'classnames'
 interface BookHeaderProps {
   address: string
   isCompany: boolean
+  name: string
   setIsCompany: Function
 }
 
 const BookHeader: FunctionComponent<BookHeaderProps> = ({
   address,
+  name,
   isCompany,
   setIsCompany,
 }) => {
@@ -21,15 +23,18 @@ const BookHeader: FunctionComponent<BookHeaderProps> = ({
         className="absolute top-0 w-full md:hidden"
       />
       <div className=" flex h-[10rem] w-full flex-col items-center justify-center sm:h-[14rem] lg:h-fit">
-        <h1 className="relative z-40 w-full py-5 text-center text-2xl font-bold md:pt-0 lg:py-3">
+        <h1 className="relative z-40 w-full pt-5 text-center text-2xl font-bold md:pt-0 lg:py-3">
           {address}
         </h1>
+        <p className="text-md relative mb-5 font-medium ">{name}</p>
         <div className="relative grid grid-cols-2">
           <button
             onClick={setIsCompany(false)}
             className={cl(
               'py-1 px-4',
-              !isCompany ? 'bg-white text-main-text' : 'bg-[#161D6F]'
+              !isCompany
+                ? 'bg-white text-main-text lg:border-2 lg:border-main-blue'
+                : 'bg-[#161D6F] md:text-white'
             )}
           >
             Private person
@@ -38,7 +43,9 @@ const BookHeader: FunctionComponent<BookHeaderProps> = ({
             onClick={setIsCompany(true)}
             className={cl(
               'py-1 px-4',
-              isCompany ? 'bg-white text-main-text' : 'bg-[#161D6F]'
+              isCompany
+                ? 'bg-white text-main-text lg:border-2 lg:border-main-blue'
+                : 'bg-[#161D6F] md:text-white'
             )}
           >
             Company
