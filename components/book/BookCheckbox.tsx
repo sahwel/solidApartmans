@@ -43,6 +43,8 @@ const BookCheckbox: FunctionComponent<BookCheckboxProps> = memo(
     oldProps.id === newProps.id &&
     oldProps.register === newProps.register &&
     oldProps.property === newProps.property &&
+    oldProps.classNames === newProps.classNames &&
+    oldProps.onChange === newProps.onChange &&
     oldProps.title === newProps.title
 )
 
