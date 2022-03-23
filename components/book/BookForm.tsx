@@ -169,32 +169,31 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
           register={register}
           property={'numberOfKids'}
         />
-        <BookCheckbox
-          classNames="lg:col-start-1 lg:col-end-5 lg:row-start-6"
-          id="underTwoYears"
-          title="Kids are under two years old?"
-          register={register}
-          onChange={_setIsUnderTwoYears}
-          property={'underTwoYears'}
-        />
-        {isUnderTwoYears && (
-          <>
-            <BookCheckbox
-              id="babyBed"
-              classNames="lg:col-start-5 lg:col-end-9 lg:row-start-6"
-              title="Do you need baby bed?"
-              register={register}
-              property={'babyBed'}
-            />
-            <BookCheckbox
-              id="highChair"
-              title="Do you need high chair?"
-              classNames="lg:col-start-9 lg:col-end-13 lg:row-start-6"
-              register={register}
-              property={'highChair'}
-            />
-          </>
-        )}
+        <div className="lg:row-start-13 lg:col-start-1 lg:col-end-13 lg:grid lg:justify-center lg:space-y-1">
+          <BookCheckbox
+            id="underTwoYears"
+            title="Kids are under two years old?"
+            register={register}
+            onChange={_setIsUnderTwoYears}
+            property={'underTwoYears'}
+          />
+          {isUnderTwoYears && (
+            <>
+              <BookCheckbox
+                id="babyBed"
+                title="Do you need baby bed?"
+                register={register}
+                property={'babyBed'}
+              />
+              <BookCheckbox
+                id="highChair"
+                title="Do you need high chair?"
+                register={register}
+                property={'highChair'}
+              />
+            </>
+          )}
+        </div>
         <BookInput
           formState={formState}
           url="/calendar.svg"
