@@ -27,7 +27,7 @@ const BookInput: FunctionComponent<BookInputProps> = memo(
     property,
     classNames = '',
     min = 0,
-    isRequired = false,
+    isRequired = true,
     type = 'text',
   }) {
     const { errors } = formState

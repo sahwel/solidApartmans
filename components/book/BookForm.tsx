@@ -112,7 +112,7 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
           classNames="lg:col-start-7 lg:col-end-13"
           placeholder="Street"
           register={register}
-          property={'companyName'}
+          property={'street'}
         />
         <BookInput
           formState={formState}
