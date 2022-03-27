@@ -1,7 +1,8 @@
 import { StarIcon } from '@heroicons/react/solid'
 import { XIcon } from '@heroicons/react/outline'
 import { FunctionComponent, useCallback, useState } from 'react'
-import cl from 'classnames'
+import { useModal } from '../Modal/ModalProvider'
+import ReviewDeleteModal from '../Admin/Reviews/ReviewDeleteModal'
 
 interface ReviewProps {
   review: string
@@ -10,18 +11,27 @@ interface ReviewProps {
 
 const Review: FunctionComponent<ReviewProps> = ({ review, apartment }) => {
   const [isHover, setIsHover] = useState(false)
-  const handleHover = useCallback(() => {
-    setIsHover((odlState) => !odlState)
+  const handleHover = useCallback((newState: boolean) => {
+    return () => setIsHover(newState)
   }, [])
+
+  const modal = useModal()
+  const openModal = useCallback(() => {
+    modal.show(<ReviewDeleteModal custumer="John Doe" stars={4} />)
+    setIsHover(false)
+  }, [modal])
 
   return (
     <div
-      onMouseLeave={handleHover}
+      onMouseLeave={handleHover(false)}
       className="relative grid grid-rows-6 rounded-lg border-2 border-main-blue p-3"
-      onMouseEnter={handleHover}
+      onMouseEnter={handleHover(true)}
     >
       {isHover && (
-        <div className="absolute flex h-full w-full cursor-pointer items-center justify-center bg-main-blur text-white">
+        <div
+          className="absolute flex h-full w-full cursor-pointer items-center justify-center bg-main-blur text-white"
+          onClick={openModal}
+        >
           <XIcon className="h-40 w-40" />
         </div>
       )}

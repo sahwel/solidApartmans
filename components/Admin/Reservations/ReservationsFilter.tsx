@@ -1,4 +1,5 @@
 import { memo } from 'react'
+import { Button } from '../../Button'
 import AdminFilterInput from '../../Common/AdminInput'
 
 const ReservationsFilter = memo(function ReservationsFilter() {
@@ -20,7 +21,7 @@ const ReservationsFilter = memo(function ReservationsFilter() {
         </AdminFilterInput>
         <AdminFilterInput
           labeFor="reservation-filter-start-search"
-          label="Foglalás kezdet"
+          label="Foglalás kezdete"
         >
           <input
             id="reservation-filter-start-search"
@@ -40,6 +41,7 @@ const ReservationsFilter = memo(function ReservationsFilter() {
             className="rounded-lg border-2 border-main-blue py-1 px-3"
           />
         </AdminFilterInput>
+        <Button title="Keres" classNames="w-1/3 py-1" />
       </form>
     </div>
   )

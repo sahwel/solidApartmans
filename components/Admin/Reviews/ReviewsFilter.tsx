@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from '../../Button'
 import AdminFilterInput from '../../Common/AdminInput'
 
 const ReviewsFilter = () => {
@@ -66,6 +67,7 @@ const ReviewsFilter = () => {
             className="rounded-lg border-2 border-main-blue py-1 px-3"
           />
         </AdminFilterInput>
+        <Button title="Keres" classNames="w-1/3 py-1" />
       </form>
     </div>
   )

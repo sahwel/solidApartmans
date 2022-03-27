@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { ArrowCircleLeftIcon } from '@heroicons/react/solid'
 import { ArrowCircleRightIcon } from '@heroicons/react/solid'
 import Images from './Images'

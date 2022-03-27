@@ -1,14 +1,15 @@
 import { FunctionComponent, memo } from 'react'
-
-interface AdminInputProps {
+import cl from 'classnames'
+interface AdminFilterInputProps {
   label: string
   labeFor: string
+  classNames?: string
 }
 
-const AdminInput: FunctionComponent<AdminInputProps> = memo(
-  function AdminInput({ label, labeFor, children }) {
+const AdminInput: FunctionComponent<AdminFilterInputProps> = memo(
+  function AdminInput({ label, labeFor, classNames, children }) {
     return (
-      <div className="grid w-full">
+      <div className={cl('grid w-full', classNames)}>
         <label htmlFor={labeFor} className="text-sm">
           {label}
         </label>
@@ -19,6 +20,7 @@ const AdminInput: FunctionComponent<AdminInputProps> = memo(
   (oldProps, newProps) =>
     oldProps.children === newProps.children &&
     oldProps.labeFor === newProps.labeFor &&
+    oldProps.classNames === newProps.classNames &&
     oldProps.label === newProps.label
 )
 
