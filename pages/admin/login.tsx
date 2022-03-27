@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from '../../components/Button'
 
 const login = () => {
   return (
@@ -28,12 +29,7 @@ const login = () => {
               className="rounded-xl border-[1px] border-main-blue px-4 py-1"
             />
           </div>
-
-          <input
-            type="submit"
-            value="Bejelentkezés"
-            className="!mt-5 w-1/2 cursor-pointer rounded-xl border-2 border-main-blue bg-main-blue py-2 font-bold text-white hover:bg-white hover:text-main-text"
-          />
+          <Button title="Bejelentkezés" classNames="!mt-5 w-1/2 py-2 " />
         </form>
       </div>
     </div>

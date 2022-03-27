@@ -11,6 +11,7 @@ module.exports = {
       colors: {
         'main-blue': 'rgba(22, 29, 111, .85)',
         'main-text': 'rgba(22, 29, 111, .95)',
+        'main-blur': 'rgba(22, 29, 111)',
         'main-gray': '#FCFCFC',
       },
       screens: {
