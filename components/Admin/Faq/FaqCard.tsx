@@ -64,7 +64,13 @@ const FaqCard = () => {
               className="rounded-lg border-2 border-main-blue py-1 px-3"
             />
           </AdminInput>
-          <Button title="Mentés" classNames="px-4 py-1 justify-self-end" />
+          <div className=" space-x-3 justify-self-end">
+            <Button
+              title="Törlés"
+              classNames="px-4 py-1 !bg-white !text-main-text hover:!bg-main-blue hover:!text-white"
+            />
+            <Button title="Mentés" classNames="px-4 py-1" />
+          </div>
         </form>
       )}
     </div>
