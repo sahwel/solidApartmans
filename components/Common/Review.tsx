@@ -17,7 +17,9 @@ const Review: FunctionComponent<ReviewProps> = ({ review, apartment }) => {
 
   const modal = useModal()
   const openModal = useCallback(() => {
-    modal.show(<ReviewDeleteModal custumer="John Doe" stars={4} />)
+    modal.show(
+      <ReviewDeleteModal custumer="John Doe" stars={4} hide={modal.hide} />
+    )
     setIsHover(false)
   }, [modal])
 

@@ -4,10 +4,11 @@ import { Button } from '../../Button'
 interface ReviewDeleteModalProps {
   custumer: string
   stars: number
+  hide: () => void
 }
 
 const ReviewDeleteModal: FunctionComponent<ReviewDeleteModalProps> = memo(
-  function ReviewDeleteModal({ custumer, stars }) {
+  function ReviewDeleteModal({ custumer, stars, hide }) {
     return (
       <div className="grid h-[140px] space-y-2">
         <div className="place-self-end">
@@ -16,6 +17,7 @@ const ReviewDeleteModal: FunctionComponent<ReviewDeleteModalProps> = memo(
         </div>
         <div className="flex justify-center space-x-3 self-start">
           <Button
+            onClick={hide}
             title="Mégse"
             classNames="py-1 px-2 !bg-white !text-main-text hover:!bg-main-blue hover:!text-white"
           />
