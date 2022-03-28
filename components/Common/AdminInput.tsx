@@ -10,7 +10,7 @@ const AdminInput: FunctionComponent<AdminFilterInputProps> = memo(
   function AdminInput({ label, labeFor, classNames, children }) {
     return (
       <div className={cl('grid w-full', classNames)}>
-        <label htmlFor={labeFor} className="text-sm">
+        <label htmlFor={labeFor} className="ml-1 text-sm">
           {label}
         </label>
         {children}
