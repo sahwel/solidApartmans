@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next'
 import { FunctionComponent, memo, useCallback, useState } from 'react'
-import BookForm from '../../../components/book/BookForm'
-import BookHeader from '../../../components/book/BookHeader'
+import BookForm from '../../../components/Client/book/BookForm'
+import BookHeader from '../../../components/Client/book/BookHeader'
 import Container from '../../../components/Container'
 import { ExtendedApartmentDefinition } from '../../../services/apartmentDefinitions'
 

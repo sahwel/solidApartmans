@@ -1,6 +1,6 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import { useState } from 'react'
-import { ApartmanContainer } from '../components/HomeApartmans'
+import { ApartmanContainer } from '../components/Client/HomeApartmans'
 import { ApartmentDefinitions } from '../services/apartmentDefinitions'
 
 interface HomeProps {

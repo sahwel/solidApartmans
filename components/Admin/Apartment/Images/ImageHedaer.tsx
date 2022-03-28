@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { memo } from 'react'
 import CustomImage from '../../../Image/CustomImage'
 
-const ImageHedaer = () => {
+const ImageHedaer = memo(function ImageHeader() {
   return (
     <div className="flex items-center justify-between border-b-2 border-main-blue pb-2">
       <h1 className="text-xl font-bold">Képek</h1>
@@ -17,6 +17,6 @@ const ImageHedaer = () => {
       </div>
     </div>
   )
-}
+})
 
 export default ImageHedaer

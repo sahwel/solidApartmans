@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { memo } from 'react'
 import AdminInput from '../../Common/AdminInput'
 
-const Datas = () => {
+const Datas = memo(function Datas() {
   return (
     <div className="w-[60%] space-y-3 !pt-0">
       <AdminInput labeFor="apartment-edit-create-name" label="Apartman neve">
@@ -135,6 +135,6 @@ const Datas = () => {
       </div>
     </div>
   )
-}
+})
 
 export default Datas

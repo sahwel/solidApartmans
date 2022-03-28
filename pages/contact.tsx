@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
-import ContactContacts from '../components/ContactUs/ContactContacts'
-import ContactHeader from '../components/ContactUs/ContactHeader'
-import ContactUsForm from '../components/ContactUs/ContactUsForm'
+import ContactContacts from '../components/Client/ContactUs/ContactContacts'
+import ContactHeader from '../components/Client/ContactUs/ContactHeader'
+import ContactUsForm from '../components/Client/ContactUs/ContactUsForm'
 import Container from '../components/Container'
 
 const contact = memo(function contact() {

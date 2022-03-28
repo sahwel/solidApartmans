@@ -1,5 +1,5 @@
 import { FunctionComponent, memo } from 'react'
-import { Review } from '../../services/apartmentDefinitions'
+import { Review } from '../../../services/apartmentDefinitions'
 import ApartmentReview from './ApartmentReview'
 
 interface ApartmentReviewsProps {

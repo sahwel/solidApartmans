@@ -1,6 +1,6 @@
 import { UserIcon } from '@heroicons/react/outline'
 import { FunctionComponent, memo } from 'react'
-import CustomImage from '../Image/CustomImage'
+import CustomImage from '../../Image/CustomImage'
 
 interface ApartmentCapacityProps {
   capacity: number

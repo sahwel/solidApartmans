@@ -2,7 +2,7 @@ import { ArrowCircleLeftIcon } from '@heroicons/react/solid'
 import { ArrowCircleRightIcon } from '@heroicons/react/solid'
 import Images from './Images'
 import { FunctionComponent, memo } from 'react'
-import CustomImage from '../Image/CustomImage'
+import CustomImage from '../../Image/CustomImage'
 
 interface ApartmentImageProps {
   images: string[]

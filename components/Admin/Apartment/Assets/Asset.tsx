@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { memo } from 'react'
 import CustomImage from '../../../Image/CustomImage'
 
-const Asset = () => {
+const Asset = memo(function Asset() {
   return (
     <div className="flex items-center justify-between space-x-2">
       <div className="flex space-x-2">
@@ -16,6 +16,6 @@ const Asset = () => {
       <input type="checkbox" id="admin-apartment-icon" className="h-4 w-4" />
     </div>
   )
-}
+})
 
 export default Asset

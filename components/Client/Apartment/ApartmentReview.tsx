@@ -1,6 +1,6 @@
 import { StarIcon } from '@heroicons/react/solid'
 import { FunctionComponent, memo } from 'react'
-import { Review } from '../../services/apartmentDefinitions'
+import { Review } from '../../../services/apartmentDefinitions'
 
 const ApartmentReview: FunctionComponent<Review> = memo(
   function ApartmentReview({ customer, review, stars, timeAgo }) {

@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Button } from '../../components/Button'
 
-const login = () => {
+const login = memo(function Login() {
   return (
     <div className="flex h-screen w-screen items-center justify-center">
       <div className=" w-[30rem]  rounded-2xl border-2 border-main-blue p-8 shadow-2xl">
@@ -34,6 +34,6 @@ const login = () => {
       </div>
     </div>
   )
-}
+})
 
 export default login

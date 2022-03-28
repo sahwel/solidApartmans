@@ -7,12 +7,12 @@ import {
   Suspense,
 } from 'react'
 import { useForm } from 'react-hook-form'
-import CustomImage from '../Image/CustomImage'
 import BookCheckbox from './BookCheckbox'
 import BookInput from './BookInput'
 import { BookFormModel } from './definitions'
 import cl from 'classnames'
-import { useModal } from '../Modal/ModalProvider'
+import { useModal } from '../../Modal/ModalProvider'
+import CustomImage from '../../Image/CustomImage'
 
 const ModalHeader = lazy(() => import('./BookModalHeader'))
 const BookModal = lazy(() => import('./BookModal'))

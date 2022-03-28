@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Button } from '../../Button'
 import AdminInput from '../../Common/AdminInput'
 
-const CreateFaq = () => {
+const CreateFaq = memo(function CreateFaq()  {
   return (
     <div className="w-[35vw] p-3">
       <form className=" grid space-y-3 py-3">
@@ -42,6 +42,6 @@ const CreateFaq = () => {
       </form>
     </div>
   )
-}
+})
 
 export default CreateFaq

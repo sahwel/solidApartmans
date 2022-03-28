@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { memo } from 'react'
 import AdminHomeApartment from '../../components/Admin/AdminHome/AdminHomeApartment'
 import { Button } from '../../components/Button'
 
-const index = () => {
+const index = memo(function Index() {
   return (
     <div className="mx-auto my-8 grid w-1/2 gap-y-6">
       <div className="!mb-7 flex w-full justify-between">
@@ -26,6 +26,6 @@ const index = () => {
       />
     </div>
   )
-}
+})
 
 export default index

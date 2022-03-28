@@ -1,6 +1,6 @@
 import { FunctionComponent, memo } from 'react'
-import { Facility } from '../../services/apartmentDefinitions'
-import CustomImage from '../Image/CustomImage'
+import { Facility } from '../../../services/apartmentDefinitions'
+import CustomImage from '../../Image/CustomImage'
 
 interface ApartmentFacilitiesProps {
   facilities: Facility[]

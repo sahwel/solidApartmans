@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Review from '../../Common/Review'
 
-const ReviewsContainer = () => {
+const ReviewsContainer = memo(function ReviewsContainer() {
   return (
     <div className="grid max-h-[83vh] w-2/3 grid-cols-2 gap-4 overflow-auto">
       <Review
@@ -41,6 +41,6 @@ const ReviewsContainer = () => {
       />
     </div>
   )
-}
+})
 
 export default ReviewsContainer

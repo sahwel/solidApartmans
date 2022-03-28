@@ -27,7 +27,9 @@ const ReviewDeleteModal: FunctionComponent<ReviewDeleteModalProps> = memo(
     )
   },
   (oldProps, newProps) =>
-    oldProps.custumer === newProps.custumer && oldProps.stars === newProps.stars
+    oldProps.custumer === newProps.custumer &&
+    oldProps.stars === newProps.stars &&
+    oldProps.hide === newProps.hide
 )
 
 export default ReviewDeleteModal

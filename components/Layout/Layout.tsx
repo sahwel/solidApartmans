@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import React, { FunctionComponent } from 'react'
 import AdminNavbar from '../Admin/Navbar/AdminNavbar'
-import { Navbar } from '../Navbar/Navbar'
+import { Navbar } from '../Client/Navbar/Navbar'
 
 const dontShowNavbar = '/admin/login'
 const showAdmin = '/admin'

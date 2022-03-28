@@ -1,8 +1,8 @@
 import React, { FunctionComponent, memo } from 'react'
-import CustomImage from '../Image/CustomImage'
 import cl from 'classnames'
 import { FormState, UseFormRegister } from 'react-hook-form'
 import { BookFormModel } from './definitions'
+import CustomImage from '../../Image/CustomImage'
 
 export type InputType = 'text' | 'number'
 

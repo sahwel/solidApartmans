@@ -1,11 +1,11 @@
-import React, { FunctionComponent, memo, useCallback } from 'react'
-import { Button } from '../Button'
+import { FunctionComponent, memo, useCallback } from 'react'
 import ImageHome from './ImageHome'
 import HomeData from './HomeData'
 import HomeFacilites from './HomeFacilites'
 import { useRouter } from 'next/router'
-import { ApartmentDefinitions } from '../../services/apartmentDefinitions'
 import HomeCapacity from './HomeCapacity'
+import { ApartmentDefinitions } from '../../../services/apartmentDefinitions'
+import { Button } from '../../Button'
 
 export const ApartmanContainer: FunctionComponent<ApartmentDefinitions> = memo(
   function ApartmanContainer({

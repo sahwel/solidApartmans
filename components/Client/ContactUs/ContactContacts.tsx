@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import ContactIcon from './ContactIcon'
-import CustomImage from '../Image/CustomImage'
+import CustomImage from '../../Image/CustomImage'
 
 const ContactContacts = memo(function ContactContacts() {
   return (

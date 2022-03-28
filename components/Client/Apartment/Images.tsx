@@ -10,7 +10,7 @@ import {
   useCallback,
   useState,
 } from 'react'
-import CustomImage from '../Image/CustomImage'
+import CustomImage from '../../Image/CustomImage'
 
 interface ImagesProps {
   images: string[]

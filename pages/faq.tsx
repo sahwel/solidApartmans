@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next'
 import React, { FunctionComponent, memo } from 'react'
+import FaqCard from '../components/Client/Faq/FaqCard'
 import Container from '../components/Container'
-import FaqCard from '../components/Faq/FaqCard'
 import { Faq } from '../services/faqDefinitions'
 
 interface faqProps {

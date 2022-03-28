@@ -5,8 +5,8 @@ import {
   SetStateAction,
   useState,
 } from 'react'
-import { Button } from '../Button'
 import Tooltip from '@mui/material/Tooltip'
+import { Button } from '../../Button'
 
 interface BookModalProps {
   numberOfAdults: number

@@ -1,10 +1,10 @@
 import { ChevronDownIcon } from '@heroicons/react/solid'
-import { useCallback, useState } from 'react'
+import { memo, useCallback, useState } from 'react'
 import cl from 'classnames'
 import AdminInput from '../../Common/AdminInput'
 import { Button } from '../../Button'
 
-const FaqCard = () => {
+const FaqCard = memo(function FaqCard() {
   const [isOpen, setIsOpen] = useState(false)
   const handleOpen = useCallback(() => {
     setIsOpen((oldState) => !oldState)
@@ -14,7 +14,7 @@ const FaqCard = () => {
     <div className="relative rounded-lg border-2 border-main-blue p-3">
       <ChevronDownIcon
         className={cl(
-          'absolute right-3 top-2 h-8 w-8 transition duration-150 ease-in-out',
+          'absolute right-3 top-2 h-8 w-8 cursor-pointer transition duration-150 ease-in-out',
           isOpen && 'rotate-180'
         )}
         onClick={handleOpen}
@@ -75,6 +75,6 @@ const FaqCard = () => {
       )}
     </div>
   )
-}
+})
 
 export default FaqCard

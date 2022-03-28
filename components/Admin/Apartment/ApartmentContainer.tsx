@@ -1,10 +1,11 @@
+import { memo } from 'react'
 import { Button } from '../../Button'
 import Assets from './Assets/Assets'
 import Calendar from './Calendar'
 import Datas from './Datas'
 import Images from './Images/Images'
 
-const ApartmentContainer = () => {
+const ApartmentContainer = memo(function ApartmentContainer() {
   return (
     <div className="p-10">
       <div className="mb-4 flex w-full justify-end space-x-4">
@@ -26,6 +27,6 @@ const ApartmentContainer = () => {
       </div>
     </div>
   )
-}
+})
 
 export default ApartmentContainer

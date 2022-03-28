@@ -1,7 +1,7 @@
 import React, { FunctionComponent, memo, useCallback, useState } from 'react'
-import { Faq } from '../../services/faqDefinitions'
 import { ChevronDownIcon } from '@heroicons/react/outline'
 import cl from 'classnames'
+import { Faq } from '../../../services/faqDefinitions'
 
 const FaqCard: FunctionComponent<Faq> = memo(
   function FaqCard({ answer, question }) {

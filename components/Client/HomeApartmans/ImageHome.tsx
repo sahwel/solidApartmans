@@ -1,6 +1,6 @@
 import { StarIcon } from '@heroicons/react/solid'
 import { FunctionComponent, memo } from 'react'
-import CustomImage from '../Image/CustomImage'
+import CustomImage from '../../Image/CustomImage'
 
 interface ImageHomeProps {
   stars: number

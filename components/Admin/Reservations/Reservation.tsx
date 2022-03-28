@@ -1,7 +1,7 @@
-import React, { useCallback, useState } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import { Button } from '../../Button'
 
-const Reservation = () => {
+const Reservation = memo(function Reservation() {
   const [isOpen, setIsOpen] = useState(false)
   const handleOpen = useCallback(() => {
     setIsOpen((oldState) => !oldState)
@@ -51,6 +51,6 @@ const Reservation = () => {
       )}
     </div>
   )
-}
+})
 
 export default Reservation

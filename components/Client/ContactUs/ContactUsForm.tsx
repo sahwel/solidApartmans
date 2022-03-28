@@ -1,5 +1,5 @@
 import { memo, useCallback, useState } from 'react'
-import CustomImage from '../Image/CustomImage'
+import CustomImage from '../../Image/CustomImage'
 import cl from 'classnames'
 
 const ContactUsForm = memo(function ContactUsForm() {

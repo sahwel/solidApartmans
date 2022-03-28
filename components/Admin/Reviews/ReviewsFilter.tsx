@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Button } from '../../Button'
 import AdminFilterInput from '../../Common/AdminInput'
 
-const ReviewsFilter = () => {
+const ReviewsFilter = memo(function ReviewsFilter() {
   return (
     <div className="w-1/3">
       <h1 className="text-2xl font-bold">Értékelések</h1>
@@ -71,6 +71,6 @@ const ReviewsFilter = () => {
       </form>
     </div>
   )
-}
+})
 
 export default ReviewsFilter
