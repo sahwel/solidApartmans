@@ -105,10 +105,14 @@ const Datas: FunctionComponent<DatasProps> = memo(
           >
             <input
               {...register('plusPrice', {
-                required: 'Ez a mező kötelező!',
+                required: 'Ennek a mezőnek az értéke legalább 1 kell legyen.',
+                min: {
+                  value: 1,
+                  message: 'Ennek a mezőnek az értéke legalább 1 kell legyen.',
+                },
               })}
               id="apartment-edit-create-plus-price"
-              type="text"
+              type="number"
               placeholder="1500 Ft"
               className="rounded-lg border-2 border-main-blue py-1 px-3"
             />
@@ -120,10 +124,14 @@ const Datas: FunctionComponent<DatasProps> = memo(
           >
             <input
               {...register('price', {
-                required: 'Ez a mező kötelező!',
+                required: 'Ennek a mezőnek az értéke legalább 1 kell legyen.',
+                min: {
+                  value: 1,
+                  message: 'Ennek a mezőnek az értéke legalább 1 kell legyen.',
+                },
               })}
               id="apartment-edit-create-price"
-              type="text"
+              type="number"
               placeholder="13000 Ft"
               className="rounded-lg border-2 border-main-blue py-1 px-3"
             />
@@ -137,10 +145,14 @@ const Datas: FunctionComponent<DatasProps> = memo(
           >
             <input
               {...register('capacity.capacity', {
-                required: 'Ez a mező kötelező!',
+                required: 'Ennek a mezőnek az értéke legalább 1 kell legyen.',
+                min: {
+                  value: 1,
+                  message: 'Ennek a mezőnek az értéke legalább 1 kell legyen.',
+                },
               })}
               id="apartment-edit-create-capacity"
-              type="text"
+              type="number"
               placeholder="4"
               className="rounded-lg border-2 border-main-blue py-1 px-3"
             />
@@ -152,10 +164,14 @@ const Datas: FunctionComponent<DatasProps> = memo(
           >
             <input
               {...register('capacity.bedrooms', {
-                required: 'Ez a mező kötelező!',
+                required: 'Ennek a mezőnek az értéke legalább 1 kell legyen.',
+                min: {
+                  value: 1,
+                  message: 'Ennek a mezőnek az értéke legalább 1 kell legyen.',
+                },
               })}
               id="apartment-edit-create-bedroom"
-              type="text"
+              type="number"
               placeholder="2"
               className="rounded-lg border-2 border-main-blue py-1 px-3"
             />

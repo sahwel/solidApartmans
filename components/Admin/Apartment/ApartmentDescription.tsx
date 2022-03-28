@@ -45,41 +45,40 @@ const ApartmentDescription: FunctionComponent<ApartmentDescriptionProps> = memo(
           </div>
         </div>
         <div className={cl(!isCreate ? 'h-[20rem]' : 'h-[28.5rem]')}>
-          {isHun ? (
-            <>
-              <textarea
-                {...register('detailsHU', {
-                  required: 'Ez a mező kötelező!',
-                })}
-                id="apartment-edit-create-description"
-                className={cl(
-                  'w-full resize-none rounded-lg border-2 border-main-blue p-3',
-                  errorHU ? 'h-[23rem]' : 'h-full '
-                )}
-                placeholder="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusandae Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand consectetur magnam ratione odit vel explicabo. Assumenda dignissimos ex possimus odio rem perferendis odit, libero officia. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusandae consectetur magnam ratione odit vel explicabo. Assumenda dignissimos ex possimus odio rem perferendis odit, libero officia. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusandae consectetur magnam ratione odit vel explicabo. Assumenda dignissimos ex possimus odio rem perferendis odit, libero officia."
-              ></textarea>
-              {errorHU && (
-                <span className="text-sm text-red-600">{errorHU}</span>
+          <>
+            <textarea
+              {...register('detailsHU', {
+                required: 'Ez a mező kötelező!',
+              })}
+              id="apartment-edit-create-description"
+              className={cl(
+                'w-full resize-none rounded-lg border-2 border-main-blue p-3',
+                errorHU ? 'h-[23rem]' : 'h-full ',
+                isHun ? 'block' : 'hidden'
               )}
-            </>
-          ) : (
-            <>
-              <textarea
-                {...register('detailsEN', {
-                  required: 'Ez a mező kötelező!',
-                })}
-                id="apartment-edit-create-description"
-                className={cl(
-                  'h-full w-full resize-none rounded-lg border-2 border-main-blue p-3',
-                  errorEN ? 'h-[23rem]' : 'h-full '
-                )}
-                placeholder="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusandae Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand consectetur magnam ratione odit vel explicabo. Assumenda dignissimos ex possimus odio rem perferendis odit, libero officia. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusandae consectetur magnam ratione odit vel explicabo. Assumenda dignissimos ex possimus odio rem perferendis odit, libero officia. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusandae consectetur magnam ratione odit vel explicabo. Assumenda dignissimos ex possimus odio rem perferendis odit, libero officia."
-              ></textarea>
-              {errorEN && (
-                <span className="text-sm text-red-600">{errorEN}</span>
+              placeholder="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusandae Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand consectetur magnam ratione odit vel explicabo. Assumenda dignissimos ex possimus odio rem perferendis odit, libero officia. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusandae consectetur magnam ratione odit vel explicabo. Assumenda dignissimos ex possimus odio rem perferendis odit, libero officia. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusandae consectetur magnam ratione odit vel explicabo. Assumenda dignissimos ex possimus odio rem perferendis odit, libero officia."
+            ></textarea>
+            {isHun && errorHU && (
+              <span className="text-sm text-red-600">{errorHU}</span>
+            )}
+          </>
+          <>
+            <textarea
+              {...register('detailsEN', {
+                required: 'Ez a mező kötelező!',
+              })}
+              id="apartment-edit-create-description"
+              className={cl(
+                'h-full w-full resize-none rounded-lg border-2 border-main-blue p-3',
+                errorEN ? 'h-[23rem]' : 'h-full ',
+                !isHun ? 'block' : 'hidden'
               )}
-            </>
-          )}
+              placeholder="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusandae Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand consectetur magnam ratione odit vel explicabo. Assumenda dignissimos ex possimus odio rem perferendis odit, libero officia. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusandae consectetur magnam ratione odit vel explicabo. Assumenda dignissimos ex possimus odio rem perferendis odit, libero officia. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusandae consectetur magnam ratione odit vel explicabo. Assumenda dignissimos ex possimus odio rem perferendis odit, libero officia."
+            ></textarea>
+            {!isHun && errorEN && (
+              <span className="text-sm text-red-600">{errorEN}</span>
+            )}
+          </>
         </div>
       </div>
     )
