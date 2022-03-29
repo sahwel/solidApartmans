@@ -27,7 +27,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       id: '1',
       name: 'B apartment',
       stars: 4,
-      address: '1061 Budapest, Kossuth utca 64/b ',
+      address: {
+        city: 'Budapest',
+        zip_code: '1061',
+        street: 'Kossuth utca',
+        house_number: '64/b',
+      },
       facilities: [
         { name: 'wifi', url: '/wifi.svg' },
         { name: 'ac', url: '/ac.svg' },
@@ -46,7 +51,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       id: '2',
       name: 'B apartment',
       stars: 4,
-      address: '1061 Budapest, Kossuth utca 64/b ',
+      address: {
+        city: 'Budapest',
+        zip_code: '1061',
+        street: 'Kossuth utca',
+        house_number: '64/b',
+      },
       facilities: [
         { name: 'wifi', url: '/wifi.svg' },
         { name: 'ac', url: '/ac.svg' },
@@ -65,7 +75,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       id: '2',
       name: 'B apartment',
       stars: 4,
-      address: '1061 Budapest, Kossuth utca 64/b ',
+      address: {
+        city: 'Budapest',
+        zip_code: '1061',
+        street: 'Kossuth utca',
+        house_number: '64/b',
+      },
       facilities: [
         { name: 'wifi', url: '/wifi.svg' },
         { name: 'ac', url: '/ac.svg' },

@@ -13,13 +13,14 @@ import { BookFormModel } from './definitions'
 import cl from 'classnames'
 import { useModal } from '../../Modal/ModalProvider'
 import CustomImage from '../../Image/CustomImage'
+import { Address } from '../../../services/apartmentDefinitions'
 
 const ModalHeader = lazy(() => import('./BookModalHeader'))
 const BookModal = lazy(() => import('./BookModal'))
 
 interface BookFormProps {
   isCompany: boolean
-  address: string
+  address: Address
   name: string
 }
 

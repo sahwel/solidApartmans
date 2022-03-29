@@ -1,8 +1,9 @@
 import { FunctionComponent, memo } from 'react'
 import cl from 'classnames'
+import { Address } from '../../../services/apartmentDefinitions'
 
 interface BookHeaderProps {
-  address: string
+  address: Address
   isCompany: boolean
   name: string
   setIsCompany: Function
@@ -20,7 +21,13 @@ const BookHeader: FunctionComponent<BookHeaderProps> = memo(
         />
         <div className=" flex h-[10rem] w-full flex-col items-center justify-center sm:h-[14rem] lg:h-fit">
           <h1 className="relative z-40 w-full text-center text-2xl font-bold md:pt-0 lg:py-3">
-            {address}
+            {address.zip_code +
+              ', ' +
+              address.city +
+              ' ' +
+              address.street +
+              ' ' +
+              address.house_number}
           </h1>
           <p className="text-md relative mb-5 font-medium ">{name}</p>
           <div className="relative grid grid-cols-2">
