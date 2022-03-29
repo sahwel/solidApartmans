@@ -1,5 +1,11 @@
-import { FunctionComponent, memo, useCallback } from 'react'
-import { useForm, UseFormReturn } from 'react-hook-form'
+import {
+  FunctionComponent,
+  memo,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react'
+import { useForm } from 'react-hook-form'
 import {
   AdminApartmentDefinitions,
   DefaultAdminApartment,
@@ -9,6 +15,8 @@ import Assets from './Assets/Assets'
 import Calendar from './Calendar'
 import Datas from './Datas'
 import Images from './Images/Images'
+import { useImages } from './Images/useImages'
+import { useApartmentContainer } from './useApartmentContainer'
 
 interface ApartmentContainerProps {
   isCreate?: boolean
@@ -20,12 +28,10 @@ const ApartmentContainer: FunctionComponent<ApartmentContainerProps> = memo(
     isCreate = false,
     defaultValue = DefaultAdminApartment,
   }) {
-    const { register, handleSubmit, formState } =
-      useForm<AdminApartmentDefinitions>({
-        defaultValues: { ...defaultValue },
-      })
+    const { handleAddImg, moveImg, images, handleDeleteImg } = useImages()
+    const { register, handleSubmit, onSubmit, errors, formState } =
+      useApartmentContainer(images, defaultValue)
 
-    const onSubmit = useCallback((data: AdminApartmentDefinitions) => {}, [])
     return (
       <form className="p-10" onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4 flex w-full justify-end space-x-4">
@@ -37,7 +43,13 @@ const ApartmentContainer: FunctionComponent<ApartmentContainerProps> = memo(
         </div>
         <div className="flex w-full space-x-6">
           <div className="w-[40%]">
-            <Images />
+            <Images
+              error={errors.image?.message ? true : false}
+              images={images}
+              moveImg={moveImg}
+              handleDeleteImg={handleDeleteImg}
+              handleAddImg={handleAddImg}
+            />
             <div className="mt-5 flex space-x-3">
               <Assets isCreate={isCreate} />
               {!isCreate && <Calendar />}
