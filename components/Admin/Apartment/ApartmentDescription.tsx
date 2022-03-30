@@ -20,7 +20,10 @@ const ApartmentDescription: FunctionComponent<ApartmentDescriptionProps> = memo(
     return (
       <div>
         <div className="flex justify-between">
-          <label htmlFor="apartment-edit-create-description" className="ml-1">
+          <label
+            htmlFor="apartment-edit-create-description"
+            className={cl('ml-1', (errorHU || errorEN) && '!text-red-600')}
+          >
             {isHun ? 'Leírás' : 'Description'}
           </label>
           <div className="mr-2">
@@ -28,7 +31,8 @@ const ApartmentDescription: FunctionComponent<ApartmentDescriptionProps> = memo(
               onClick={handleChange(true)}
               className={cl(
                 'cursor-pointer border-r-[1px] border-main-blue pr-2',
-                !isHun && 'opacity-50'
+                !isHun && 'opacity-50',
+                errorHU && '!text-red-600'
               )}
             >
               hu
@@ -37,7 +41,8 @@ const ApartmentDescription: FunctionComponent<ApartmentDescriptionProps> = memo(
               onClick={handleChange(false)}
               className={cl(
                 'cursor-pointer border-l-[1px] border-main-blue pl-2',
-                isHun && 'opacity-50'
+                isHun && 'opacity-50',
+                errorEN && '!text-red-600'
               )}
             >
               en
@@ -53,7 +58,7 @@ const ApartmentDescription: FunctionComponent<ApartmentDescriptionProps> = memo(
               id="apartment-edit-create-description"
               className={cl(
                 'w-full resize-none rounded-lg border-2 border-main-blue p-3',
-                errorHU ? 'h-[23rem]' : 'h-full ',
+                errorHU ? 'h-[23rem] !border-red-600 !text-red-600' : 'h-full ',
                 isHun ? 'block' : 'hidden'
               )}
               placeholder="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusandae Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand consectetur magnam ratione odit vel explicabo. Assumenda dignissimos ex possimus odio rem perferendis odit, libero officia. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusandae consectetur magnam ratione odit vel explicabo. Assumenda dignissimos ex possimus odio rem perferendis odit, libero officia. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusandae consectetur magnam ratione odit vel explicabo. Assumenda dignissimos ex possimus odio rem perferendis odit, libero officia."
@@ -70,7 +75,7 @@ const ApartmentDescription: FunctionComponent<ApartmentDescriptionProps> = memo(
               id="apartment-edit-create-description"
               className={cl(
                 'h-full w-full resize-none rounded-lg border-2 border-main-blue p-3',
-                errorEN ? 'h-[23rem]' : 'h-full ',
+                errorEN ? 'h-[23rem] !border-red-600 !text-red-600' : 'h-full ',
                 !isHun ? 'block' : 'hidden'
               )}
               placeholder="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusandae Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusand consectetur magnam ratione odit vel explicabo. Assumenda dignissimos ex possimus odio rem perferendis odit, libero officia. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusandae consectetur magnam ratione odit vel explicabo. Assumenda dignissimos ex possimus odio rem perferendis odit, libero officia. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos blanditiis ullam cupiditate eius recusandae consectetur magnam ratione odit vel explicabo. Assumenda dignissimos ex possimus odio rem perferendis odit, libero officia."

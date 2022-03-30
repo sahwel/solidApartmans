@@ -1,6 +1,15 @@
 import { useCallback, useState } from 'react'
+import {
+  UseFormGetValues,
+  UseFormSetError,
+  UseFormSetValue,
+} from 'react-hook-form'
+import { AdminApartmentDefinitions } from '../../../../services/apartmentDefinitions'
 
-export const useImages = () => {
+export const useImages = (
+  setValue: UseFormSetValue<AdminApartmentDefinitions>,
+  setError: UseFormSetError<AdminApartmentDefinitions>
+) => {
   const [images, setImages] = useState<string[]>([])
   const handleDeleteImg = useCallback(
     (index: number) => () => {
@@ -29,10 +38,17 @@ export const useImages = () => {
       reader.readAsDataURL(newImg)
       reader.onloadend = function () {
         newImages.unshift(reader.result?.toString() || '')
+        if (newImages.length === 0) setValue('image', '')
+        else {
+          setValue('image', 'true')
+          setError('image', {
+            message: undefined,
+          })
+        }
         setImages(newImages)
       }
     },
-    [images]
+    [images, setError, setValue]
   )
   return { handleAddImg, moveImg, images, handleDeleteImg }
 }

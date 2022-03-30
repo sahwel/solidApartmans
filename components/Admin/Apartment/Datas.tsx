@@ -3,6 +3,7 @@ import { FormState, UseFormRegister } from 'react-hook-form'
 import { AdminApartmentDefinitions } from '../../../services/apartmentDefinitions'
 import AdminInput from '../../Common/AdminInput'
 import ApartmentDescription from './ApartmentDescription'
+import ApartmentInput from './ApartmentInput'
 import ApartmentStatistics from './ApartmentStatistics'
 
 interface DatasProps {
@@ -21,12 +22,13 @@ const Datas: FunctionComponent<DatasProps> = memo(
           label="Apartman neve"
           error={errors.name?.message}
         >
-          <input
-            {...register('name', { required: 'Ez a mező kötelező!' })}
+          <ApartmentInput
+            register={register('name', {
+              required: 'Ez a mező kötelező!',
+            })}
             id="apartment-edit-create-name"
-            type="text"
             placeholder="B apartman"
-            className="rounded-lg border-2 border-main-blue py-1 px-3"
+            error={errors.name?.message}
           />
         </AdminInput>
         <div className="flex space-x-4">
@@ -36,14 +38,13 @@ const Datas: FunctionComponent<DatasProps> = memo(
             label="Írányítószám"
             classNames="w-[25%]"
           >
-            <input
-              {...register('address.zip_code', {
+            <ApartmentInput
+              register={register('address.zip_code', {
                 required: 'Ez a mező kötelező!',
               })}
               id="apartment-edit-create-zip"
-              type="text"
               placeholder="1031"
-              className="rounded-lg border-2 border-main-blue py-1 px-3"
+              error={errors.address?.zip_code?.message}
             />
           </AdminInput>
           <AdminInput
@@ -52,14 +53,13 @@ const Datas: FunctionComponent<DatasProps> = memo(
             label="Város"
             classNames="w-[75%]"
           >
-            <input
-              {...register('address.city', {
+            <ApartmentInput
+              register={register('address.city', {
                 required: 'Ez a mező kötelező!',
               })}
               id="apartment-edit-create-city"
-              type="text"
-              placeholder="Budapest"
-              className="rounded-lg border-2 border-main-blue py-1 px-3"
+              placeholder="1031"
+              error={errors.address?.city?.message}
             />
           </AdminInput>
         </div>
@@ -70,14 +70,13 @@ const Datas: FunctionComponent<DatasProps> = memo(
             label="Utca"
             classNames="w-[75%]"
           >
-            <input
-              {...register('address.street', {
+            <ApartmentInput
+              register={register('address.street', {
                 required: 'Ez a mező kötelező!',
               })}
               id="apartment-edit-create-street"
-              type="text"
               placeholder="Petőfi Sándor utca"
-              className="rounded-lg border-2 border-main-blue py-1 px-3"
+              error={errors.address?.city?.message}
             />
           </AdminInput>
           <AdminInput
@@ -86,14 +85,13 @@ const Datas: FunctionComponent<DatasProps> = memo(
             label="Házszám"
             classNames="w-[25%]"
           >
-            <input
-              {...register('address.house_number', {
+            <ApartmentInput
+              register={register('address.house_number', {
                 required: 'Ez a mező kötelező!',
               })}
               id="apartment-edit-create-house"
-              type="text"
               placeholder="64/A"
-              className="rounded-lg border-2 border-main-blue py-1 px-3"
+              error={errors.address?.house_number?.message}
             />
           </AdminInput>
         </div>
@@ -103,8 +101,8 @@ const Datas: FunctionComponent<DatasProps> = memo(
             labeFor="apartment-edit-create-plus-price"
             label="Plusz ár/fő"
           >
-            <input
-              {...register('plusPrice', {
+            <ApartmentInput
+              register={register('plusPrice', {
                 required: 'Ennek a mezőnek az értéke legalább 1 kell legyen.',
                 min: {
                   value: 1,
@@ -114,7 +112,7 @@ const Datas: FunctionComponent<DatasProps> = memo(
               id="apartment-edit-create-plus-price"
               type="number"
               placeholder="1500 Ft"
-              className="rounded-lg border-2 border-main-blue py-1 px-3"
+              error={errors.plusPrice?.message}
             />
           </AdminInput>
           <AdminInput
@@ -122,8 +120,8 @@ const Datas: FunctionComponent<DatasProps> = memo(
             labeFor="apartment-edit-create-price"
             label="Ár 1 fő/éjszaka"
           >
-            <input
-              {...register('price', {
+            <ApartmentInput
+              register={register('price', {
                 required: 'Ennek a mezőnek az értéke legalább 1 kell legyen.',
                 min: {
                   value: 1,
@@ -133,7 +131,7 @@ const Datas: FunctionComponent<DatasProps> = memo(
               id="apartment-edit-create-price"
               type="number"
               placeholder="13000 Ft"
-              className="rounded-lg border-2 border-main-blue py-1 px-3"
+              error={errors.price?.message}
             />
           </AdminInput>
         </div>
@@ -143,8 +141,8 @@ const Datas: FunctionComponent<DatasProps> = memo(
             labeFor="apartment-edit-create-capacity"
             label="Férőhelyek száma"
           >
-            <input
-              {...register('capacity.capacity', {
+            <ApartmentInput
+              register={register('capacity.capacity', {
                 required: 'Ennek a mezőnek az értéke legalább 1 kell legyen.',
                 min: {
                   value: 1,
@@ -154,7 +152,7 @@ const Datas: FunctionComponent<DatasProps> = memo(
               id="apartment-edit-create-capacity"
               type="number"
               placeholder="4"
-              className="rounded-lg border-2 border-main-blue py-1 px-3"
+              error={errors.capacity?.capacity?.message}
             />
           </AdminInput>
           <AdminInput
@@ -162,8 +160,8 @@ const Datas: FunctionComponent<DatasProps> = memo(
             labeFor="apartment-edit-create-bedroom"
             label="Szobák száma"
           >
-            <input
-              {...register('capacity.bedrooms', {
+            <ApartmentInput
+              register={register('capacity.bedrooms', {
                 required: 'Ennek a mezőnek az értéke legalább 1 kell legyen.',
                 min: {
                   value: 1,
@@ -173,7 +171,7 @@ const Datas: FunctionComponent<DatasProps> = memo(
               id="apartment-edit-create-bedroom"
               type="number"
               placeholder="2"
-              className="rounded-lg border-2 border-main-blue py-1 px-3"
+              error={errors.capacity?.bedrooms?.message}
             />
           </AdminInput>
         </div>

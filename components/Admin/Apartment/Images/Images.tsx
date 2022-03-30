@@ -23,6 +23,7 @@ const Images: FunctionComponent<ImagesProps> = memo(
           error && '!border-red-600 !text-red-600'
         )}
       >
+        {error}
         <ImageHedaer handleAddImg={handleAddImg} error={error} />
         <ImagesBody
           images={images}

@@ -1,11 +1,4 @@
-import {
-  FunctionComponent,
-  memo,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react'
-import { useForm } from 'react-hook-form'
+import { FunctionComponent, memo } from 'react'
 import {
   AdminApartmentDefinitions,
   DefaultAdminApartment,
@@ -28,12 +21,19 @@ const ApartmentContainer: FunctionComponent<ApartmentContainerProps> = memo(
     isCreate = false,
     defaultValue = DefaultAdminApartment,
   }) {
-    const { handleAddImg, moveImg, images, handleDeleteImg } = useImages()
-    const { register, handleSubmit, onSubmit, errors, formState } =
-      useApartmentContainer(images, defaultValue)
-
+    const { register, handleSubmit, onSubmit, formState, setValue, setError } =
+      useApartmentContainer(defaultValue)
+    const { handleAddImg, moveImg, images, handleDeleteImg } = useImages(
+      setValue,
+      setError
+    )
+    const { errors } = formState
     return (
       <form className="p-10" onSubmit={handleSubmit(onSubmit)}>
+        <input
+          type="hidden"
+          {...register('image', { required: 'true', min: 1 })}
+        />
         <div className="mb-4 flex w-full justify-end space-x-4">
           <Button
             title="Törlés"

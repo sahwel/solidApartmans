@@ -3,10 +3,9 @@ import { useForm } from 'react-hook-form'
 import { AdminApartmentDefinitions } from '../../../services/apartmentDefinitions'
 
 export const useApartmentContainer = (
-  images: string[],
   defaultValue: AdminApartmentDefinitions
 ) => {
-  const { register, handleSubmit, formState, setValue } =
+  const { register, handleSubmit, formState, setValue, setError } =
     useForm<AdminApartmentDefinitions>({
       defaultValues: { ...defaultValue },
     })
@@ -16,9 +15,13 @@ export const useApartmentContainer = (
     console.log('asd')
   }, [])
 
-  const handleImagesValidation = useCallback(() => {
-    setValue('images', images)
-  }, [images, setValue])
-
-  return { register, handleSubmit, onSubmit, errors, formState }
+  return {
+    register,
+    setError,
+    handleSubmit,
+    onSubmit,
+    errors,
+    formState,
+    setValue,
+  }
 }
