@@ -1,7 +1,7 @@
 import { FunctionComponent, memo, useCallback, useState } from 'react'
 import cl from 'classnames'
 import { UseFormRegister } from 'react-hook-form'
-import { AdminApartmentDefinitions } from '../../../services/apartmentDefinitions'
+import { AdminApartmentDefinitions } from '../../../../services/apartmentDefinitions'
 
 interface ApartmentDescriptionProps {
   isCreate: boolean

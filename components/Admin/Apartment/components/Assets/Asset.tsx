@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import CustomImage from '../../../Image/CustomImage'
+import CustomImage from '../../../../Image/CustomImage'
 
 const Asset = memo(function Asset() {
   return (

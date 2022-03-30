@@ -1,5 +1,5 @@
 import { FunctionComponent, memo, useCallback } from 'react'
-import CustomImage from '../../../Image/CustomImage'
+import CustomImage from '../../../../Image/CustomImage'
 import cl from 'classnames'
 
 interface ImageHeaderProps {

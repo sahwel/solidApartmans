@@ -1,7 +1,7 @@
 import React, { FunctionComponent, memo } from 'react'
 import { UseFormRegisterReturn } from 'react-hook-form'
 import cl from 'classnames'
-import { InputTypes } from '../../../services/commonDefinitions'
+import { InputTypes } from '../../../../services/commonDefinitions'
 
 interface ApartmentInputProps {
   register: UseFormRegisterReturn

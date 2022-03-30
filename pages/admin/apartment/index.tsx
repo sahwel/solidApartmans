@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import ApartmentContainer from '../../../components/Admin/Apartment/ApartmentContainer'
+import ApartmentContainer from '../../../components/Admin/Apartment/components/ApartmentContainer'
 
 const index = memo(function Index() {
   return <ApartmentContainer isCreate={true} />

@@ -5,7 +5,7 @@ import {
   ChevronDoubleUpIcon,
   TrashIcon,
 } from '@heroicons/react/outline'
-import CustomImage from '../../../Image/CustomImage'
+import CustomImage from '../../../../Image/CustomImage'
 
 interface ImageCardProps {
   index: number

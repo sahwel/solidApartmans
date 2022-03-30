@@ -2,14 +2,14 @@ import { FunctionComponent, memo } from 'react'
 import {
   AdminApartmentDefinitions,
   DefaultAdminApartment,
-} from '../../../services/apartmentDefinitions'
-import { Button } from '../../Button'
+} from '../../../../services/apartmentDefinitions'
+import { Button } from '../../../Button'
 import Assets from './Assets/Assets'
 import Calendar from './Calendar'
 import Datas from './Datas'
 import Images from './Images/Images'
-import { useImages } from './Images/useImages'
-import { useApartmentContainer } from './useApartmentContainer'
+import { useImages } from '../services/useImages'
+import { useApartmentContainer } from '../services/useApartmentContainer'
 
 interface ApartmentContainerProps {
   isCreate?: boolean
