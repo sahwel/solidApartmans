@@ -11,7 +11,7 @@ export const useApartmentContainer = (
     })
 
   const onSubmit = useCallback((data: AdminApartmentDefinitions) => {
-    console.log('asd')
+    console.log(data)
   }, [])
 
   return {

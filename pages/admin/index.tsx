@@ -1,10 +1,19 @@
+import { GetServerSideProps } from 'next'
+import { getSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import { memo, useCallback } from 'react'
+import { FunctionComponent, memo, useCallback } from 'react'
 import AdminHomeApartment from '../../components/Admin/AdminHome/AdminHomeApartment'
 import { Button } from '../../components/Button'
+import { validateExpire } from '../../services/userDefinitions'
 
-const index = memo(function Index() {
+interface indexProps {
+  session: any
+}
+
+const index: FunctionComponent<indexProps> = memo(function Index({ session }) {
   const router = useRouter()
+  console.log(session)
+
   const handleCreate = useCallback(() => {
     router.push('/admin/apartment')
   }, [router])
@@ -39,3 +48,20 @@ const index = memo(function Index() {
 })
 
 export default index
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context)
+
+  if (!session || validateExpire(session.expires)) {
+    return {
+      redirect: {
+        destination: '/admin/login',
+        permanent: false,
+      },
+    }
+  }
+
+  return {
+    props: { session },
+  }
+}
