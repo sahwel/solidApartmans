@@ -2,6 +2,7 @@ import { GetServerSideProps } from 'next'
 import React, { FunctionComponent, memo } from 'react'
 import FaqCard from '../components/Client/Faq/FaqCard'
 import Container from '../components/Container'
+import { axiosInstance } from '../services/axiosInstance'
 import { Faq } from '../services/faqDefinitions'
 
 interface faqProps {
@@ -29,26 +30,10 @@ const faq: FunctionComponent<faqProps> = memo(
 
 export default faq
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const faqs: Faq[] = [
-    {
-      question: 'question?',
-      answer:
-        'asnwer. asnwer asnwer. asnwer asnwer. asnwer asnwer. asnwer snwer. asnwer asnwer. asnwer snwer. asnwer asnwer. asnwer',
-    },
-    {
-      question: 'question?',
-      answer: 'asnwer.',
-    },
-    {
-      question: 'question?',
-      answer: 'asnwer.',
-    },
-    {
-      question: 'question?',
-      answer: 'asnwer.',
-    },
-  ]
+export const getServerSideProps: GetServerSideProps = async () => {
+  //todo get language
+  const response = await axiosInstance.get('/faq')
+  const faqs: Faq[] = response.data.faqs
 
   return {
     props: {

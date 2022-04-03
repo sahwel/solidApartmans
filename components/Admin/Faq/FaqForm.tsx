@@ -1,8 +1,4 @@
-import { useSession } from 'next-auth/react'
 import React, { FunctionComponent, memo } from 'react'
-import { useForm } from 'react-hook-form'
-import { useCallback } from 'react'
-import { axiosInstance } from '../../../services/axiosInstance'
 import { AdminFaq } from '../../../services/faqDefinitions'
 import AdminInput from '../../Common/AdminInput'
 import FaqInput from './FaqInput'
