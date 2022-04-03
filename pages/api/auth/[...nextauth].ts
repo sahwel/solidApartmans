@@ -10,8 +10,13 @@ export default NextAuth({
       authorize(credentials) {
         if (!credentials) return null
 
+        const expires = new Date(
+          new Date().getTime() +
+            parseInt(process.env.NEXT_PUBLIC_TOKEN_EXP || '42900000')
+        )
         return {
           token: credentials.token,
+          expires: expires,
         }
       },
     }),
@@ -20,6 +25,7 @@ export default NextAuth({
     jwt: ({ token, user }) => {
       if (user) {
         token.token = user.token
+        token.expires = user.expires
       }
 
       return token
@@ -27,7 +33,7 @@ export default NextAuth({
     session: ({ session, token }) => {
       if (token) {
         session.token = token.token
-        session.expires = '42900000'
+        session.expires = token.expires as string
       }
 
       return session
