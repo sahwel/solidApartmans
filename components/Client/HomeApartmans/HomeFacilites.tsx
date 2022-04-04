@@ -11,7 +11,13 @@ const HomeFacilities: FunctionComponent<HomeFacilitesProps> = memo(
     return (
       <div className="col-start-1 col-end-3 flex  w-full items-center justify-evenly lg:w-1/2">
         {facilities.slice(0, 5).map((e, i) => (
-          <CustomImage url={e.url} alt="icon" key={i} classNames="w-7 h-7" />
+          <CustomImage
+            url={e.url}
+            alt="icon"
+            key={i}
+            classNames="w-7 h-7"
+            isFromApi={true}
+          />
         ))}
       </div>
     )
@@ -20,7 +26,8 @@ const HomeFacilities: FunctionComponent<HomeFacilitesProps> = memo(
     oldProps.facilities.length === newProps.facilities.length
       ? oldProps.facilities.every(
           (e, i) =>
-            e.name === newProps.facilities[i].name &&
+            e.nameHU === newProps.facilities[i].nameHU &&
+            e.nameEN === newProps.facilities[i].nameEN &&
             e.url === newProps.facilities[i].url
         )
       : false

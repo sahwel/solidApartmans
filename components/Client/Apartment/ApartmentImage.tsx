@@ -16,6 +16,7 @@ const ApartmentImage: FunctionComponent<ApartmentImageProps> = memo(
           <ArrowCircleLeftIcon className="absolute top-1/2 left-5 z-50 h-7 w-7 -translate-y-1/2 cursor-pointer text-white hover:text-main-text lg:hidden" />
           <CustomImage
             url={images[0]}
+            isFromApi={true}
             alt="image of the apartment"
             classNames="w-full h-full "
             imageClassName="  md:rounded-tl-2xl md:rounded-tr-2xl  lg:rounded-none"

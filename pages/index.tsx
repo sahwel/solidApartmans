@@ -2,6 +2,7 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { useState } from 'react'
 import { ApartmanContainer } from '../components/Client/HomeApartmans'
 import { ApartmentDefinitions } from '../services/apartmentDefinitions'
+import { axiosInstance } from '../services/axiosInstance'
 
 interface HomeProps {
   _apartments: ApartmentDefinitions[]
@@ -21,81 +22,9 @@ const Home: NextPage<HomeProps> = ({ _apartments }) => {
 
 export default Home
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const _apartments: ApartmentDefinitions[] = [
-    {
-      id: '1',
-      name: 'B apartment',
-      stars: 4,
-      address: {
-        city: 'Budapest',
-        zip_code: '1061',
-        street: 'Kossuth utca',
-        house_number: '64/b',
-      },
-      facilities: [
-        { name: 'wifi', url: '/wifi.svg' },
-        { name: 'ac', url: '/ac.svg' },
-        { name: 'baby bed', url: '/baby.svg' },
-        { name: 'parking', url: '/parking.svg' },
-        { name: 'wifi', url: '/wifi.svg' },
-      ],
-      capacity: {
-        capacity: 2,
-        bedrooms: 1,
-      },
-      price: 13000,
-      image: '/static-apart.png',
-    },
-    {
-      id: '2',
-      name: 'B apartment',
-      stars: 4,
-      address: {
-        city: 'Budapest',
-        zip_code: '1061',
-        street: 'Kossuth utca',
-        house_number: '64/b',
-      },
-      facilities: [
-        { name: 'wifi', url: '/wifi.svg' },
-        { name: 'ac', url: '/ac.svg' },
-        { name: 'baby bed', url: '/baby.svg' },
-        { name: 'parking', url: '/parking.svg' },
-        { name: 'wifi', url: '/wifi.svg' },
-      ],
-      capacity: {
-        capacity: 2,
-        bedrooms: 1,
-      },
-      price: 13000,
-      image: '/static-apart.png',
-    },
-    {
-      id: '2',
-      name: 'B apartment',
-      stars: 4,
-      address: {
-        city: 'Budapest',
-        zip_code: '1061',
-        street: 'Kossuth utca',
-        house_number: '64/b',
-      },
-      facilities: [
-        { name: 'wifi', url: '/wifi.svg' },
-        { name: 'ac', url: '/ac.svg' },
-        { name: 'baby bed', url: '/baby.svg' },
-        { name: 'parking', url: '/parking.svg' },
-        { name: 'wifi', url: '/wifi.svg' },
-      ],
-      capacity: {
-        capacity: 2,
-        bedrooms: 1,
-      },
-      price: 13000,
-      image: '/static-apart.png',
-    },
-  ]
+export const getServerSideProps: GetServerSideProps = async () => {
+  const response = await axiosInstance.get('/apartment')
+  const _apartments: ApartmentDefinitions[] = response.data
   return {
     props: {
       _apartments,

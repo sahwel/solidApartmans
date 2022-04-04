@@ -11,6 +11,7 @@ import ApartmentReviews from '../../../components/Client/Apartment/ApartmentRevi
 import { Button } from '../../../components/Button'
 import Container from '../../../components/Container'
 import { ExtendedApartmentDefinition } from '../../../services/apartmentDefinitions'
+import { axiosInstance } from '../../../services/axiosInstance'
 
 const index: FunctionComponent<ExtendedApartmentDefinition> = memo(
   function Apartment({
@@ -21,11 +22,26 @@ const index: FunctionComponent<ExtendedApartmentDefinition> = memo(
     facilities,
     capacity,
     price,
-    details,
+    detailsHU,
+    detailsEN,
     images,
     reviews,
   }) {
     const router = useRouter()
+    console.log(
+      id,
+      name,
+      stars,
+      address,
+      facilities,
+      capacity,
+      price,
+      detailsHU,
+      detailsEN,
+      images,
+      reviews
+    )
+
     const handleOpenBook = useCallback(() => {
       router.push(`/book/${id}`)
     }, [id, router])
@@ -48,7 +64,7 @@ const index: FunctionComponent<ExtendedApartmentDefinition> = memo(
                 onClick={handleOpenBook}
               />
             </div>
-            <ApartmentDeatils details={details} />
+            <ApartmentDeatils details={detailsHU} />
           </div>
         </div>
         <div className="space-y-5 lg:flex lg:h-[28rem]">
@@ -76,7 +92,8 @@ const index: FunctionComponent<ExtendedApartmentDefinition> = memo(
     oldProps.address === newProps.address &&
     oldProps.name === newProps.name &&
     oldProps.stars === newProps.stars &&
-    oldProps.details === newProps.details &&
+    oldProps.detailsHU === newProps.detailsHU &&
+    oldProps.detailsEN === newProps.detailsEN &&
     oldProps.capacity.capacity === newProps.capacity.capacity &&
     oldProps.capacity.bedrooms === newProps.capacity.bedrooms &&
     oldProps.image === newProps.image &&
@@ -84,7 +101,8 @@ const index: FunctionComponent<ExtendedApartmentDefinition> = memo(
     (oldProps.facilities.length === newProps.facilities.length
       ? oldProps.facilities.every(
           (e, i) =>
-            e.name === newProps.facilities[i].name &&
+            e.nameHU === newProps.facilities[i].nameHU &&
+            e.nameEN === newProps.facilities[i].nameEN &&
             e.url === newProps.facilities[i].url
         )
       : false) &&
@@ -105,103 +123,9 @@ const index: FunctionComponent<ExtendedApartmentDefinition> = memo(
 export default index
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const apartment: ExtendedApartmentDefinition = {
-    id: '1',
-    name: 'B apartment',
-    stars: 4,
-    address: {
-      city: 'Budapest',
-      zip_code: '1061',
-      street: 'Kossuth utca',
-      house_number: '64/b',
-    },
-    facilities: [
-      { name: 'wifi', url: '/wifi.svg' },
-      { name: 'ac', url: '/ac.svg' },
-      { name: 'baby bed', url: '/baby.svg' },
-      { name: 'parking', url: '/parking.svg' },
-      { name: 'wifi', url: '/wifi.svg' },
-      { name: 'wifi', url: '/wifi.svg' },
-      { name: 'ac', url: '/ac.svg' },
-      { name: 'baby bed', url: '/baby.svg' },
-      { name: 'parking', url: '/parking.svg' },
-      { name: 'wifi', url: '/wifi.svg' },
-      { name: 'wifi', url: '/wifi.svg' },
-      { name: 'ac', url: '/ac.svg' },
-      { name: 'baby bed', url: '/baby.svg' },
-      { name: 'parking', url: '/parking.svg' },
-      { name: 'wifi', url: '/wifi.svg' },
-      { name: 'wifi', url: '/wifi.svg' },
-      { name: 'ac', url: '/ac.svg' },
-      { name: 'baby bed', url: '/baby.svg' },
-      { name: 'parking', url: '/parking.svg' },
-      { name: 'wifi', url: '/wifi.svg' },
-    ],
-    capacity: {
-      capacity: 2,
-      bedrooms: 1,
-    },
-    price: 13000,
-    images: ['/static-apart.png', '/static-apart2.png'],
-    details: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel
-    mattis sem. Sed lacinia elit ut purus facilisis pellentesque. Quisque
-    elit dolor, venenatis et felis non, imperdiet lacinia tellus. Cras
-    cursus mattis erat, ac maximus sem. Mauris fringilla posuere aliquam.
-    Aenean lectus lorem, porta pellentesque tincidunt non, efficitur ut est.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel
-    mattis sem. Sed lacinia elit ut purus facilisis pellentesque. Quisque
-    elit dolor, venenatis et felis non, imperdiet lacinia tellus. Cras
-    cursus mattis erat, ac maximus sem. Mauris fringilla posuere aliquam.
-    Aenean lectus lorem, porta pellentesque tincidunt non, efficitur ut est.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel
-    mattis sem. Sed lacinia elit ut purus facilisis pellentesque. Quisque
-    Aenean lectus lorem, porta pellentesque tincidunt non, efficitur ut est.
-    elit dolor, venenatis et felis non, imperdiet lacinia tellus. Cras
-    cursus mattis erat, ac maximus sem. Mauris fringilla posuere aliquam.
-    Aenean lectus lorem, porta pellentesque tincidunt non, efficitur ut est.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel
-    mattis sem. Sed lacinia elit ut purus facilisis pellentesque. Quisque
-    Aenean lectus lorem, porta pellentesque tincidunt non, efficitur ut est.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel elit
-    dolor, venenatis et felis non, imperdiet lacinia tellus. Cras cursus
-    mattis erat, ac maximus sem. Mauris fringilla posuere aliquam. Aenean
-    lectus lorem, porta pellentesque tincidunt non, efficitur ut est. Lorem
-    ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel mattis sem.
-    Sed lacinia elit ut purus facilisis pellentesque. Quisque Aenean lectus
-    lorem, porta pellentesque tincidunt non, efficitur ut est. Lorem ipsum
-    dolor sit amet, consectetur adipiscing elit. Nulla vel Lorem ipsum dolor
-    sit amet, consectetur adipiscing elit. Nulla vel mattis sem. Sed lacinia
-    elit ut purus facilisis pellentesque. Quisque elit dolor, venenatis et
-    felis non, imperdiet lacinia tellus. Cras elit dolor, venenatis et felis
-    non, imperdiet lacinia tellus. Cras cursus mattis erat, ac maximus sem.
-    Mauris fringilla posuere aliquam. Aenean lectus lorem, porta
-    pellentesque tincidunt non, efficitur ut est.`,
-    reviews: [
-      {
-        customer: 'John Doe',
-        review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-        efficitur leo tortor, ac sollicitudin arcu vestibulum et. Ut faucibus,
-        tellus non ultrices rhoncus, dolor sit amet, consectetur adipiscing
-        elit. nteger efficitur leo tortor, ac sollicitudin arcu vestibulum et.
-        Ut faucibus, tellus non ultrices rhoncus, dolor sit amet, consectetur
-        adipiscing elit.`,
-        timeAgo: '2 days ago',
-        stars: 5,
-      },
-      {
-        customer: 'John Doe',
-        review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-        efficitur leo tortor, ac sollicitudin arcu vestibulum et. Ut faucibus,
-        tellus non ultrices rhoncus, dolor sit amet, consectetur adipiscing
-        elit. nteger efficitur leo tortor, ac sollicitudin arcu vestibulum et.
-        Ut faucibus, tellus non ultrices rhoncus, dolor sit amet, consectetur
-        adipiscing elit.`,
-        timeAgo: '2 days ago',
-        stars: 3,
-      },
-    ],
-    image: '/static-apart.png',
-  }
+  const id = context.query.id
+  const response = await axiosInstance.get(`/apartment/${id}`)
+  const apartment: ExtendedApartmentDefinition = response.data
 
   return {
     props: {

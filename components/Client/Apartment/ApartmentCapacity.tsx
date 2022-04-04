@@ -23,7 +23,7 @@ const ApartmentCapacity: FunctionComponent<ApartmentCapacityProps> = memo(
           <div className="m-auto mt-4 flex">
             <span>{bedrooms}</span>
             <CustomImage
-              url="/bed.svg"
+              url="bed.svg"
               alt="image of a bed"
               classNames="h-6 w-6"
             />

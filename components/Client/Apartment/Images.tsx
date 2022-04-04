@@ -45,16 +45,17 @@ const Images: FunctionComponent<ImagesProps> = memo(
         <div className=" flex h-full w-[87%] justify-between space-x-4">
           <CustomImage
             url={images[1]}
+            isFromApi={true}
             alt="image of the apartment"
             classNames="w-1/3 h-full"
           />
           <CustomImage
-            url={'/static-apart.png'}
+            url={'static-apart.png'}
             alt="image of the apartment"
             classNames="w-1/3 h-full"
           />
           <CustomImage
-            url={'/static-apart.png'}
+            url={'static-apart.png'}
             alt="image of the apartment"
             classNames="w-1/3 h-full"
           />

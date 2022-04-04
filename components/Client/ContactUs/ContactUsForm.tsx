@@ -27,7 +27,7 @@ const ContactUsForm = memo(function ContactUsForm() {
           />
           <div className="absolute top-1/2 right-3 -translate-y-1/2 transform">
             <CustomImage
-              url="/mailOutline.svg"
+              url="mailOutline.svg"
               alt="icon of mail"
               classNames="w-6 h-6"
             />
@@ -41,7 +41,7 @@ const ContactUsForm = memo(function ContactUsForm() {
           />
           <div className="absolute top-1/2 right-3 -translate-y-1/2 transform">
             <CustomImage
-              url="/pen.svg"
+              url="pen.svg"
               alt="icon of mail"
               classNames="w-5 h-5"
             />
@@ -58,13 +58,13 @@ const ContactUsForm = memo(function ContactUsForm() {
         >
           <p>Send</p>
           <CustomImage
-            url="/send.svg"
+            url="send.svg"
             alt="icon of mail"
             imageClassName="!text-white"
             classNames="group-hover:hidden  w-4 h-4"
           />
           <CustomImage
-            url="/sendHover.svg"
+            url="sendHover.svg"
             alt="icon of mail"
             imageClassName="!text-white"
             classNames={cl(

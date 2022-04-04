@@ -7,7 +7,7 @@ interface ContactIconProps {
 const ContactIcon: FunctionComponent<ContactIconProps> = memo(
   function ContactIcon({ children, title }) {
     return (
-      <div className="grid justify-items-center">
+      <div className="grid justify-items-center space-y-1">
         {children}
         <p className="text-sm">{title}</p>
       </div>

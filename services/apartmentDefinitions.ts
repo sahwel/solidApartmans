@@ -17,7 +17,8 @@ export interface Address {
 }
 
 export interface Facility {
-  name: string
+  nameHU: string
+  nameEN: string
   url: string
 }
 
@@ -35,7 +36,8 @@ export interface Review {
 
 export interface ExtendedApartmentDefinition extends ApartmentDefinitions {
   images: string[]
-  details: string
+  detailsHU: string
+  detailsEN: string
   reviews: Review[]
 }
 

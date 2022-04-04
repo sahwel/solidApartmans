@@ -8,7 +8,7 @@ const ContactContacts = memo(function ContactContacts() {
       <ContactIcon title="+36701234567">
         <CustomImage
           classNames="w-10 h-10"
-          url="/phone.svg"
+          url="phone.svg"
           alt="Icon of phone"
           imageClassName="w-7 h-7"
         />
@@ -16,7 +16,7 @@ const ContactContacts = memo(function ContactContacts() {
       <ContactIcon title="contact@solidApartmans.hu">
         <CustomImage
           classNames="w-10 h-10"
-          url="/mail.svg"
+          url="mail.svg"
           alt="Icon of mail"
           imageClassName="w-7 h-7"
         />
@@ -24,7 +24,7 @@ const ContactContacts = memo(function ContactContacts() {
       <ContactIcon title="/solidApartmans">
         <CustomImage
           classNames="w-10 h-10"
-          url="/facebook.svg"
+          url="facebook.svg"
           alt="Icon of facebook"
           imageClassName="w-7 h-7"
         />
@@ -32,7 +32,7 @@ const ContactContacts = memo(function ContactContacts() {
       <ContactIcon title="1061, Budapest Kossuth utca 64/b">
         <CustomImage
           classNames="w-10 h-10"
-          url="/map.svg"
+          url="map.svg"
           alt="Icon of map"
           imageClassName="w-7 h-7"
         />

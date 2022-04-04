@@ -15,9 +15,17 @@ const HomeData: FunctionComponent<HomeDataProps> = memo(
       <>
         <div className="w-full lg:w-auto">
           <div className="flex justify-between ">
-            <p>{address.zip_code + ', ' + address.city + ' ' + address.street + ' ' + address.house_number }</p>
+            <p>
+              {address.zip_code +
+                ', ' +
+                address.city +
+                ' ' +
+                address.street +
+                ' ' +
+                address.house_number}
+            </p>
             <p className="flex items-center md:hidden ">
-              <span>{stars}</span>
+              <span>{stars === 0 ? 'N/A' : stars}</span>
               <StarIcon className="h-5 w-5" />
             </p>
           </div>

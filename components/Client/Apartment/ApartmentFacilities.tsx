@@ -11,18 +11,19 @@ const ApartmentFacilities: FunctionComponent<ApartmentFacilitiesProps> = memo(
     return (
       <div className="bg-white p-3  lg:w-1/2">
         <h1 className="text-lg font-bold lg:hidden">Facilities</h1>
-        <div className="m-auto mt-4 flex max-w-[90vw] space-x-5 overflow-x-auto lg:grid lg:max-h-full lg:justify-start lg:space-x-0 lg:space-y-4 lg:overflow-y-auto lg:overflow-x-hidden">
+        <div className="m-auto mt-4 flex max-w-[90vw] space-x-8 overflow-x-auto lg:grid lg:max-h-full lg:justify-start lg:space-x-0 lg:space-y-4 lg:overflow-y-auto lg:overflow-x-hidden">
           {facilities.map((e, i) => (
             <div
-              className="grid w-[7rem] justify-start lg:flex lg:w-full lg:items-center lg:space-x-3"
+              className="grid w-[6rem] justify-center justify-items-center lg:flex lg:w-full lg:items-center lg:justify-start lg:space-x-3"
               key={i}
             >
               <CustomImage
                 url={e.url}
-                alt={`icon: ${e.name}`}
+                isFromApi={true}
+                alt={`icon: ${e.nameHU}`}
                 classNames="h-7 w-8"
               />
-              <p className="mt-2  text-left lg:m-0">{e.name}</p>
+              <p className="mt-2  text-center lg:m-0">{e.nameHU}</p>
             </div>
           ))}
         </div>
@@ -33,7 +34,8 @@ const ApartmentFacilities: FunctionComponent<ApartmentFacilitiesProps> = memo(
     oldProps.facilities.length === newProps.facilities.length
       ? oldProps.facilities.every(
           (e, i) =>
-            e.name === newProps.facilities[i].name &&
+            e.nameHU === newProps.facilities[i].nameHU &&
+            e.nameEN === newProps.facilities[i].nameEN &&
             e.url === newProps.facilities[i].url
         )
       : false

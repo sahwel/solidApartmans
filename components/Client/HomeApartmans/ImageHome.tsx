@@ -13,6 +13,7 @@ const ImageHome: FunctionComponent<ImageHomeProps> = memo(
       <div className="relative h-[60%] w-full md:h-full md:w-[40%]">
         <CustomImage
           url={image}
+          isFromApi={true}
           classNames="h-full w-full"
           imageClassName="rounded-tr-2xl rounded-tl-2xl  md:rounded-bl-2xl md:rounded-tr-none "
           alt="Picture of the apartment"
@@ -21,7 +22,7 @@ const ImageHome: FunctionComponent<ImageHomeProps> = memo(
           min. 13000 Ft
         </p>
         <p className="absolute right-5 top-5 hidden items-center rounded-3xl bg-main-blue p-1 px-8 text-white md:flex">
-          <span>{stars}</span>
+          <span>{stars === 0 ? "N/A" : stars}</span>
           <StarIcon className="h-5 w-5" />
         </p>
       </div>
