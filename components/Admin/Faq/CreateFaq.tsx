@@ -1,10 +1,10 @@
 import React, { FunctionComponent, memo } from 'react'
-import { AdminFaq } from '../../../services/faqDefinitions'
+import { Faq } from '../../../services/faqDefinitions'
 import FaqForm from './FaqForm'
 
 interface CreateFaqProps {
   // eslint-disable-next-line no-unused-vars
-  addFaq: (faq: AdminFaq) => Promise<void>
+  addFaq: (faq: Faq) => Promise<void>
 }
 
 const CreateFaq: FunctionComponent<CreateFaqProps> = memo(

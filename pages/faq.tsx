@@ -33,7 +33,7 @@ export default faq
 export const getServerSideProps: GetServerSideProps = async () => {
   //todo get language
   const response = await axiosInstance.get('/faq')
-  const faqs: Faq[] = response.data.faqs
+  const faqs: Faq[] = response.data
 
   return {
     props: {

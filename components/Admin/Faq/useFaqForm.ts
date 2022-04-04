@@ -2,21 +2,21 @@ import { getSession } from 'next-auth/react'
 import { useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { axiosInstance } from '../../../services/axiosInstance'
-import { AdminFaq } from '../../../services/faqDefinitions'
+import { Faq } from '../../../services/faqDefinitions'
 
 export const useFaqForm = (
   isCreate: boolean,
   // eslint-disable-next-line no-unused-vars
-  addFaq: (faq: AdminFaq) => Promise<void>,
+  addFaq: (faq: Faq) => Promise<void>,
   // eslint-disable-next-line no-unused-vars
   deleteFaq: (_id: string) => void,
-  faq?: AdminFaq
+  faq?: Faq
 ) => {
-  const { register, formState, handleSubmit } = useForm<AdminFaq>({
+  const { register, formState, handleSubmit } = useForm<Faq>({
     defaultValues: !isCreate ? { ...faq } : {},
   })
 
-  const onSubmit = async (data: AdminFaq) => {
+  const onSubmit = async (data: Faq) => {
     try {
       console.log(isCreate)
       const session = await getSession()

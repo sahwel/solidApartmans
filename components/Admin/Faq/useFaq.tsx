@@ -1,14 +1,14 @@
 import { getSession } from 'next-auth/react'
 import { useCallback, useState } from 'react'
 import { axiosInstance } from '../../../services/axiosInstance'
-import { AdminFaq } from '../../../services/faqDefinitions'
+import { Faq } from '../../../services/faqDefinitions'
 import { useModal } from '../../Modal/ModalProvider'
 import CreateFaq from './CreateFaq'
 
-export const useFaq = (faqs: AdminFaq[]) => {
-  const [faqsInner, setFaqsInner] = useState<AdminFaq[]>(faqs)
+export const useFaq = (faqs: Faq[]) => {
+  const [faqsInner, setFaqsInner] = useState<Faq[]>(faqs)
 
-  const addFaq = useCallback(async (faq: AdminFaq) => {
+  const addFaq = useCallback(async (faq: Faq) => {
     try {
       const session = await getSession()
       await axiosInstance.post(

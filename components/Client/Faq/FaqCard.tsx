@@ -4,7 +4,7 @@ import cl from 'classnames'
 import { Faq } from '../../../services/faqDefinitions'
 
 const FaqCard: FunctionComponent<Faq> = memo(
-  function FaqCard({ answer, question }) {
+  function FaqCard({ answerHU, questionEN, questionHU, answerEN }) {
     const [isOpen, setIsOpen] = useState(false)
 
     const open = useCallback(() => {
@@ -17,7 +17,7 @@ const FaqCard: FunctionComponent<Faq> = memo(
         onClick={open}
       >
         <div className="flex justify-between">
-          <p className="cursor-auto text-[108%] font-medium">{question}</p>
+          <p className="cursor-auto text-[108%] font-medium">{questionHU}</p>
           <div
             className={cl(
               'flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border-2 border-main-blue transition duration-75 ease-in-out',
@@ -30,14 +30,16 @@ const FaqCard: FunctionComponent<Faq> = memo(
         <p
           className={cl(!isOpen && 'hidden', 'cursor-auto pr-12 text-justify')}
         >
-          {answer}
+          {answerHU}
         </p>
       </div>
     )
   },
   (oldProps, newProps) =>
-    oldProps.answer === newProps.answer &&
-    oldProps.question === newProps.question
+    oldProps.answerHU === newProps.answerHU &&
+    oldProps.questionHU === newProps.questionHU &&
+    oldProps.answerEN === newProps.answerEN &&
+    oldProps.questionEN === newProps.questionEN
 )
 
 export default FaqCard

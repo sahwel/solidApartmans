@@ -1,9 +1,9 @@
 import React, { FunctionComponent, memo } from 'react'
-import { AdminFaq } from '../../../services/faqDefinitions'
+import { Faq } from '../../../services/faqDefinitions'
 import FaqCard from './FaqCard'
 
 interface FaqsCotnainerProps {
-  faqs: AdminFaq[]
+  faqs: Faq[]
   // eslint-disable-next-line no-unused-vars
   deleteFaq: (_id: string) => void
 }

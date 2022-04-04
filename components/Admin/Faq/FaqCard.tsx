@@ -1,10 +1,10 @@
 import { ChevronDownIcon } from '@heroicons/react/solid'
 import { FunctionComponent, memo, useCallback, useState } from 'react'
 import cl from 'classnames'
-import { AdminFaq } from '../../../services/faqDefinitions'
+import { Faq } from '../../../services/faqDefinitions'
 import FaqForm from './FaqForm'
 
-interface FaqCardProps extends AdminFaq {
+interface FaqCardProps extends Faq {
   // eslint-disable-next-line no-unused-vars
   deleteFaq: (_id: string) => void
 }

@@ -3,13 +3,13 @@ import { FunctionComponent, memo } from 'react'
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import { validateExpire } from '../../services/userDefinitions'
-import { AdminFaq } from '../../services/faqDefinitions'
+import { Faq } from '../../services/faqDefinitions'
 import { axiosInstance } from '../../services/axiosInstance'
 import FaqsCotnainer from '../../components/Admin/Faq/FaqsCotnainer'
 import { useFaq } from '../../components/Admin/Faq/useFaq'
 
 interface FaqProps {
-  faqs: AdminFaq[]
+  faqs: Faq[]
 }
 
 const faq: FunctionComponent<FaqProps> = memo(

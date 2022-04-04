@@ -1,5 +1,5 @@
 import React, { FunctionComponent, memo } from 'react'
-import { AdminFaq } from '../../../services/faqDefinitions'
+import { Faq } from '../../../services/faqDefinitions'
 import AdminInput from '../../Common/AdminInput'
 import FaqInput from './FaqInput'
 import { Button } from '../../Button'
@@ -7,9 +7,9 @@ import { useFaqForm } from './useFaqForm'
 
 interface FaqFormProps {
   isCreate: boolean
-  faq?: AdminFaq
+  faq?: Faq
   // eslint-disable-next-line no-unused-vars
-  addFaq?: (faq: AdminFaq) => Promise<void>
+  addFaq?: (faq: Faq) => Promise<void>
   // eslint-disable-next-line no-unused-vars
   deleteFaq?: (_id: string) => void
 }
@@ -18,7 +18,7 @@ const FaqForm: FunctionComponent<FaqFormProps> = memo(function FaqForm({
   faq,
   isCreate,
   // eslint-disable-next-line no-unused-vars
-  addFaq = async (faq: AdminFaq) => {},
+  addFaq = async (faq: Faq) => {},
   // eslint-disable-next-line no-unused-vars
   deleteFaq = (_id: string) => ({}),
 }) {
