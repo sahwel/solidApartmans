@@ -9,7 +9,7 @@ import { Button } from '../../Button'
 
 export const ApartmanContainer: FunctionComponent<ApartmentDefinitions> = memo(
   function ApartmanContainer({
-    id,
+    _id,
     name,
     stars,
     address,
@@ -21,11 +21,11 @@ export const ApartmanContainer: FunctionComponent<ApartmentDefinitions> = memo(
     const router = useRouter()
 
     const open = useCallback(() => {
-      router.push(`apartment/${id}`)
-    }, [id, router])
+      router.push(`apartment/${_id}`)
+    }, [_id, router])
     const handleOpenBook = useCallback(() => {
-      router.push(`/book/${id}`)
-    }, [id, router])
+      router.push(`/book/${_id}`)
+    }, [_id, router])
     return (
       <div className=" h-[23rem] w-full rounded-2xl bg-white text-main-text drop-shadow-md sm:m-auto sm:w-[80%] md:flex md:h-[20rem] md:w-full">
         <ImageHome stars={stars} image={image} />
@@ -58,8 +58,11 @@ export const ApartmanContainer: FunctionComponent<ApartmentDefinitions> = memo(
     )
   },
   (oldProps: ApartmentDefinitions, newProps: ApartmentDefinitions) =>
-    oldProps.id === newProps.id &&
-    oldProps.address === newProps.address &&
+    oldProps._id === newProps._id &&
+    oldProps.address.city === newProps.address.city &&
+    oldProps.address.house_number === newProps.address.house_number &&
+    oldProps.address.street === newProps.address.street &&
+    oldProps.address.zip_code === newProps.address.zip_code &&
     oldProps.name === newProps.name &&
     oldProps.stars === newProps.stars &&
     oldProps.capacity.capacity === newProps.capacity.capacity &&

@@ -1,5 +1,5 @@
 export interface ApartmentDefinitions {
-  id: string
+  _id: string
   name: string
   address: Address
   stars: number
@@ -14,6 +14,12 @@ export interface Address {
   city: string
   street: string
   house_number: string
+}
+
+export interface AdminHomeApartmentModel {
+  _id: string
+  name: string
+  address: Address
 }
 
 export interface Facility {
@@ -50,7 +56,7 @@ export interface AdminApartmentDefinitions extends ApartmentDefinitions {
 }
 
 export const DefaultAdminApartment: AdminApartmentDefinitions = {
-  id: '',
+  _id: '',
   name: '',
   address: {
     zip_code: '',

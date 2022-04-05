@@ -3,7 +3,6 @@ import CustomImage from '../../../../Image/CustomImage'
 import cl from 'classnames'
 
 interface ImageHeaderProps {
-  // eslint-disable-next-line no-unused-vars
   handleAddImg: (newImg: File) => void
   error?: boolean
 }
@@ -30,7 +29,7 @@ const ImageHedaer: FunctionComponent<ImageHeaderProps> = memo(
         <div className="flex cursor-pointer items-center">
           <CustomImage
             alt="add image icon"
-            url="/add-img.svg"
+            url="add-img.svg"
             classNames="w-10 h-10"
           />
           <input

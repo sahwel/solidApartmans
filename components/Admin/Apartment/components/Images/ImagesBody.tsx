@@ -4,14 +4,19 @@ import ImageCard from './ImageCard'
 interface ImagesBodyProps {
   images: string[]
   imagesLength: number
-  // eslint-disable-next-line no-unused-vars
   handleDeleteImg: (index: number) => () => void
-  // eslint-disable-next-line no-unused-vars
   moveImg: (index: number, isUp: boolean, toFirst: boolean) => () => void
+  isCreate: boolean
 }
 
 const ImagesBody: FunctionComponent<ImagesBodyProps> = memo(
-  function ImagesBody({ images, imagesLength, handleDeleteImg, moveImg }) {
+  function ImagesBody({
+    images,
+    imagesLength,
+    handleDeleteImg,
+    moveImg,
+    isCreate,
+  }) {
     return (
       <div className="h-[90%] overflow-y-auto p-3">
         {images.length === 0 ? (
@@ -21,6 +26,7 @@ const ImagesBody: FunctionComponent<ImagesBodyProps> = memo(
         ) : (
           images.map((img, i) => (
             <ImageCard
+              isCreate={isCreate}
               key={i}
               img={img}
               index={i}

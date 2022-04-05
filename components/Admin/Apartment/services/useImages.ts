@@ -8,9 +8,10 @@ import { AdminApartmentDefinitions } from '../../../../services/apartmentDefinit
 
 export const useImages = (
   setValue: UseFormSetValue<AdminApartmentDefinitions>,
-  setError: UseFormSetError<AdminApartmentDefinitions>
+  setError: UseFormSetError<AdminApartmentDefinitions>,
+  _images?: string[]
 ) => {
-  const [images, setImages] = useState<string[]>([])
+  const [images, setImages] = useState<string[]>(_images ? _images : [])
   const handleDeleteImg = useCallback(
     (index: number) => () => {
       let newImages = [...images]

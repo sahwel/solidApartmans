@@ -1,1 +1,1 @@
-export * from './ApartmanContainer'
+export * from './ApartmentContainer'

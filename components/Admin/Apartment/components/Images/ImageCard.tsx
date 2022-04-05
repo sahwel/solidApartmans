@@ -11,19 +11,26 @@ interface ImageCardProps {
   index: number
   img: string
   imagesLength: number
-  // eslint-disable-next-line no-unused-vars
   handleDeleteImg: (index: number) => () => void
-  // eslint-disable-next-line no-unused-vars
   moveImg: (index: number, isUp: boolean, toFirst: boolean) => () => void
+  isCreate: boolean
 }
 
 const ImageCard: FunctionComponent<ImageCardProps> = memo(
-  function ImageCard({ index, imagesLength, handleDeleteImg, img, moveImg }) {
+  function ImageCard({
+    index,
+    imagesLength,
+    handleDeleteImg,
+    img,
+    moveImg,
+    isCreate,
+  }) {
     return (
       <div className="mb-4 flex h-[10rem] justify-between border-2 border-main-blue">
         <div className="w-1/2">
           <CustomImage
             url={img}
+            isFromApi={!isCreate}
             alt="image of the apartment"
             classNames="w-full h-full"
           />

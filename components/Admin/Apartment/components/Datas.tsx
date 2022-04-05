@@ -181,7 +181,7 @@ const Datas: FunctionComponent<DatasProps> = memo(
           errorHU={errors.detailsHU?.message}
           errorEN={errors.detailsEN?.message}
         />
-        {!isCreate && <ApartmentStatistics />}
+        {!isCreate && <ApartmentStatistics views={0} reservations={0} />}
       </div>
     )
   },

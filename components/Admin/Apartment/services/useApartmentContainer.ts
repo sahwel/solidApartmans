@@ -7,7 +7,7 @@ export const useApartmentContainer = (
 ) => {
   const { register, handleSubmit, formState, setValue, setError } =
     useForm<AdminApartmentDefinitions>({
-      defaultValues: { ...defaultValue },
+      defaultValues: { ...defaultValue, image: 'yes' },
     })
 
   const onSubmit = useCallback((data: AdminApartmentDefinitions) => {

@@ -6,6 +6,7 @@ import cl from 'classnames'
 import { axiosInstance } from '../../services/axiosInstance'
 import { getCsrfToken, getSession, signIn } from 'next-auth/react'
 import { GetServerSideProps } from 'next'
+import { useToast } from '../../components/Common/Toast/Toast'
 
 interface LoginProps {
   csrfToken: string
@@ -19,6 +20,8 @@ const login: FunctionComponent<LoginProps> = memo(
       handleSubmit,
     } = useForm<LoginModel>({ defaultValues: { email: '', password: '' } })
 
+    const toast = useToast()
+
     const onSubmit = async (data: LoginModel) => {
       try {
         const response = await axiosInstance.post('admin/login', { ...data })
@@ -29,7 +32,11 @@ const login: FunctionComponent<LoginProps> = memo(
           callbackUrl: `${window.location.origin}/admin`,
         })
       } catch (error: any) {
-        console.log(error)
+        toast.error(
+          error.response.data
+            ? error.response.data.msg
+            : 'Egy hiba lépett fel a kérés közben!'
+        )
       }
     }
     return (

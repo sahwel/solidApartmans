@@ -5,7 +5,6 @@ import { Faq } from '../../../services/faqDefinitions'
 import FaqForm from './FaqForm'
 
 interface FaqCardProps extends Faq {
-  // eslint-disable-next-line no-unused-vars
   deleteFaq: (_id: string) => void
 }
 
@@ -23,6 +22,13 @@ const FaqCard: FunctionComponent<FaqCardProps> = memo(
       setIsOpen((oldState) => !oldState)
     }, [])
 
+    const handleDelete = useCallback(
+      (id: string) => {
+        deleteFaq(id)
+        setIsOpen(false)
+      },
+      [deleteFaq]
+    )
     return (
       <div className="relative rounded-lg border-2 border-main-blue p-3">
         <ChevronDownIcon
@@ -41,7 +47,7 @@ const FaqCard: FunctionComponent<FaqCardProps> = memo(
           <FaqForm
             isCreate={false}
             faq={{ answerEN, answerHU, questionEN, questionHU, _id }}
-            deleteFaq={deleteFaq}
+            deleteFaq={handleDelete}
           />
         )}
       </div>
@@ -52,8 +58,7 @@ const FaqCard: FunctionComponent<FaqCardProps> = memo(
     oldProps.answerHU === newProps.answerHU &&
     oldProps._id === newProps._id &&
     oldProps.questionEN === newProps.questionEN &&
-    oldProps.questionHU === newProps.questionHU &&
-    oldProps.deleteFaq === newProps.deleteFaq
+    oldProps.questionHU === newProps.questionHU
 )
 
 export default FaqCard

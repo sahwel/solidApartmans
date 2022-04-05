@@ -34,8 +34,8 @@ const faq: FunctionComponent<FaqProps> = memo(
     oldProps.faqs.length === newProps.faqs.length
       ? oldProps.faqs.every(
           (e, i) =>
-            e.answerHU === newProps.faqs[i].answerHU &&
             e._id === newProps.faqs[i]._id &&
+            e.answerHU === newProps.faqs[i].answerHU &&
             e.questionHU === newProps.faqs[i].questionHU &&
             e.answerEN === newProps.faqs[i].answerEN &&
             e.questionEN === newProps.faqs[i].questionEN
@@ -56,10 +56,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   }
 
-  const response = await axiosInstance.get('/faq/admin', {
-    headers: { 'auth-token': session.token as string },
-  })
+  const response = await axiosInstance.get('/faq')
+  const faqs: Faq[] = response.data
+
   return {
-    props: { ...response.data },
+    props: { faqs },
   }
 }

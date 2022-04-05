@@ -6,16 +6,21 @@ import cl from 'classnames'
 interface ImagesProps {
   error?: boolean
   images: string[]
-  // eslint-disable-next-line no-unused-vars
   handleAddImg: (newImg: File) => void
-  // eslint-disable-next-line no-unused-vars
   handleDeleteImg: (index: number) => () => void
-  // eslint-disable-next-line no-unused-vars
   moveImg: (index: number, isUp: boolean, toFirst: boolean) => () => void
+  isCreate: boolean
 }
 
 const Images: FunctionComponent<ImagesProps> = memo(
-  function Images({ error, images, handleAddImg, handleDeleteImg, moveImg }) {
+  function Images({
+    error,
+    images,
+    handleAddImg,
+    handleDeleteImg,
+    moveImg,
+    isCreate,
+  }) {
     return (
       <div
         className={cl(
@@ -26,6 +31,7 @@ const Images: FunctionComponent<ImagesProps> = memo(
         {error}
         <ImageHedaer handleAddImg={handleAddImg} error={error} />
         <ImagesBody
+          isCreate={isCreate}
           images={images}
           imagesLength={images.length}
           handleDeleteImg={handleDeleteImg}

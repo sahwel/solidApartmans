@@ -4,7 +4,6 @@ import FaqCard from './FaqCard'
 
 interface FaqsCotnainerProps {
   faqs: Faq[]
-  // eslint-disable-next-line no-unused-vars
   deleteFaq: (_id: string) => void
 }
 

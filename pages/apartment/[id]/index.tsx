@@ -15,7 +15,7 @@ import { axiosInstance } from '../../../services/axiosInstance'
 
 const index: FunctionComponent<ExtendedApartmentDefinition> = memo(
   function Apartment({
-    id,
+    _id,
     name,
     stars,
     address,
@@ -28,23 +28,9 @@ const index: FunctionComponent<ExtendedApartmentDefinition> = memo(
     reviews,
   }) {
     const router = useRouter()
-    console.log(
-      id,
-      name,
-      stars,
-      address,
-      facilities,
-      capacity,
-      price,
-      detailsHU,
-      detailsEN,
-      images,
-      reviews
-    )
-
     const handleOpenBook = useCallback(() => {
-      router.push(`/book/${id}`)
-    }, [id, router])
+      router.push(`/book/${_id}`)
+    }, [_id, router])
 
     return (
       <Container>
@@ -88,7 +74,7 @@ const index: FunctionComponent<ExtendedApartmentDefinition> = memo(
     )
   },
   (oldProps, newProps) =>
-    oldProps.id === newProps.id &&
+    oldProps._id === newProps._id &&
     oldProps.address === newProps.address &&
     oldProps.name === newProps.name &&
     oldProps.stars === newProps.stars &&
@@ -96,7 +82,6 @@ const index: FunctionComponent<ExtendedApartmentDefinition> = memo(
     oldProps.detailsEN === newProps.detailsEN &&
     oldProps.capacity.capacity === newProps.capacity.capacity &&
     oldProps.capacity.bedrooms === newProps.capacity.bedrooms &&
-    oldProps.image === newProps.image &&
     oldProps.price === newProps.price &&
     (oldProps.facilities.length === newProps.facilities.length
       ? oldProps.facilities.every(
@@ -124,7 +109,7 @@ export default index
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context.query.id
-  const response = await axiosInstance.get(`/apartment/${id}`)
+  const response = await axiosInstance.get(`apartment/${id}`)
   const apartment: ExtendedApartmentDefinition = response.data
 
   return {

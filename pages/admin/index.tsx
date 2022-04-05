@@ -1,17 +1,27 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import { memo, useCallback } from 'react'
+import { FunctionComponent, memo, useCallback, useState } from 'react'
 import AdminHomeApartment from '../../components/Admin/AdminHome/AdminHomeApartment'
 import { Button } from '../../components/Button'
+import { AdminHomeApartmentModel } from '../../services/apartmentDefinitions'
+import { axiosInstance } from '../../services/axiosInstance'
 import { validateExpire } from '../../services/userDefinitions'
 
-const index = memo(function Index() {
+interface AdminHomeProps {
+  _apartments: AdminHomeApartmentModel[]
+}
+
+const index: FunctionComponent<AdminHomeProps> = memo(function Index({
+  _apartments,
+}) {
   const router = useRouter()
 
   const handleCreate = useCallback(() => {
     router.push('/admin/apartment')
   }, [router])
+
+  const [apartmanets, setApartments] = useState(_apartments)
 
   return (
     <div className="mx-auto my-8 grid w-1/2 gap-y-6">
@@ -23,21 +33,14 @@ const index = memo(function Index() {
           onClick={handleCreate}
         />
       </div>
-      <AdminHomeApartment
-        address="1031 Budapest Ilyen olyan utca 43/A"
-        name="B apartman"
-        id="1"
-      />
-      <AdminHomeApartment
-        address="1031 Budapest Ilyen olyan utca 43/A"
-        name="B apartman"
-        id="1"
-      />
-      <AdminHomeApartment
-        address="1031 Budapest Ilyen olyan utca 43/A"
-        name="B apartman"
-        id="1"
-      />
+      {apartmanets.map((e) => (
+        <AdminHomeApartment
+          key={e._id}
+          address={`${e.address.zip_code} ${e.address.city} ${e.address.street} ${e.address.house_number}`}
+          name={e.name}
+          id={e._id}
+        />
+      ))}
     </div>
   )
 })
@@ -56,7 +59,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   }
 
+  const response = await axiosInstance.get('apartment/admin/home', {
+    headers: { 'auth-token': session.token as string },
+  })
+  const apartments: AdminHomeApartmentModel = response.data
+
   return {
-    props: {},
+    props: { _apartments: apartments },
   }
 }

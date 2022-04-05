@@ -1,4 +1,4 @@
-import { FunctionComponent, memo } from 'react'
+import { FunctionComponent, memo, useState } from 'react'
 import {
   AdminApartmentDefinitions,
   DefaultAdminApartment,
@@ -25,9 +25,14 @@ const ApartmentContainer: FunctionComponent<ApartmentContainerProps> = memo(
       useApartmentContainer(defaultValue)
     const { handleAddImg, moveImg, images, handleDeleteImg } = useImages(
       setValue,
-      setError
+      setError,
+      defaultValue.images
     )
     const { errors } = formState
+
+    const [facilites, setFacilites] = useState(defaultValue.facilities)
+    console.log(images)
+
     return (
       <form className="p-10" onSubmit={handleSubmit(onSubmit)}>
         <input
@@ -44,6 +49,7 @@ const ApartmentContainer: FunctionComponent<ApartmentContainerProps> = memo(
         <div className="flex w-full space-x-6">
           <div className="w-[40%]">
             <Images
+              isCreate={isCreate}
               error={errors.image?.message ? true : false}
               images={images}
               moveImg={moveImg}
@@ -51,7 +57,7 @@ const ApartmentContainer: FunctionComponent<ApartmentContainerProps> = memo(
               handleAddImg={handleAddImg}
             />
             <div className="mt-5 flex space-x-3">
-              <Assets isCreate={isCreate} />
+              <Assets isCreate={isCreate} facilites={facilites} />
               {!isCreate && <Calendar />}
             </div>
           </div>
@@ -64,7 +70,50 @@ const ApartmentContainer: FunctionComponent<ApartmentContainerProps> = memo(
       </form>
     )
   },
-  (oldProps, newProps) => oldProps.isCreate === newProps.isCreate
+  (oldProps, newProps) =>
+    oldProps.isCreate === newProps.isCreate &&
+    (newProps.defaultValue && oldProps.defaultValue
+      ? oldProps.defaultValue._id === newProps.defaultValue._id &&
+        oldProps.defaultValue.address.city ===
+          newProps.defaultValue.address.city &&
+        oldProps.defaultValue.address.zip_code ===
+          newProps.defaultValue.address.zip_code &&
+        oldProps.defaultValue.address.house_number ===
+          newProps.defaultValue.address.house_number &&
+        oldProps.defaultValue.address.street ===
+          newProps.defaultValue.address.street &&
+        oldProps.defaultValue.name === newProps.defaultValue.name &&
+        oldProps.defaultValue.capacity.capacity ===
+          newProps.defaultValue.capacity.capacity &&
+        oldProps.defaultValue.capacity.bedrooms ===
+          newProps.defaultValue.capacity.bedrooms &&
+        oldProps.defaultValue.price === newProps.defaultValue.price &&
+        (oldProps.defaultValue.reviews.length ===
+        newProps.defaultValue.reviews.length
+          ? oldProps.defaultValue.reviews.every(
+              (e, i) =>
+                e.customer === newProps.defaultValue?.reviews[i].customer &&
+                e.review === newProps.defaultValue.reviews[i].review &&
+                e.stars === newProps.defaultValue.reviews[i].stars &&
+                e.timeAgo === newProps.defaultValue.reviews[i].timeAgo
+            )
+          : false) &&
+        (oldProps.defaultValue.facilities.length ===
+        newProps.defaultValue.facilities.length
+          ? oldProps.defaultValue.facilities.every(
+              (e, i) =>
+                e.nameHU === newProps.defaultValue?.facilities[i].nameHU &&
+                e.nameEN === newProps.defaultValue.facilities[i].nameEN &&
+                e.url === newProps.defaultValue.facilities[i].url
+            )
+          : false) &&
+        (oldProps.defaultValue.images.length ===
+        newProps.defaultValue.images.length
+          ? oldProps.defaultValue.images.every(
+              (e, i) => e === newProps.defaultValue?.images[i]
+            )
+          : false)
+      : false)
 )
 
 export default ApartmentContainer
