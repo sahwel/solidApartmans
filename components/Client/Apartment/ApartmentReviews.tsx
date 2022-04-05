@@ -13,7 +13,7 @@ const ApartmentReviews: FunctionComponent<ApartmentReviewsProps> = memo(
       <div
         className={cl(
           'bg-white p-3 md:rounded-bl-2xl md:rounded-br-2xl lg:col-start-3 lg:max-h-full lg:w-1/3 lg:rounded-none lg:pb-0',
-          reviews.length === 0 && '!rounded-2xl border-2 border-main-blue'
+          reviews.length === 0 && 'border-main-blue lg:!rounded-2xl lg:border-2'
         )}
       >
         <h1 className="text-lg font-bold lg:hidden">Reviews</h1>
