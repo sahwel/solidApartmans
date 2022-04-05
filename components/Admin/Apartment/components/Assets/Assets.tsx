@@ -1,29 +1,47 @@
 import { FunctionComponent, memo } from 'react'
 import Asset from './Asset'
 import cl from 'classnames'
-import { Facility } from '../../../../../services/apartmentDefinitions'
+import {
+  AdminFacility,
+  Facility,
+} from '../../../../../services/apartmentDefinitions'
 
 interface AssetsProps {
   isCreate: boolean
-  facilites: Facility[]
+  facilities: AdminFacility[]
+  handleFacilitiesChange: (_id: string) => void
 }
 
 const Assets: FunctionComponent<AssetsProps> = memo(
-  function Assets({ isCreate, facilites }) {
+  function Assets({ isCreate, facilities, handleFacilitiesChange }) {
     return (
       <div
         className={cl(
-          'h-[20rem] items-start overflow-y-auto rounded-lg border-2 border-main-blue p-3',
-          isCreate ? 'grid w-full grid-cols-2 gap-5' : 'w-1/2 space-y-3 '
+          'h-[20rem] w-full auto-rows-min grid-cols-2 items-start gap-5 overflow-y-auto rounded-lg border-2 border-main-blue p-3 xl:grid'
         )}
       >
-        {facilites.map((e) => (
-          <Asset key={e.nameEN} {...e} />
+        {facilities.map((e) => (
+          <Asset
+            key={e.nameEN}
+            {...e}
+            handleFacilitiesChange={handleFacilitiesChange}
+          />
         ))}
       </div>
     )
   },
-  (oldProps, newProps) => oldProps.isCreate === newProps.isCreate
+  (oldProps, newProps) =>
+    oldProps.isCreate === newProps.isCreate &&
+    (oldProps.facilities.length === newProps.facilities.length
+      ? oldProps.facilities.every(
+          (e, i) =>
+            e._id === newProps.facilities[i]._id &&
+            e.nameEN === newProps.facilities[i].nameEN &&
+            e.nameHU === newProps.facilities[i].nameHU &&
+            e.selected === newProps.facilities[i].selected &&
+            e.selected === newProps.facilities[i].selected
+        )
+      : false)
 )
 
 export default Assets

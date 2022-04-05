@@ -1,6 +1,7 @@
-import { FunctionComponent, memo, useState } from 'react'
+import { FunctionComponent, memo, useCallback, useState } from 'react'
 import {
   AdminApartmentDefinitions,
+  AdminFacility,
   DefaultAdminApartment,
 } from '../../../../services/apartmentDefinitions'
 import { Button } from '../../../Button'
@@ -30,8 +31,17 @@ const ApartmentContainer: FunctionComponent<ApartmentContainerProps> = memo(
     )
     const { errors } = formState
 
-    const [facilites, setFacilites] = useState(defaultValue.facilities)
-    console.log(images)
+    const [facilities, setFacilities] = useState<AdminFacility[]>(
+      defaultValue.facilities
+    ) // todo: get all facilites
+
+    const handleFacilitiesChange = useCallback((_id: string) => {
+      setFacilities((oldFacilities) =>
+        oldFacilities.map((e) =>
+          e._id === _id ? { ...e, selected: !e.selected } : e
+        )
+      )
+    }, [])
 
     return (
       <form className="p-10" onSubmit={handleSubmit(onSubmit)}>
@@ -57,8 +67,11 @@ const ApartmentContainer: FunctionComponent<ApartmentContainerProps> = memo(
               handleAddImg={handleAddImg}
             />
             <div className="mt-5 flex space-x-3">
-              <Assets isCreate={isCreate} facilites={facilites} />
-              {!isCreate && <Calendar />}
+              <Assets
+                isCreate={isCreate}
+                facilities={facilities}
+                handleFacilitiesChange={handleFacilitiesChange}
+              />
             </div>
           </div>
           <Datas

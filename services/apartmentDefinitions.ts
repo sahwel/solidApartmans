@@ -28,6 +28,11 @@ export interface Facility {
   url: string
 }
 
+export interface AdminFacility extends Facility {
+  _id: string
+  selected: boolean
+}
+
 export interface capacity {
   capacity: number
   bedrooms: number
@@ -51,6 +56,7 @@ export interface AdminApartmentDefinitions extends ApartmentDefinitions {
   images: string[]
   detailsHU: string
   detailsEN: string
+  facilities: AdminFacility[]
   reviews: Review[]
   plusPrice: number
 }

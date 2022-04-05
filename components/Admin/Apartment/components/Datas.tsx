@@ -36,7 +36,7 @@ const Datas: FunctionComponent<DatasProps> = memo(
             error={errors.address?.zip_code?.message}
             labeFor="apartment-edit-create-zip"
             label="Írányítószám"
-            classNames="w-[25%]"
+            classNames="!w-auto"
           >
             <ApartmentInput
               register={register('address.zip_code', {
@@ -51,7 +51,7 @@ const Datas: FunctionComponent<DatasProps> = memo(
             error={errors.address?.city?.message}
             labeFor="apartment-edit-create-city"
             label="Város"
-            classNames="w-[75%]"
+            classNames="!w-3/4"
           >
             <ApartmentInput
               register={register('address.city', {
@@ -68,7 +68,7 @@ const Datas: FunctionComponent<DatasProps> = memo(
             error={errors.address?.street?.message}
             labeFor="apartment-edit-create-street"
             label="Utca"
-            classNames="w-[75%]"
+            classNames="!w-3/4"
           >
             <ApartmentInput
               register={register('address.street', {
@@ -83,7 +83,7 @@ const Datas: FunctionComponent<DatasProps> = memo(
             error={errors.address?.house_number?.message}
             labeFor="apartment-edit-create-house"
             label="Házszám"
-            classNames="w-[25%]"
+            classNames="!w-auto"
           >
             <ApartmentInput
               register={register('address.house_number', {

@@ -5,9 +5,6 @@
       "rootDir": "packages/my-app/"
     }
   },
-  "ecmaFeatures": {
-    "globalReturn": false
-  },
   "rules": {
     "no-unused-vars": ["off", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }]
 }

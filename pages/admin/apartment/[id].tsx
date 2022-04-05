@@ -64,7 +64,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
   })
 
+  let apartment: AdminApartmentDefinitions = response.data
+
+  apartment.facilities = apartment.facilities.map((e) => ({
+    ...e,
+    selected: true,
+  }))
+
   return {
-    props: { apartment: response.data },
+    props: { apartment },
   }
 }
