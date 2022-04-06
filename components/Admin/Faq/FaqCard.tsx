@@ -25,7 +25,7 @@ const FaqCard: FunctionComponent<FaqCardProps> = memo(
     const handleDelete = useCallback(
       (id: string) => {
         deleteFaq(id)
-        setIsOpen(false)
+       // setIsOpen(false)
       },
       [deleteFaq]
     )
