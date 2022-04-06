@@ -39,12 +39,12 @@ export const useFaq = (faqs: Faq[]) => {
   const deleteFaq = useCallback(
     async (_id: string) => {
       try {
-        setFaqsInner((faqs) => faqs.filter((el) => el._id !== _id))
         const session = await getSession()
         await axiosInstance.delete(`faq/${_id}`, {
           headers: { 'auth-token': session?.token as string },
         })
  
+        setFaqsInner((faqs) => faqs.filter((el) => el._id !== _id))
         toast.success('Gyakori kérdés sikeresen törölve!')
       } catch (error: any) {
         toast.error(
