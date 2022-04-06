@@ -7,6 +7,7 @@ import {
   Address,
   ExtendedApartmentDefinition,
 } from '../../../services/apartmentDefinitions'
+import { axiosInstance } from '../../../services/axiosInstance'
 
 interface BookProps {
   id: string
@@ -41,19 +42,13 @@ const index: FunctionComponent<BookProps> = memo(
 export default index
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const data: BookProps = {
-    id: '1',
-    name: 'asd',
-    address: {
-      city: 'asd',
-      house_number: 'asd',
-      street: 'asd',
-      zip_code: 'asd',
-    },
-  }
+  const id = context.params?.id
+
+  const response = await axiosInstance.get(`apartment/book/datas/${id}`)
+
   return {
     props: {
-      ...data,
+      ...response.data,
     },
   }
 }
