@@ -12,7 +12,7 @@ const FaqsCotnainer: FunctionComponent<FaqsCotnainerProps> = memo(
     return (
       <div className="space-y-6">
         {faqs.map((e, i) => (
-          <FaqCard key={i} {...e} deleteFaq={deleteFaq} />
+          <FaqCard key={e._id} {...e} deleteFaq={deleteFaq} />
         ))}
       </div>
     )
