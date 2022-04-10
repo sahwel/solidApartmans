@@ -9,7 +9,7 @@ interface ApartmentFacilitiesProps {
 
 const ApartmentFacilities: FunctionComponent<ApartmentFacilitiesProps> = memo(
   function ApartmentFacilities({ facilities }) {
-    const { t } = useTranslation('Apartment')
+    const { t, i18n } = useTranslation('Apartment')
     return (
       <div className="bg-white p-3  lg:w-1/2">
         <h1 className="text-lg font-bold lg:hidden">{t('facilities')}</h1>
@@ -22,10 +22,12 @@ const ApartmentFacilities: FunctionComponent<ApartmentFacilitiesProps> = memo(
               <CustomImage
                 url={e.url}
                 isFromApi={true}
-                alt={`icon: ${e.nameHU}`}
+                alt={`icon: ${i18n.language === 'hu' ? e.nameHU : e.nameEN}`}
                 className="h-7 w-8"
               />
-              <p className="mt-2  text-center lg:m-0">{e.nameHU}</p>
+              <p className="mt-2  text-center lg:m-0">
+                {i18n.language === 'hu' ? e.nameHU : e.nameEN}
+              </p>
             </div>
           ))}
         </div>
