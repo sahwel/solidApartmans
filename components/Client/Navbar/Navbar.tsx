@@ -13,13 +13,13 @@ export const Navbar = memo(function Navbar() {
     setIsOpen((oldState) => !oldState)
   }, [])
 
-  const [isHun, setIsHun] = useState(false)
   const { t, i18n } = useTranslation('Navbar')
+  const [isHun, setIsHun] = useState(i18n.language === 'hu' ? true : false)
   const changeLanguage = useCallback(() => {
     setIsHun((oldState) => !oldState)
-    console.log(!isHun ? 'hu' : 'en')
-
-    i18n.changeLanguage(!isHun ? 'hu' : 'en')
+    const selectedLang = !isHun ? 'hu' : 'en' // isHun is for the current lang
+    i18n.changeLanguage(selectedLang)
+    localStorage.setItem('solid-apartmans-language', selectedLang)
   }, [i18n, isHun])
   return (
     <div className="border-b-[1px] border-main-blue text-main-text md:flex md:justify-between md:border-0 md:text-white">

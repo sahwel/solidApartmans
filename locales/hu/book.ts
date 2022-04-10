@@ -21,5 +21,6 @@ export const Book = {
     babyBed: 'Szükséges babaágy?',
     highChair: 'Szükséges etetőszék?',
     book: 'Lefgolal',
+    required: 'Ez a mező kötelező! *',
   },
 }

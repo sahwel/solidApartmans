@@ -3,6 +3,8 @@ import cl from 'classnames'
 import { FormState, UseFormRegister } from 'react-hook-form'
 import { BookFormModel } from './definitions'
 import CustomImage from '../../Image/CustomImage'
+import ErrorMsg from '../../Common/ErrorMsg'
+import { useTranslation } from 'react-i18next'
 
 export type InputType = 'text' | 'number'
 
@@ -31,7 +33,7 @@ const BookInput: FunctionComponent<BookInputProps> = memo(
     type = 'text',
   }) {
     const { errors } = formState
-
+    const { t } = useTranslation('Book')
     return (
       <div className={cl('w-full', className)}>
         <div className="relative w-full  ">
@@ -39,7 +41,7 @@ const BookInput: FunctionComponent<BookInputProps> = memo(
             type={type}
             {...register(
               property,
-              isRequired ? { required: 'This field is required! *' } : undefined
+              isRequired ? { required: t('form.required') + '' } : undefined
             )}
             min={min}
             className={cl(
@@ -55,11 +57,7 @@ const BookInput: FunctionComponent<BookInputProps> = memo(
             </div>
           )}
         </div>
-        {errors[property] && (
-          <span className="text-sm text-red-600">
-            {errors[property]?.message}
-          </span>
-        )}
+        <ErrorMsg message={errors[property]?.message} />
       </div>
     )
   },

@@ -21,5 +21,6 @@ export const Book = {
     babyBed: 'Do you need baby bed?',
     highChair: 'Do you need high chair?',
     book: 'Book',
+    required: 'This field is required! *',
   },
 }

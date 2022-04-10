@@ -1,5 +1,6 @@
 import { FunctionComponent, memo } from 'react'
 import cl from 'classnames'
+import ErrorMsg from './ErrorMsg'
 interface AdminFilterInputProps {
   label: string
   labeFor: string
@@ -18,7 +19,7 @@ const AdminInput: FunctionComponent<AdminFilterInputProps> = memo(
           {label}
         </label>
         {children}
-        {error && <span className="text-sm text-red-600">{error}</span>}
+        <ErrorMsg message={error} />
       </div>
     )
   },
