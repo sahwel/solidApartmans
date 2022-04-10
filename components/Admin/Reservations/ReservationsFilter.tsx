@@ -41,7 +41,7 @@ const ReservationsFilter = memo(function ReservationsFilter() {
             className="rounded-lg border-2 border-main-blue py-1 px-3"
           />
         </AdminFilterInput>
-        <Button title="Keres" classNames="w-1/3 py-1" />
+        <Button title="Keres" className="w-1/3 py-1" />
       </form>
     </div>
   )

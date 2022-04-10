@@ -6,9 +6,10 @@ import { useRouter } from 'next/router'
 import HomeCapacity from './HomeCapacity'
 import { ApartmentDefinitions } from '../../../services/apartmentDefinitions'
 import { Button } from '../../Button'
+import { useTranslation } from 'react-i18next'
 
-export const ApartmanContainer: FunctionComponent<ApartmentDefinitions> = memo(
-  function ApartmanContainer({
+export const ApartmentContainer: FunctionComponent<ApartmentDefinitions> = memo(
+  function ApartmentContainer({
     _id,
     name,
     stars,
@@ -26,6 +27,8 @@ export const ApartmanContainer: FunctionComponent<ApartmentDefinitions> = memo(
     const handleOpenBook = useCallback(() => {
       router.push(`/book/${_id}`)
     }, [_id, router])
+
+    const { t } = useTranslation('Home')
     return (
       <div className=" h-[23rem] w-full rounded-2xl bg-white text-main-text drop-shadow-md sm:m-auto sm:w-[80%] md:flex md:h-[20rem] md:w-full">
         <ImageHome stars={stars} image={image} />
@@ -45,12 +48,12 @@ export const ApartmanContainer: FunctionComponent<ApartmentDefinitions> = memo(
           </div>
           <div className=" mx-auto flex w-4/5 justify-between space-x-9">
             <Button
-              title="Book"
-              classNames="w-1/2 p-2 px-5"
+              title={t('book')}
+              className="w-1/2 p-2 px-5"
               onClick={handleOpenBook}
             />
             <button className="w-1/2  p-2 px-5 underline" onClick={open}>
-              More
+              {t('more')}
             </button>
           </div>
         </div>

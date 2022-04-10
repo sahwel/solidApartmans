@@ -15,7 +15,7 @@ interface BookInputProps {
   type?: InputType
   min?: number
   formState: FormState<BookFormModel>
-  classNames?: string
+  className?: string
 }
 
 const BookInput: FunctionComponent<BookInputProps> = memo(
@@ -25,7 +25,7 @@ const BookInput: FunctionComponent<BookInputProps> = memo(
     register,
     formState,
     property,
-    classNames = '',
+    className = '',
     min = 0,
     isRequired = true,
     type = 'text',
@@ -33,7 +33,7 @@ const BookInput: FunctionComponent<BookInputProps> = memo(
     const { errors } = formState
 
     return (
-      <div className={cl('w-full', classNames)}>
+      <div className={cl('w-full', className)}>
         <div className="relative w-full  ">
           <input
             type={type}
@@ -51,7 +51,7 @@ const BookInput: FunctionComponent<BookInputProps> = memo(
           />
           {url && (
             <div className="absolute top-1/2 right-3 -translate-y-1/2 transform">
-              <CustomImage url={url} alt="icon" classNames="w-5 h-5" />
+              <CustomImage url={url} alt="icon" className="h-5 w-5" />
             </div>
           )}
         </div>
@@ -68,7 +68,7 @@ const BookInput: FunctionComponent<BookInputProps> = memo(
     oldProps.url === newProps.url &&
     oldProps.register === newProps.register &&
     oldProps.property === newProps.property &&
-    oldProps.classNames === newProps.classNames &&
+    oldProps.className === newProps.className &&
     oldProps.min === newProps.min &&
     oldProps.formState === newProps.formState &&
     oldProps.isRequired === newProps.isRequired &&

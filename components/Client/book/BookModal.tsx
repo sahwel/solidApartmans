@@ -95,7 +95,7 @@ const BookModal: FunctionComponent<BookModalProps> = memo(
           <p className="text-lg font-medium">
             Total: <span className="font-bold">478000 FT </span>
           </p>
-          <Button title="Book" classNames="py-1 px-9" />
+          <Button title="Book" className="py-1 px-9" />
         </div>
       </div>
     )

@@ -1,6 +1,6 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import { useState } from 'react'
-import { ApartmanContainer } from '../components/Client/HomeApartmans'
+import { ApartmentContainer } from '../components/Client/HomeApartmans'
 import { ApartmentDefinitions } from '../services/apartmentDefinitions'
 import { axiosInstance } from '../services/axiosInstance'
 
@@ -14,7 +14,7 @@ const Home: NextPage<HomeProps> = ({ _apartments }) => {
   return (
     <div className="m-auto mt-8 mb-9 w-[90%] space-y-8 rounded-3xl drop-shadow-xl md:bg-main-gray md:p-7 lg:w-[80%] 2xl:w-[70%]">
       {apartments.map((e, i) => (
-        <ApartmanContainer {...e} key={i} />
+        <ApartmentContainer {...e} key={i} />
       ))}
     </div>
   )

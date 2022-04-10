@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { memo } from 'react'
 import { useCallback, useState } from 'react'
 import cl from 'classnames'
+import CustomImage from '../../Image/CustomImage'
+import { useTranslation } from 'react-i18next'
 
 export const Navbar = memo(function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -11,6 +13,14 @@ export const Navbar = memo(function Navbar() {
     setIsOpen((oldState) => !oldState)
   }, [])
 
+  const [isHun, setIsHun] = useState(false)
+  const { t, i18n } = useTranslation('Navbar')
+  const changeLanguage = useCallback(() => {
+    setIsHun((oldState) => !oldState)
+    console.log(!isHun ? 'hu' : 'en')
+
+    i18n.changeLanguage(!isHun ? 'hu' : 'en')
+  }, [i18n, isHun])
   return (
     <div className="border-b-[1px] border-main-blue text-main-text md:flex md:justify-between md:border-0 md:text-white">
       <div className="flex items-center justify-between p-3 py-2 md:items-start">
@@ -23,10 +33,28 @@ export const Navbar = memo(function Navbar() {
             Apartmans
           </Link>
         </h1>
-        <MenuAlt1Icon
-          className="h-8 w-8 cursor-pointer text-main-text md:hidden"
-          onClick={setOpen}
-        />
+        <div className="flex space-x-7">
+          {isHun && (
+            <CustomImage
+              onClick={changeLanguage}
+              url="hun-flag.svg"
+              alt="language secltor: current: hungary"
+              className="h-7 w-7 cursor-pointer md:hidden"
+            />
+          )}
+          {!isHun && (
+            <CustomImage
+              onClick={changeLanguage}
+              url="usa-flag.svg"
+              alt="language secltor: current: usa"
+              className="h-7 w-7 cursor-pointer md:hidden"
+            />
+          )}
+          <MenuAlt1Icon
+            className="h-8 w-8 cursor-pointer text-main-text md:hidden"
+            onClick={setOpen}
+          />
+        </div>
       </div>
       <div
         className={cl(
@@ -36,22 +64,39 @@ export const Navbar = memo(function Navbar() {
       >
         <div className="mw:w-0 w-1/2 md:hidden" onClick={setOpen}></div>
         <div className=" w-1/2  border-l-2 bg-white  p-4 md:flex md:w-full md:border-0 md:bg-transparent">
-          <ul className="w-full md:flex  md:justify-between md:space-x-5">
+          <ul className="w-full md:flex  md:items-center md:justify-between md:space-x-5">
             <li className="flex w-full cursor-pointer justify-between md:block md:w-auto">
               <Link href={'/'} passHref>
-                <span>Apartments</span>
+                <span>{t('apartment')}</span>
               </Link>
+
               <XIcon
                 className="h-5 w-5 cursor-pointer md:hidden md:h-0 md:w-0"
                 onClick={setOpen}
               ></XIcon>
             </li>
             <Link href={'/faq'} passHref>
-              <li className="cursor-pointer">FAQ</li>
+              <li className="cursor-pointer">{t('faq')}</li>
             </Link>
             <Link href={'/contact'} passHref>
-              <li className="cursor-pointer">Contact us</li>
+              <li className="cursor-pointer">{t('contact')}</li>
             </Link>
+            {isHun && (
+              <CustomImage
+                onClick={changeLanguage}
+                url="hun-flag.svg"
+                alt="language secltor: current: hungary"
+                className="hidden h-7 w-7 cursor-pointer md:block"
+              />
+            )}
+            {!isHun && (
+              <CustomImage
+                onClick={changeLanguage}
+                url="usa-flag.svg"
+                alt="language secltor: current: usa"
+                className="hidden h-7 w-7 cursor-pointer md:block"
+              />
+            )}
           </ul>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { ButtonTypes } from '../../services/commonDefinitions'
 interface ButtonProps {
   title: string
   onClick?: () => void
-  classNames?: string
+  className?: string
   type?: ButtonTypes
 }
 
@@ -13,7 +13,7 @@ export const Button: FunctionComponent<ButtonProps> = memo(
   function Button({
     title,
     onClick = () => ({}),
-    classNames = '',
+    className = '',
     type = 'button',
   }) {
     return (
@@ -21,7 +21,7 @@ export const Button: FunctionComponent<ButtonProps> = memo(
         type={type}
         className={cl(
           'cursor-pointer rounded-xl border-2 border-main-blue bg-main-blue font-bold text-white hover:bg-white hover:text-main-text',
-          classNames
+          className
         )}
         onClick={onClick}
       >
@@ -30,7 +30,7 @@ export const Button: FunctionComponent<ButtonProps> = memo(
     )
   },
   (oldProps: ButtonProps, newProps: ButtonProps) =>
-    oldProps.classNames === newProps.classNames &&
+    oldProps.className === newProps.className &&
     oldProps.type === newProps.type &&
     oldProps.title === newProps.title
 )

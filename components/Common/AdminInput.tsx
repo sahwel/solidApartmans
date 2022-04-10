@@ -3,14 +3,14 @@ import cl from 'classnames'
 interface AdminFilterInputProps {
   label: string
   labeFor: string
-  classNames?: string
+  className?: string
   error?: string
 }
 
 const AdminInput: FunctionComponent<AdminFilterInputProps> = memo(
-  function AdminInput({ label, labeFor, classNames, children, error }) {
+  function AdminInput({ label, labeFor, className, children, error }) {
     return (
-      <div className={cl('grid w-full', classNames)}>
+      <div className={cl('grid w-full', className)}>
         <label
           htmlFor={labeFor}
           className={cl('ml-1 text-sm', error && '!text-red-600')}
@@ -25,7 +25,7 @@ const AdminInput: FunctionComponent<AdminFilterInputProps> = memo(
   (oldProps, newProps) =>
     oldProps.children === newProps.children &&
     oldProps.labeFor === newProps.labeFor &&
-    oldProps.classNames === newProps.classNames &&
+    oldProps.className === newProps.className &&
     oldProps.label === newProps.label
 )
 

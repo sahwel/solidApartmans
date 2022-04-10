@@ -1,4 +1,5 @@
 import { useState, useCallback, FunctionComponent, memo } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface ApartmentDeatilsProps {
   details: string
@@ -10,10 +11,13 @@ const ApartmentDeatils: FunctionComponent<ApartmentDeatilsProps> = memo(
       setIsShow((oldState) => !oldState)
     }, [])
 
+    const { t } = useTranslation('Apartment')
     const [isShow, setIsShow] = useState(false)
     return (
       <div className=" bg-white p-3  lg:m-0 lg:h-[75%] lg:w-full lg:pb-0  xl:h-[80%]">
-        <h1 className="overflow-y-auto text-lg font-bold lg:hidden">Details</h1>
+        <h1 className="overflow-y-auto text-lg font-bold lg:hidden">
+          {t('details')}
+        </h1>
         <p
           className={`lg:h-full ${
             isShow ? 'max-h-full' : 'max-h-[20rem]'

@@ -30,7 +30,7 @@ const ImageHedaer: FunctionComponent<ImageHeaderProps> = memo(
           <CustomImage
             alt="add image icon"
             url="add-img.svg"
-            classNames="w-10 h-10"
+            className="h-10 w-10"
           />
           <input
             onChange={handleAdd}

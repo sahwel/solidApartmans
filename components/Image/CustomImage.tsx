@@ -5,21 +5,23 @@ import cl from 'classnames'
 interface CustomImageProps {
   url: string
   alt: string
-  classNames?: string
+  className?: string
   imageClassName?: string
   isFromApi?: boolean
+  onClick?: () => void
 }
 
 const CustomImage: FunctionComponent<CustomImageProps> = memo(
   function CustomImage({
     url,
     alt,
-    classNames = '',
+    className = '',
     imageClassName = '',
     isFromApi = false,
+    onClick = () => ({}),
   }) {
     return (
-      <div className={cl('relative', classNames)}>
+      <div className={cl('relative', className)} onClick={onClick}>
         <Image
           src={isFromApi ? process.env.NEXT_PUBLIC_BASE_URL + url : '/' + url}
           className={imageClassName}
@@ -31,7 +33,7 @@ const CustomImage: FunctionComponent<CustomImageProps> = memo(
     )
   },
   (oldProps, newProps) =>
-    oldProps.classNames === newProps.classNames &&
+    oldProps.className === newProps.className &&
     oldProps.alt === newProps.alt &&
     oldProps.url === newProps.url &&
     oldProps.isFromApi === newProps.isFromApi &&

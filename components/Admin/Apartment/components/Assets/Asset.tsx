@@ -29,7 +29,7 @@ const Asset: FunctionComponent<AssetProps> = memo(
           <CustomImage
             url={url}
             alt="icon"
-            classNames="w-5 h-5"
+            className="w-5 h-5"
             isFromApi={true}
           />
           <label

@@ -21,7 +21,7 @@ const AdminHomeApartment: FunctionComponent<AdminHomeApartmentProps> = memo(
           <p>{name}</p>
           <p>{address}</p>
         </div>
-        <Button title="Megnyitás" classNames="px-4 py-1" onClick={handleOpen} />
+        <Button title="Megnyitás" className="px-4 py-1" onClick={handleOpen} />
       </div>
     )
   },

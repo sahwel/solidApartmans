@@ -22,7 +22,7 @@ const index: FunctionComponent<BookProps> = memo(
       return () => setIsComapny(newState)
     }, [])
     return (
-      <Container classNames="!bg-white">
+      <Container className="!bg-white">
         <BookHeader
           name={name}
           address={address}

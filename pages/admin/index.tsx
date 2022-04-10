@@ -29,7 +29,7 @@ const index: FunctionComponent<AdminHomeProps> = memo(function Index({
         <h1 className="text-2xl font-bold">Apartmanok</h1>
         <Button
           title="Létrehozás"
-          classNames="py-1 px-4 "
+          className="py-1 px-4 "
           onClick={handleCreate}
         />
       </div>

@@ -32,7 +32,7 @@ const ImageCard: FunctionComponent<ImageCardProps> = memo(
             url={img}
             isFromApi={!isCreate}
             alt="image of the apartment"
-            classNames="w-full h-full"
+            className="w-full h-full"
           />
         </div>
         <div className="flex p-2">

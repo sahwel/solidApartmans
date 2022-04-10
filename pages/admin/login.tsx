@@ -99,7 +99,7 @@ const login: FunctionComponent<LoginProps> = memo(
             </div>
             <Button
               title="Bejelentkezés"
-              classNames="!mt-5 w-1/2 py-2 "
+              className="!mt-5 w-1/2 py-2 "
               type="submit"
             />
           </form>

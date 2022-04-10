@@ -52,9 +52,9 @@ const ApartmentContainer: FunctionComponent<ApartmentContainerProps> = memo(
         <div className="mb-4 flex w-full justify-end space-x-4">
           <Button
             title="Törlés"
-            classNames="py-1 px-10 !bg-white !text-main-text hover:!bg-main-blue hover:!text-white"
+            className="!bg-white py-1 px-10 !text-main-text hover:!bg-main-blue hover:!text-white"
           />
-          <Button title="Mentés" classNames="py-1 px-10" type="submit" />
+          <Button title="Mentés" className="py-1 px-10" type="submit" />
         </div>
         <div className="flex w-full space-x-6">
           <div className="w-[40%]">

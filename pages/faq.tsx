@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next'
 import React, { FunctionComponent, memo } from 'react'
+import { useTranslation } from 'react-i18next'
 import FaqCard from '../components/Client/Faq/FaqCard'
 import Container from '../components/Container'
 import { axiosInstance } from '../services/axiosInstance'
@@ -10,11 +11,14 @@ interface faqProps {
 }
 
 const faq: FunctionComponent<faqProps> = memo(
-  function faq({ faqs }) {
+  function Faq({ faqs }) {
+    const { t } = useTranslation('Faq')
     return (
       <Container>
         <div className="space-y-5 py-5  lg:space-y-1">
-          <h1 className="w-full text-center text-2xl font-bold">FAQ</h1>
+          <h1 className="w-full text-center text-2xl font-bold">
+            {t('header')}
+          </h1>
           {faqs.map((e, i) => (
             <FaqCard {...e} key={e._id} />
           ))}

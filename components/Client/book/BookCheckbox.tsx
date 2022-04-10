@@ -8,7 +8,7 @@ interface BookCheckboxProps {
   property: keyof BookFormModel
   id: string
   title: string
-  classNames?: string
+  className?: string
   onChange?: () => void
 }
 
@@ -18,14 +18,14 @@ const BookCheckbox: FunctionComponent<BookCheckboxProps> = memo(
     register,
     property,
     id,
-    classNames = '',
+    className = '',
     onChange = () => ({}),
   }) {
     return (
       <div
         className={cl(
           'flex w-full items-center justify-start space-x-5',
-          classNames
+          className
         )}
       >
         <input
@@ -43,7 +43,7 @@ const BookCheckbox: FunctionComponent<BookCheckboxProps> = memo(
     oldProps.id === newProps.id &&
     oldProps.register === newProps.register &&
     oldProps.property === newProps.property &&
-    oldProps.classNames === newProps.classNames &&
+    oldProps.className === newProps.className &&
     oldProps.onChange === newProps.onChange &&
     oldProps.title === newProps.title
 )

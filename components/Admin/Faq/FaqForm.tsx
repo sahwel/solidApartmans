@@ -86,11 +86,11 @@ const FaqForm: FunctionComponent<FaqFormProps> = memo(
           {!isCreate && (
             <Button
               title="Törlés"
-              classNames="px-4 py-1 !bg-white !text-main-text hover:!bg-main-blue hover:!text-white"
+              className="px-4 py-1 !bg-white !text-main-text hover:!bg-main-blue hover:!text-white"
               onClick={handleDelete}
             />
           )}
-          <Button title="Mentés" classNames="px-4 py-1" type="submit" />
+          <Button title="Mentés" className="px-4 py-1" type="submit" />
         </div>
       </form>
     )

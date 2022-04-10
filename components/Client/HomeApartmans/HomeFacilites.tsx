@@ -15,7 +15,7 @@ const HomeFacilities: FunctionComponent<HomeFacilitesProps> = memo(
             url={e.url}
             alt="icon"
             key={e.url}
-            classNames="w-7 h-7"
+            className="w-7 h-7"
             isFromApi={true}
           />
         ))}

@@ -2,6 +2,7 @@ import { FunctionComponent, memo } from 'react'
 import { Review } from '../../../services/apartmentDefinitions'
 import ApartmentReview from './ApartmentReview'
 import cl from 'classnames'
+import { useTranslation } from 'react-i18next'
 
 interface ApartmentReviewsProps {
   reviews: Review[]
@@ -9,6 +10,7 @@ interface ApartmentReviewsProps {
 
 const ApartmentReviews: FunctionComponent<ApartmentReviewsProps> = memo(
   function ApartmentReviews({ reviews }) {
+    const { t } = useTranslation('Apartment')
     return (
       <div
         className={cl(
@@ -16,7 +18,7 @@ const ApartmentReviews: FunctionComponent<ApartmentReviewsProps> = memo(
           reviews.length === 0 && 'border-main-blue lg:!rounded-2xl lg:border-2'
         )}
       >
-        <h1 className="text-lg font-bold lg:hidden">Reviews</h1>
+        <h1 className="text-lg font-bold lg:hidden">{t('reviews')}</h1>
         <div
           className={cl(
             'mt-5 space-y-5 lg:mt-0 lg:h-full  lg:overflow-y-auto lg:pr-2',
@@ -27,7 +29,7 @@ const ApartmentReviews: FunctionComponent<ApartmentReviewsProps> = memo(
             <ApartmentReview {...e} key={i} />
           ))}
           {reviews.length === 0 && (
-            <p className="text-lg font-bold">No reviews yet.</p>
+            <p className="text-lg font-bold">{t('noReviews')}</p>
           )}
         </div>
       </div>

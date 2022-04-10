@@ -14,7 +14,7 @@ const ImageHome: FunctionComponent<ImageHomeProps> = memo(
         <CustomImage
           url={image}
           isFromApi={true}
-          classNames="h-full w-full"
+          className="h-full w-full"
           imageClassName="rounded-tr-2xl rounded-tl-2xl  md:rounded-bl-2xl md:rounded-tr-none "
           alt="Picture of the apartment"
         />

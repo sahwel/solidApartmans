@@ -60,7 +60,7 @@ const Images: FunctionComponent<ImagesProps> = memo(
               url={images[secondIndex]}
               isFromApi={true}
               alt="image of the apartment"
-              classNames="w-1/3 h-full"
+              className="w-1/3 h-full"
             />
           )}
           {images.length > 2 && (
@@ -68,7 +68,7 @@ const Images: FunctionComponent<ImagesProps> = memo(
               url={images[thirdIndex]}
               isFromApi={true}
               alt="image of the apartment"
-              classNames="w-1/3 h-full"
+              className="w-1/3 h-full"
             />
           )}
           {images.length > 3 && (
@@ -76,7 +76,7 @@ const Images: FunctionComponent<ImagesProps> = memo(
               url={images[fourthIndex]}
               isFromApi={true}
               alt="image of the apartment"
-              classNames="w-1/3 h-full"
+              className="w-1/3 h-full"
             />
           )}
         </div>

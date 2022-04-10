@@ -1,4 +1,5 @@
 import { FunctionComponent, memo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Facility } from '../../../services/apartmentDefinitions'
 import CustomImage from '../../Image/CustomImage'
 
@@ -8,9 +9,10 @@ interface ApartmentFacilitiesProps {
 
 const ApartmentFacilities: FunctionComponent<ApartmentFacilitiesProps> = memo(
   function ApartmentFacilities({ facilities }) {
+    const { t } = useTranslation('Apartment')
     return (
       <div className="bg-white p-3  lg:w-1/2">
-        <h1 className="text-lg font-bold lg:hidden">Facilities</h1>
+        <h1 className="text-lg font-bold lg:hidden">{t('facilities')}</h1>
         <div className="m-auto mt-4 flex max-w-[90vw] space-x-8 overflow-x-auto lg:grid lg:max-h-full lg:justify-start lg:space-x-0 lg:space-y-4 lg:overflow-y-auto lg:overflow-x-hidden">
           {facilities.map((e) => (
             <div
@@ -21,7 +23,7 @@ const ApartmentFacilities: FunctionComponent<ApartmentFacilitiesProps> = memo(
                 url={e.url}
                 isFromApi={true}
                 alt={`icon: ${e.nameHU}`}
-                classNames="h-7 w-8"
+                className="h-7 w-8"
               />
               <p className="mt-2  text-center lg:m-0">{e.nameHU}</p>
             </div>

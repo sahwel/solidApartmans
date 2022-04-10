@@ -6,7 +6,7 @@ import { SessionProvider } from 'next-auth/react'
 import Toast from '../components/Common/Toast/Toast'
 import { useEffect, useState } from 'react'
 import Router from 'next/router'
-
+import '../services/i18n'
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const [loading, setLoading] = useState(false)
   useEffect(() => {

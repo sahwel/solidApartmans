@@ -1,6 +1,7 @@
 import { UserIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
 import React, { FunctionComponent, memo } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface HomeCapacityProps {
   bedrooms: number
@@ -9,17 +10,18 @@ interface HomeCapacityProps {
 
 const HomeCapacity: FunctionComponent<HomeCapacityProps> = memo(
   function HomeCapacity({ bedrooms, capacity }) {
+    const { t } = useTranslation('Home')
     return (
       <div className="flex  justify-evenly border-l-[1px] border-main-blue lg:w-1/2">
         <div className="grid">
-          <div className="text-lg">Capacity</div>
+          <div className="text-lg"> {t('capacity')}</div>
           <p className="m-auto mt-4 flex">
             <span>{capacity}</span>
             <UserIcon className="h-6 w-6" />
           </p>
         </div>
         <div className="hidden lg:grid">
-          <p className="text-lg">Bedrooms</p>
+          <p className="text-lg">{t('bedrooms')}</p>
           <div className="m-auto mt-4 flex">
             <span>{bedrooms}</span>
             {/* eslint-disable-next-line @next/next/no-img-element */}

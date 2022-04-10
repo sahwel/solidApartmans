@@ -19,9 +19,9 @@ const ReviewDeleteModal: FunctionComponent<ReviewDeleteModalProps> = memo(
           <Button
             onClick={hide}
             title="Mégse"
-            classNames="py-1 px-2 !bg-white !text-main-text hover:!bg-main-blue hover:!text-white"
+            className="py-1 px-2 !bg-white !text-main-text hover:!bg-main-blue hover:!text-white"
           />
-          <Button title="Törlés" classNames="py-1 px-2" />
+          <Button title="Törlés" className="py-1 px-2" />
         </div>
       </div>
     )

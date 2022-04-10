@@ -12,6 +12,7 @@ import { Button } from '../../../components/Button'
 import Container from '../../../components/Container'
 import { ExtendedApartmentDefinition } from '../../../services/apartmentDefinitions'
 import { axiosInstance } from '../../../services/axiosInstance'
+import { useTranslation } from 'react-i18next'
 
 const index: FunctionComponent<ExtendedApartmentDefinition> = memo(
   function Apartment({
@@ -31,7 +32,7 @@ const index: FunctionComponent<ExtendedApartmentDefinition> = memo(
     const handleOpenBook = useCallback(() => {
       router.push(`/book/${_id}`)
     }, [_id, router])
-
+    const { t } = useTranslation('Apartment')
     return (
       <Container>
         <div className=" space-y-5 lg:flex lg:h-[25rem] lg:justify-between">
@@ -45,8 +46,8 @@ const index: FunctionComponent<ExtendedApartmentDefinition> = memo(
                 stars={stars}
               />
               <Button
-                title="Book"
-                classNames="px-12 py-2 hidden lg:block "
+                title={t('book')}
+                className="hidden px-12 py-2 lg:block "
                 onClick={handleOpenBook}
               />
             </div>
@@ -63,8 +64,8 @@ const index: FunctionComponent<ExtendedApartmentDefinition> = memo(
           </div>
           <div className="col-start-12 col-end-13 row-end-2 flex justify-center lg:hidden">
             <Button
-              title="Book"
-              classNames="px-16 py-2 "
+              title={t('book')}
+              className="px-16 py-2 "
               onClick={handleOpenBook}
             />
           </div>

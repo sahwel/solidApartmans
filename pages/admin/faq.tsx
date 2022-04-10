@@ -22,7 +22,7 @@ const faq: FunctionComponent<FaqProps> = memo(
           <h1 className="text-2xl font-bold">GY.I.K</h1>
           <Button
             title="Létrehozás"
-            classNames="py-1 px-4 "
+            className="py-1 px-4 "
             onClick={openModal}
           />
         </div>

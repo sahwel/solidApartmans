@@ -42,9 +42,9 @@ const Reservation = memo(function Reservation() {
             <div className="flex space-x-5">
               <Button
                 title="Kifizetve"
-                classNames="py-2 px-5 !bg-white !text-main-text hover:!bg-main-blue hover:!text-white"
+                className="py-2 px-5 !bg-white !text-main-text hover:!bg-main-blue hover:!text-white"
               />
-              <Button title="Törlés" classNames="py-2 px-5" />
+              <Button title="Törlés" className="py-2 px-5" />
             </div>
           </div>
         </div>
