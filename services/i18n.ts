@@ -5,7 +5,7 @@ import { initReactI18next } from 'react-i18next'
 import { en } from '../locales/en'
 // import all namespaces (for the default language, only)
 import { hu } from '../locales/hu'
-import { cookieManager } from './CookieManager'
+import { cookieManager } from './cookieManager'
 
 export interface ResoureDefiniton {
   readonly hu: typeof hu
