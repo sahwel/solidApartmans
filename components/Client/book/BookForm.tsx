@@ -14,6 +14,7 @@ import cl from 'classnames'
 import { useModal } from '../../Modal/ModalProvider'
 import CustomImage from '../../Image/CustomImage'
 import { Address } from '../../../services/apartmentDefinitions'
+import { useTranslation } from 'react-i18next'
 
 const ModalHeader = lazy(() => import('./BookModalHeader'))
 const BookModal = lazy(() => import('./BookModal'))
@@ -48,6 +49,9 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
     }, [])
 
     const modal = useModal()
+
+    const { t } = useTranslation('Book')
+
     return (
       <form
         className="!mt-24 grid w-full space-y-5 px-5 pb-10 md:!mt-0 lg:grid-cols-12 lg:gap-4 lg:space-y-0"
@@ -60,7 +64,7 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
               isRequired={isCompany}
               formState={formState}
               url="company.svg"
-              placeholder="Company name"
+              placeholder={t('form.company')}
               register={register}
               property={'companyName'}
             />
@@ -69,7 +73,7 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
               isRequired={isCompany}
               formState={formState}
               url="tax.svg"
-              placeholder="Tax number"
+              placeholder={t('form.taxNumber')}
               register={register}
               property={'taxNumber'}
             />
@@ -79,14 +83,14 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
           formState={formState}
           url="user.svg"
           className="lg:col-start-1 lg:col-end-4"
-          placeholder="First name"
+          placeholder={t('form.firstName')}
           register={register}
           property={'firstName'}
         />
         <BookInput
           formState={formState}
           url="user.svg"
-          placeholder="Last name"
+          placeholder={t('form.lastName')}
           className="lg:col-start-4 lg:col-end-7"
           register={register}
           property={'lastName'}
@@ -95,7 +99,7 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
           formState={formState}
           className="lg:col-start-7 lg:col-end-11"
           url="globe.svg"
-          placeholder="Country"
+          placeholder={t('form.country')}
           register={register}
           property={'country'}
         />
@@ -103,23 +107,32 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
           formState={formState}
           url="hashtag.svg"
           className="lg:col-start-11 lg:col-end-13"
-          placeholder="Zip code"
+          placeholder={t('form.zip')}
           register={register}
           property={'zipCode'}
         />
         <BookInput
           formState={formState}
           url="street.svg"
-          className="lg:col-start-7 lg:col-end-13"
-          placeholder="Street"
+          className="lg:col-start-7 lg:col-end-10"
+          placeholder={t('form.county')}
+          register={register}
+          property={'county'}
+        />
+        <BookInput
+          formState={formState}
+          url="street.svg"
+          className="lg:col-start-10 lg:col-end-13"
+          placeholder={t('form.street')}
           register={register}
           property={'street'}
         />
         <BookInput
           formState={formState}
           url="house.svg"
-          placeholder="House number"
+          placeholder={t('form.house')}
           register={register}
+          type="number"
           className="lg:col-start-7 lg:col-end-10"
           property={'street'}
         />
@@ -127,7 +140,7 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
           formState={formState}
           url="other.svg"
           className="lg:col-start-10 lg:col-end-13"
-          placeholder="Other"
+          placeholder={t('form.other')}
           register={register}
           property={'other'}
         />
@@ -149,12 +162,12 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
             !isCompany && 'lg:!row-start-3'
           )}
           formState={formState}
-          placeholder="Phone number"
+          placeholder={t('form.phone')}
           register={register}
           property={'phoneNumber'}
         />
         <BookInput
-          placeholder="Number of adults"
+          placeholder={t('form.adults')}
           formState={formState}
           type="number"
           className="lg:col-start-1 lg:col-end-4"
@@ -164,7 +177,7 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
         />
         <BookInput
           formState={formState}
-          placeholder="Number of kids"
+          placeholder={t('form.kids')}
           className="lg:col-start-4 lg:col-end-7"
           type="number"
           register={register}
@@ -173,7 +186,8 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
         <div className="lg:row-start-13 lg:col-start-1 lg:col-end-13 lg:grid lg:justify-center lg:space-y-1">
           <BookCheckbox
             id="underTwoYears"
-            title="Kids are under two years old?"
+            title={t('form.underTwo')}
+            disabled={false}
             register={register}
             onChange={_setIsUnderTwoYears}
             property={'underTwoYears'}
@@ -182,13 +196,13 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
             <>
               <BookCheckbox
                 id="babyBed"
-                title="Do you need baby bed?"
+                title={t('form.babyBed')}
                 register={register}
                 property={'babyBed'}
               />
               <BookCheckbox
                 id="highChair"
-                title="Do you need high chair?"
+                title={t('form.highChair')}
                 register={register}
                 property={'highChair'}
               />
@@ -198,7 +212,7 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
         <BookInput
           formState={formState}
           url="calendar.svg"
-          placeholder="Arrive"
+          placeholder={t('form.arrive')}
           register={register}
           className={cl(
             'lg:col-start-7 lg:col-end-10 lg:row-start-5',
@@ -209,7 +223,7 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
         <BookInput
           url="calendar.svg"
           formState={formState}
-          placeholder="Leave "
+          placeholder={t('form.leave')}
           className={cl(
             'lg:col-start-10 lg:col-end-13 lg:row-start-5',
             !isCompany && 'lg:!row-start-4'
@@ -221,7 +235,7 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
           type="submit"
           className="p flex w-2/3 items-center justify-center space-x-3 justify-self-center bg-main-blue py-2 text-white lg:col-start-5 lg:col-end-9 lg:row-start-7 lg:max-w-[15rem]"
         >
-          <p>Book</p>
+          <p>{t('form.book')}</p>
           <CustomImage url="calendarSolid.svg" alt="icon" className="h-5 w-5" />
         </button>
       </form>

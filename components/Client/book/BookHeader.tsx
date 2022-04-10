@@ -1,6 +1,7 @@
 import { FunctionComponent, memo } from 'react'
 import cl from 'classnames'
 import { Address } from '../../../services/apartmentDefinitions'
+import { useTranslation } from 'react-i18next'
 
 interface BookHeaderProps {
   address: Address
@@ -11,6 +12,7 @@ interface BookHeaderProps {
 
 const BookHeader: FunctionComponent<BookHeaderProps> = memo(
   function BookHeader({ address, name, isCompany, setIsCompany }) {
+    const { t } = useTranslation('Book')
     return (
       <div className="relative flex w-full items-center justify-center text-center text-white md:py-5 md:text-main-text lg:!mb-10 lg:py-2">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -40,7 +42,7 @@ const BookHeader: FunctionComponent<BookHeaderProps> = memo(
                   : 'bg-[#161D6F] md:text-white'
               )}
             >
-              Private person
+              {t('person')}
             </button>
             <button
               onClick={setIsCompany(true)}
@@ -51,7 +53,7 @@ const BookHeader: FunctionComponent<BookHeaderProps> = memo(
                   : 'bg-[#161D6F] md:text-white'
               )}
             >
-              Company
+              {t('company')}
             </button>
           </div>
         </div>
