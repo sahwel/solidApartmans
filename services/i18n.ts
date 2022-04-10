@@ -5,7 +5,7 @@ import { initReactI18next } from 'react-i18next'
 import { en } from '../locales/en'
 // import all namespaces (for the default language, only)
 import { hu } from '../locales/hu'
-import { cookieManager } from './CookieManager'
+import { CookieManager } from './CookieManager'
 
 export interface ResoureDefiniton {
   readonly hu: typeof hu
@@ -27,7 +27,7 @@ detector.addDetector({
   name: 'customCookie',
   lookup(options) {
     let cn = options.lookupCookie || ''
-    const value = decodeURIComponent(cookieManager.read(cn))
+    const value = decodeURIComponent(CookieManager.read(cn))
     if (!value) return undefined
 
     const regex = /(?<=c=)(.*)(?=\|)/gm
@@ -42,7 +42,7 @@ detector.addDetector({
     const culture = cultures[lng]
     const value = `c=${culture}|uic=${culture}`
     if (options.lookupCookie && document !== undefined)
-      cookieManager.create(options.lookupCookie, encodeURIComponent(value), 365)
+      CookieManager.create(options.lookupCookie, encodeURIComponent(value), 365)
   },
 })
 
