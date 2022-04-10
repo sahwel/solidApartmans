@@ -1,4 +1,4 @@
-export const cookieManager = {
+export const CookieManager = {
   create: (cname: string, cvalue: string, exdays: number) => {
     const d = new Date()
     d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000)
