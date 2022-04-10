@@ -10,11 +10,11 @@ const HomeFacilities: FunctionComponent<HomeFacilitesProps> = memo(
   function HomeFacilities({ facilities }) {
     return (
       <div className="col-start-1 col-end-3 flex  w-full items-center justify-evenly lg:w-1/2">
-        {facilities.slice(0, 5).map((e, i) => (
+        {facilities.slice(0, 5).map((e) => (
           <CustomImage
             url={e.url}
             alt="icon"
-            key={i}
+            key={e.url}
             classNames="w-7 h-7"
             isFromApi={true}
           />

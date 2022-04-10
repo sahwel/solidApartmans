@@ -16,7 +16,7 @@ const faq: FunctionComponent<faqProps> = memo(
         <div className="space-y-5 py-5  lg:space-y-1">
           <h1 className="w-full text-center text-2xl font-bold">FAQ</h1>
           {faqs.map((e, i) => (
-            <FaqCard {...e} key={i} />
+            <FaqCard {...e} key={e._id} />
           ))}
         </div>
       </Container>

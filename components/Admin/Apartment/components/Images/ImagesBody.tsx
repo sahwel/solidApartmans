@@ -27,7 +27,7 @@ const ImagesBody: FunctionComponent<ImagesBodyProps> = memo(
           images.map((img, i) => (
             <ImageCard
               isCreate={isCreate}
-              key={i}
+              key={img}
               img={img}
               index={i}
               moveImg={moveImg}

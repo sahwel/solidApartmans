@@ -12,10 +12,10 @@ const ApartmentFacilities: FunctionComponent<ApartmentFacilitiesProps> = memo(
       <div className="bg-white p-3  lg:w-1/2">
         <h1 className="text-lg font-bold lg:hidden">Facilities</h1>
         <div className="m-auto mt-4 flex max-w-[90vw] space-x-8 overflow-x-auto lg:grid lg:max-h-full lg:justify-start lg:space-x-0 lg:space-y-4 lg:overflow-y-auto lg:overflow-x-hidden">
-          {facilities.map((e, i) => (
+          {facilities.map((e) => (
             <div
               className="grid w-[6rem] justify-center justify-items-center lg:flex lg:w-full lg:items-center lg:justify-start lg:space-x-3"
-              key={i}
+              key={e.url}
             >
               <CustomImage
                 url={e.url}
