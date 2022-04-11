@@ -23,4 +23,16 @@ export const Book = {
     book: 'Lefgolal',
     required: 'Ez a mező kötelező! *',
   },
+  modal: {
+    payTotal: 'A teljes összeget ki szeretnéd fizetni?',
+    payTotalTooltip:
+      'Kifizetheted az teljes ár 10 vagy 100%-át, viszont csak ezek a fizetési opciók állnak rendelkezésre',
+    creditCard: 'Bankkártya',
+    bankTransfer: 'Banki átutalás',
+    doYou: 'Elfogadod a',
+    houseRules: ' házirendet',
+    and: 'és az ',
+    privacyPolicy: 'adatvédelmi irányelveket',
+    total: 'Teljes összeg: ',
+  },
 }

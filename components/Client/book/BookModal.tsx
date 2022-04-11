@@ -7,6 +7,7 @@ import {
 } from 'react'
 import Tooltip from '@mui/material/Tooltip'
 import { Button } from '../../Button'
+import { useTranslation } from 'react-i18next'
 
 interface BookModalProps {
   numberOfAdults: number
@@ -24,13 +25,22 @@ const BookModal: FunctionComponent<BookModalProps> = memo(
     const [accpect, setAccpect] = useState(false)
     const [isCreditCard, setIsCreditCard] = useState(true)
 
+    const { t } = useTranslation('Book')
     return (
       <div className="mt-3 space-y-5">
         <div className="grid grid-cols-2">
-          <p>Arrive: {arrive}</p>
-          <p>Left: {left}</p>
-          <p>Number of adults: {numberOfAdults}</p>
-          <p>Number of kids: {numberOfKids}</p>
+          <p>
+            {t('form.arrive')}: {arrive}
+          </p>
+          <p>
+            {t('form.leave')}: {left}
+          </p>
+          <p>
+            {t('form.adults')}: {numberOfAdults}
+          </p>
+          <p>
+            {t('form.kids')}: {numberOfKids}
+          </p>
         </div>
         <div>
           <div className="flex items-center justify-start">
@@ -42,13 +52,8 @@ const BookModal: FunctionComponent<BookModalProps> = memo(
               className="mr-2 h-4 w-4 border-main-blue"
             />
             <span className="flex items-center">
-              <label htmlFor="paymentTotal">
-                Do you want to pay the total?
-              </label>
-              <Tooltip
-                title=" You can pay the 10% or the 100% of the total, however you you
-                are only able these options"
-              >
+              <label htmlFor="paymentTotal">{t('modal.payTotal')}</label>
+              <Tooltip title={t('modal.payTotalTooltip') + ''}>
                 <span className="ml-2 flex h-[1.2rem] w-[1.2rem] cursor-pointer items-center justify-center rounded-full bg-main-blue text-white ">
                   ?
                 </span>
@@ -64,7 +69,7 @@ const BookModal: FunctionComponent<BookModalProps> = memo(
                 id="creditCard"
                 className="mr-2 h-4 w-4 border-main-blue"
               />
-              <label htmlFor="creditCard">Credit card</label>
+              <label htmlFor="creditCard">{t('modal.creditCard')}</label>
             </div>
             <div className="flex items-center justify-start">
               <input
@@ -74,7 +79,7 @@ const BookModal: FunctionComponent<BookModalProps> = memo(
                 onChange={handleChange(setIsCreditCard, false)}
                 className="mr-2 h-4 w-4 border-main-blue"
               />
-              <label htmlFor="bankTransfer">Bank transfer</label>
+              <label htmlFor="bankTransfer">{t('modal.bankTransfer')}</label>
             </div>
           </div>
           <div className="flex items-center justify-start">
@@ -86,14 +91,16 @@ const BookModal: FunctionComponent<BookModalProps> = memo(
               className="mr-2 h-4 w-4 border-main-blue"
             />
             <label htmlFor="houseRules">
-              Do you accept the<span className="font-bold"> house roules</span>
-              &nbsp; and the <span className="font-bold"> privacy policy</span>?
+              {t('modal.doYou')}
+              <span className="font-bold">{t('modal.houseRules')}</span>
+              &nbsp;{t('modal.and')}
+              <span className="font-bold"> {t('modal.privacyPolicy')}</span>?
             </label>
           </div>
         </div>
         <div className="flex items-center justify-evenly">
           <p className="text-lg font-medium">
-            Total: <span className="font-bold">478000 FT </span>
+            {t('modal.total')} <span className="font-bold">478000 FT </span>
           </p>
           <Button title="Book" className="py-1 px-9" />
         </div>
