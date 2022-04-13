@@ -9,7 +9,7 @@ export const Book = {
     phone: 'Phone number',
     adults: 'Number of adults',
     kids: 'Number of kids',
-    county: 'County',
+    city: 'City',
     country: 'Country',
     zip: 'Zip code',
     street: 'Street',

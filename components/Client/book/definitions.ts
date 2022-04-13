@@ -4,7 +4,7 @@ export interface BookFormModel {
   firstName: string
   lastName: string
   country: string
-  county: string
+  city: string
   zipCode: string
   street: string
   houseNumber: string

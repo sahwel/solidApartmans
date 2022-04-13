@@ -12,7 +12,7 @@ export const Book = {
     country: 'Megye',
     zip: 'Irányítószám',
     street: 'Utca',
-    county: 'Megye',
+    city: 'Város',
     house: 'Házszám',
     other: 'Egyéb',
     arrive: 'Érkezés',
