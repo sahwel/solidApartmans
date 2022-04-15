@@ -1,6 +1,5 @@
 import {
   Dispatch,
-  FC,
   FunctionComponent,
   memo,
   SetStateAction,
@@ -14,7 +13,6 @@ import {
   Control,
   Controller,
   UseFormClearErrors,
-  UseFormRegister,
   UseFormSetValue,
 } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -52,7 +50,7 @@ const BookCalendar: FunctionComponent<BookCalendarProps> = memo(
         setValue(formValue, date)
         clearErrors(formValue)
       },
-      [formValue, setValue, setter]
+      [clearErrors, formValue, setValue, setter]
     )
 
     const { t } = useTranslation('Book')

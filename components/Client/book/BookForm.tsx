@@ -15,8 +15,6 @@ import { useModal } from '../../Modal/ModalProvider'
 import CustomImage from '../../Image/CustomImage'
 import { Address } from '../../../services/apartmentDefinitions'
 import { useTranslation } from 'react-i18next'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
 import BookCalendar from './BookCalendar'
 
 const ModalHeader = lazy(() => import('./BookModalHeader'))
