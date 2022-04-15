@@ -22,17 +22,17 @@ export const Book = {
     highChair: 'Do you need high chair?',
     book: 'Book',
     required: 'This field is required! *',
-    modal: {
-      payTotal: 'Do you want to pay the total?',
-      payTotalTooltip:
-        'You can pay the 10% or the 100% of the total, however you can only chose of these options',
-      creditCard: 'Credit card',
-      bankTransfer: 'Bank transfer',
-      doYou: 'Do you accept the',
-      houseRules: ' house roules',
-      and: ' and the ',
-      privacyPolicy: ' privacy policy',
-      total: 'Total: ',
-    },
+  },
+  modal: {
+    payTotal: 'Do you want to pay the total?',
+    payTotalTooltip:
+      'You can pay the 10% or the 100% of the total, however you can only chose of these options',
+    creditCard: 'Credit card',
+    bankTransfer: 'Bank transfer',
+    doYou: 'Do you accept the',
+    houseRules: ' house roules',
+    and: ' and the ',
+    privacyPolicy: ' privacy policy',
+    total: 'Total: ',
   },
 }
