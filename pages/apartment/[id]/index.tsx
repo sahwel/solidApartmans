@@ -32,7 +32,7 @@ const index: FunctionComponent<ExtendedApartmentDefinition> = memo(
     const handleOpenBook = useCallback(() => {
       router.push(`/book/${_id}`)
     }, [_id, router])
-    const { t } = useTranslation('Apartment')
+    const { t, i18n } = useTranslation('Apartment')
     return (
       <Container>
         <div className=" space-y-5 lg:flex lg:h-[25rem] lg:justify-between">
@@ -51,7 +51,9 @@ const index: FunctionComponent<ExtendedApartmentDefinition> = memo(
                 onClick={handleOpenBook}
               />
             </div>
-            <ApartmentDeatils details={detailsHU} />
+            <ApartmentDeatils
+              details={i18n.language === 'hu' ? detailsHU : detailsEN}
+            />
           </div>
         </div>
         <div className="space-y-5 lg:flex lg:h-[28rem]">
