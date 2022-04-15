@@ -17,6 +17,7 @@ import { Address } from '../../../services/apartmentDefinitions'
 import { useTranslation } from 'react-i18next'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import BookCalendar from './BookCalendar'
 
 const ModalHeader = lazy(() => import('./BookModalHeader'))
 const BookModal = lazy(() => import('./BookModal'))
@@ -29,7 +30,14 @@ interface BookFormProps {
 
 const BookForm: FunctionComponent<BookFormProps> = memo(
   function BookForm({ isCompany, address, name }) {
-    const { register, formState, handleSubmit } = useForm<BookFormModel>()
+    const {
+      register,
+      formState,
+      handleSubmit,
+      setValue,
+      control,
+      clearErrors,
+    } = useForm<BookFormModel>()
     const onSubmit = (data: BookFormModel) =>
       modal.show(
         <Suspense fallback={<p>Loading...</p>}>
@@ -45,8 +53,8 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
         </Suspense>
       )
 
-    const [arrive, setArrive] = useState(null)
-    const [leave, setLeave] = useState(null)
+    const [arrive, setArrive] = useState<Date | null>(null)
+    const [leave, setLeave] = useState<Date | null>(null)
 
     const [isUnderTwoYears, setIsUnderTwoYears] = useState(false)
     const _setIsUnderTwoYears = useCallback(() => {
@@ -55,6 +63,7 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
 
     const modal = useModal()
 
+    const { errors } = formState
     const { t } = useTranslation('Book')
 
     return (
@@ -214,62 +223,31 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
             </>
           )}
         </div>
-        {/* <BookInput
-          formState={formState}
-          url="calendar.svg"
-          placeholder={t('form.arrive')}
-          register={register}
-          className={cl(
-            'lg:col-start-7 lg:col-end-10 lg:row-start-5',
-            !isCompany && 'lg:!row-start-4'
-          )}
-          property={'arrive'}
-        /> */}
-        <div
-          className={cl(
-            'relative cursor-pointer lg:col-start-7 lg:col-end-10 lg:row-start-5',
-            !isCompany && 'lg:!row-start-4'
-          )}
-        >
-          <DatePicker
-            placeholderText="2022-11-02"
-            className="w-full rounded-sm border-[1px] border-main-blue py-2 px-4"
-            selected={arrive}
-            id="arrive-date"
-            onChange={(date: any) => setArrive(date)}
-          />
-          <div className="absolute top-1/2 right-3 -translate-y-1/2 transform">
-            <CustomImage
-              url="calendar.svg"
-              alt="icon"
-              className="h-5 w-5"
-              onClick={() => document.getElementById('arrive-date')?.click()}
-            />
-          </div>
-        </div>
-        <div
-          className={cl(
-            'relative cursor-pointer lg:col-start-10 lg:col-end-13 lg:row-start-5',
-            !isCompany && 'lg:!row-start-4'
-          )}
-        >
-          <DatePicker
-            placeholderText="2022-11-12"
-            readOnly={arrive === null}
-            className="w-full rounded-sm border-[1px] border-main-blue py-2 px-4"
-            selected={leave}
-            id="leave-date"
-            onChange={(date: any) => setLeave(date)}
-          />
-          <div className="absolute top-1/2 right-3 -translate-y-1/2 transform">
-            <CustomImage
-              url="calendar.svg"
-              alt="icon"
-              className="h-5 w-5"
-              onClick={() => document.getElementById('leave-date')?.click()}
-            />
-          </div>
-        </div>
+
+        <BookCalendar
+          clearErrors={clearErrors}
+          control={control}
+          setValue={setValue}
+          formValue="arrive"
+          error={errors.arrive?.message}
+          className="cursor-pointer lg:col-start-7 lg:col-end-10 lg:row-start-5"
+          getter={arrive}
+          setter={setArrive}
+          isCompany={isCompany}
+        />
+        <BookCalendar
+          clearErrors={clearErrors}
+          control={control}
+          formValue="leave"
+          setValue={setValue}
+          getter={leave}
+          error={errors.leave?.message}
+          className="cursor-pointer lg:col-start-10 lg:col-end-13 lg:row-start-5"
+          setter={setLeave}
+          isCompany={isCompany}
+          readOnly={arrive === null}
+        />
+
         <button
           type="submit"
           className="p flex w-2/3 items-center justify-center space-x-3 justify-self-center bg-main-blue py-2 text-white lg:col-start-5 lg:col-end-9 lg:row-start-7 lg:max-w-[15rem]"

@@ -16,6 +16,6 @@ export interface BookFormModel {
   underTwoYears: boolean
   babyBed: boolean
   highChair: boolean
-  arrive: string // todo: date
-  left: string // todo: date
+  arrive: Date // todo: date
+  leave: Date // todo: date
 }
