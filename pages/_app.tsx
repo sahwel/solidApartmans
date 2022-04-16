@@ -8,6 +8,7 @@ import Toast from '../components/Common/Toast/Toast'
 import { useEffect, useState } from 'react'
 import Router from 'next/router'
 import '../services/i18n'
+import { useTranslation } from 'react-i18next'
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const [loading, setLoading] = useState(false)
   useEffect(() => {
@@ -28,6 +29,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
       Router.events.off('routeChangeError', end)
     }
   }, [])
+
+  const { t } = useTranslation('Common')
   return (
     <SessionProvider session={session}>
       <Toast>
@@ -51,7 +54,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
                     fill="currentFill"
                   />
                 </svg>
-                <p className="text-main-text">Loading..</p>
+                <p className="text-main-text">{t('loading')}</p>
               </div>
             </div>
           ) : (

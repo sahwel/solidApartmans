@@ -36,9 +36,10 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
       control,
       clearErrors,
     } = useForm<BookFormModel>()
+    const commonT = useTranslation('Common')
     const onSubmit = (data: BookFormModel) =>
       modal.show(
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<p>{commonT.t('loading')}</p>}>
           <BookModal
             arrive="2022-11-02"
             left="2022-11-07"
@@ -46,7 +47,7 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
             numberOfKids={1}
           />
         </Suspense>,
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<p>{commonT.t('loading')}</p>}>
           <ModalHeader address={address} name={name} />
         </Suspense>
       )
@@ -190,6 +191,7 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
         <BookInput
           formState={formState}
           placeholder={t('form.kids')}
+          isRequired={false}
           className="lg:col-start-4 lg:col-end-7"
           type="number"
           register={register}
