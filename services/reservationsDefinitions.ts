@@ -23,8 +23,8 @@ export interface AdmiReservationModel {
     babyBed: boolean
     highChair: boolean
     privatePerson: boolean
-    apartment: ReservationApartmentDefinitions
   }
+  apartment: ReservationApartmentDefinitions
 }
 
 export interface ReservationApartmentDefinitions {

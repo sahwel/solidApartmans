@@ -11,7 +11,7 @@ const ReservationsContainer: FunctionComponent<ReservationsContainerProps> =
     return (
       <div className="max-h-[83vh] w-2/3 space-y-5 overflow-auto">
         {reservations.map((e) => (
-          <Reservation key={e._id} />
+          <Reservation key={e._id} reservation={e} />
         ))}
       </div>
     )

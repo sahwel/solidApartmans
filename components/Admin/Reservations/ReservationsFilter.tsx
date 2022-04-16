@@ -1,21 +1,10 @@
-import {
-  Dispatch,
-  FunctionComponent,
-  memo,
-  SetStateAction,
-  useCallback,
-  useState,
-} from 'react'
-import { useForm } from 'react-hook-form'
+import { Dispatch, FunctionComponent, memo, SetStateAction } from 'react'
 import { Button } from '../../Button'
 import AdminFilterInput from '../../Common/AdminInput'
-import { ReservationFilterDto } from './services/definitions'
 import ReservationFilterCalendar from './ReservationFilterCalendar'
-import { getSession } from 'next-auth/react'
-import { useToast } from '../../Common/Toast/Toast'
-import { axiosInstance } from '../../../services/axiosInstance'
 import { AdmiReservationModel } from '../../../services/reservationsDefinitions'
 import { ApartmentsNames } from '../../../services/apartmentDefinitions'
+import { useReservationFilter } from './services/useReservationFilter'
 
 interface ReservationFilterProps {
   setReservations: Dispatch<SetStateAction<AdmiReservationModel[]>>
@@ -24,56 +13,16 @@ interface ReservationFilterProps {
 
 const ReservationsFilter: FunctionComponent<ReservationFilterProps> = memo(
   function ReservationsFilter({ setReservations, apartments }) {
-    const { register, handleSubmit, setValue } = useForm<ReservationFilterDto>({
-      defaultValues: { start: new Date(), end: null, freeTextSearch: null },
-    })
-
-    const toast = useToast()
-    const onSubmit = useCallback(
-      async (data: ReservationFilterDto) => {
-        try {
-          if (data.apartment === 'null')
-            data.apartment = JSON.parse(data.apartment)
-          console.log(data)
-
-          const session = await getSession()
-          let query: string = '?'
-          if (data.freeTextSearch)
-            query = query + `freeText=${data.freeTextSearch}`
-          if (data.start)
-            query = query + `${query.length > 1 ? '&' : ''}start=${data.start}`
-          if (data.end)
-            query =
-              query + `${query.length > 1 ? '&' : ''}}&freeText=${data.end}`
-          if (data.apartment)
-            query =
-              query +
-              `${query.length > 1 ? '&' : ''}apartment=${data.apartment}`
-
-          const response = await axiosInstance.get(
-            `reservation/admin${query}`,
-            {
-              headers: { 'auth-token': session?.token as string },
-            }
-          )
-
-          setReservations(response.data.result)
-        } catch (error: any) {
-          toast.error(
-            error.response
-              ? error.response.data
-                ? error.response.data.msg
-                : 'Egy hiba lépett fel a kérés közben!'
-              : error
-          )
-        }
-      },
-      [setReservations, toast]
-    )
-
-    const [start, setStart] = useState<Date | null>(new Date())
-    const [end, setEnd] = useState<Date | null>(null)
-
+    const {
+      handleSubmit,
+      onSubmit,
+      register,
+      start,
+      setValue,
+      setStart,
+      end,
+      setEnd,
+    } = useReservationFilter(setReservations, apartments)
     return (
       <div className="w-1/3">
         <h1 className="text-2xl font-bold">Foglalások</h1>

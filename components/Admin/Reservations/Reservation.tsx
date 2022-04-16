@@ -1,56 +1,98 @@
-import React, { memo, useCallback, useState } from 'react'
+import React, { FunctionComponent, memo, useCallback, useState } from 'react'
+import { AdmiReservationModel } from '../../../services/reservationsDefinitions'
+import { FormatDate } from '../../../services/ReservationServices'
 import { Button } from '../../Button'
 
-const Reservation = memo(function Reservation() {
-  const [isOpen, setIsOpen] = useState(false)
-  const handleOpen = useCallback(() => {
-    setIsOpen((oldState) => !oldState)
-  }, [])
-  return (
-    <div className="mx-auto  w-[90%]  rounded-lg border-2 border-main-blue p-3 hover:shadow-lg">
-      <div
-        className="flex cursor-pointer items-center  justify-between"
-        onClick={handleOpen}
-      >
-        <h1>
-          <span className="mr-2 text-lg font-medium">John doe</span>
-          <span className="text-sm">(john.doe@gmail.com, +36701234567)</span>
-        </h1>
-        <div className="flex items-center space-x-5">
-          <p className="text-sm">B apartman</p>
-          <p>2022.11.02 - 2022-11-16</p>
-        </div>
-      </div>
+interface ReservationProps {
+  reservation: AdmiReservationModel
+}
 
-      {isOpen && (
-        <div className="mt-3 flex w-full justify-between border-t-[1px] border-main-blue py-3">
-          <div>
-            <p>Lakcím: Lakcím: 4042, Debrecen Piac utca 44/B</p>
-            <p>Felnőttek: 2</p>
-            <p>Gyerekek: 1</p>
-            <p>Két éven aluli: van</p>
-            <p>Etetőszék: nem szükséges</p>
-            <p>Babaágy: szükséges</p>
-            <p>Adószám: 123456789123456789</p>
-            <p>Cégnév: M{'&'}K development</p>
-            <p>Kifiztve: Igen</p>
+const Reservation: FunctionComponent<ReservationProps> = memo(
+  function Reservation({ reservation }) {
+    const [isOpen, setIsOpen] = useState(false)
+    const handleOpen = useCallback(() => {
+      setIsOpen((oldState) => !oldState)
+    }, [])
+    return (
+      <div className="mx-auto  w-[90%]  rounded-lg border-2 border-main-blue p-3 hover:shadow-lg">
+        <div
+          className="flex cursor-pointer items-center  justify-between"
+          onClick={handleOpen}
+        >
+          <h1>
+            <span className="mr-2 text-lg font-medium">
+              {reservation.customer.lastName +
+                ' ' +
+                reservation.customer.firstName}
+            </span>
+            <span className="text-sm">
+              ({reservation.customer.email}, {reservation.customer.phone})
+            </span>
+          </h1>
+          <div className="flex items-center space-x-5">
+            <p className="text-sm">{reservation.apartment.name}</p>
             <p>
-              Össeg: <span className="font-medium">1400000 Ft</span>
+              {FormatDate(reservation.arrive)} - {FormatDate(reservation.leave)}{' '}
             </p>
           </div>
-          <div className="grid items-end">
-            <div className="flex space-x-5">
-              <Button
-                title="Kifizetve"
-                className="py-2 px-5 !bg-white !text-main-text hover:!bg-main-blue hover:!text-white"
-              />
-              <Button title="Törlés" className="py-2 px-5" />
+        </div>
+
+        {isOpen && (
+          <div className="mt-3 flex w-full justify-between border-t-[1px] border-main-blue py-3">
+            <div>
+              <p>
+                Lakcím:{' '}
+                {reservation.customer.address.country +
+                  ', ' +
+                  reservation.customer.address.zip_code +
+                  ' ' +
+                  reservation.customer.address.city +
+                  ' ' +
+                  reservation.customer.address.street +
+                  ' ' +
+                  reservation.customer.address.house_number +
+                  ' ' +
+                  reservation.customer.address.other}
+              </p>
+              <p>Felnőttek: {reservation.customer.numberOfAdults}</p>
+              <p>Gyerekek: {reservation.customer.numberOfKids}</p>
+              <p>
+                Két éven aluli:{' '}
+                {reservation.customer.underTwoYear ? 'Van' : 'Nincs'}
+              </p>
+              <p>
+                Etetőszék:{' '}
+                {reservation.customer.highChair ? 'Szükséges' : 'Nem szükséges'}
+              </p>
+              <p>
+                Babaágy:{' '}
+                {reservation.customer.babyBed ? 'Szükséges' : 'Nem szükséges'}
+              </p>
+              {!reservation.customer.privatePerson && (
+                <>
+                  <p>Adószám: {reservation.customer.taxNumber}</p>
+                  <p>Cégnév: {reservation.customer.companyName}</p>
+                </>
+              )}
+              <p>Kifiztve: Igen</p>
+              <p>
+                Össeg: <span className="font-medium">1400000 Ft</span>
+              </p>
+            </div>
+            <div className="grid items-end">
+              <div className="flex space-x-5">
+                <Button
+                  title="Kifizetve"
+                  className="!bg-white py-2 px-5 !text-main-text hover:!bg-main-blue hover:!text-white"
+                />
+                <Button title="Törlés" className="py-2 px-5" />
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
-  )
-})
+        )}
+      </div>
+    )
+  }
+)
 
 export default Reservation
