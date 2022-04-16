@@ -15,13 +15,15 @@ import { getSession } from 'next-auth/react'
 import { useToast } from '../../Common/Toast/Toast'
 import { axiosInstance } from '../../../services/axiosInstance'
 import { AdmiReservationModel } from '../../../services/reservationsDefinitions'
+import { ApartmentsNames } from '../../../services/apartmentDefinitions'
 
 interface ReservationFilterProps {
   setReservations: Dispatch<SetStateAction<AdmiReservationModel[]>>
+  apartments: ApartmentsNames[]
 }
 
 const ReservationsFilter: FunctionComponent<ReservationFilterProps> = memo(
-  function ReservationsFilter({ setReservations }) {
+  function ReservationsFilter({ setReservations, apartments }) {
     const { register, handleSubmit, setValue } = useForm<ReservationFilterDto>({
       defaultValues: { start: new Date(), end: null, freeTextSearch: null },
     })
@@ -30,6 +32,10 @@ const ReservationsFilter: FunctionComponent<ReservationFilterProps> = memo(
     const onSubmit = useCallback(
       async (data: ReservationFilterDto) => {
         try {
+          if (data.apartment === 'null')
+            data.apartment = JSON.parse(data.apartment)
+          console.log(data)
+
           const session = await getSession()
           let query: string = '?'
           if (data.freeTextSearch)
@@ -39,6 +45,10 @@ const ReservationsFilter: FunctionComponent<ReservationFilterProps> = memo(
           if (data.end)
             query =
               query + `${query.length > 1 ? '&' : ''}}&freeText=${data.end}`
+          if (data.apartment)
+            query =
+              query +
+              `${query.length > 1 ? '&' : ''}apartment=${data.apartment}`
 
           const response = await axiosInstance.get(
             `reservation/admin${query}`,
@@ -50,9 +60,11 @@ const ReservationsFilter: FunctionComponent<ReservationFilterProps> = memo(
           setReservations(response.data.result)
         } catch (error: any) {
           toast.error(
-            error.response.data
-              ? error.response.data.msg
-              : 'Egy hiba lépett fel a kérés közben!'
+            error.response
+              ? error.response.data
+                ? error.response.data.msg
+                : 'Egy hiba lépett fel a kérés közben!'
+              : error
           )
         }
       },
@@ -71,6 +83,24 @@ const ReservationsFilter: FunctionComponent<ReservationFilterProps> = memo(
           onSubmit={handleSubmit(onSubmit)}
         >
           <AdminFilterInput
+            labeFor="reservation-filter-apartment-search"
+            label="Apartman"
+          >
+            <select
+              {...register('apartment')}
+              id="reservation-filter-apartment-search"
+              placeholder="B apartman"
+              className="rounded-lg border-2 border-main-blue py-1 px-3"
+            >
+              <option value="null">Mind</option>
+              {apartments.map((e) => (
+                <option value={e._id} key={e._id}>
+                  {e.name}
+                </option>
+              ))}
+            </select>
+          </AdminFilterInput>
+          <AdminFilterInput
             labeFor="reservation-filter-free-text-search"
             label="Szabad szöveges kereső"
           >
@@ -78,7 +108,7 @@ const ReservationsFilter: FunctionComponent<ReservationFilterProps> = memo(
               {...register('freeTextSearch')}
               id="reservation-filter-free-text-search"
               type="text"
-              placeholder="B apartman"
+              placeholder="Kis István"
               className="rounded-lg border-2 border-main-blue py-1 px-3"
             />
           </AdminFilterInput>

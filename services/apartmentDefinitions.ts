@@ -61,6 +61,11 @@ export interface AdminApartmentDefinitions extends ApartmentDefinitions {
   plusPrice: number
 }
 
+export interface ApartmentsNames {
+  _id: string
+  name: string
+}
+
 export const DefaultAdminApartment: AdminApartmentDefinitions = {
   _id: '',
   name: '',
