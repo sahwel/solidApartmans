@@ -2,6 +2,8 @@ export interface AdmiReservationModel {
   _id: string
   arrive: Date
   leave: Date
+  total: number
+  payed: boolean
   customer: {
     firstName: string
     lastName: string

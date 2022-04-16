@@ -74,15 +74,16 @@ const Reservation: FunctionComponent<ReservationProps> = memo(
                   <p>Cégnév: {reservation.customer.companyName}</p>
                 </>
               )}
-              <p>Kifiztve: Igen</p>
+              <p>Kifiztve: {reservation.payed ? 'Igen' : 'Nem'}</p>
               <p>
-                Össeg: <span className="font-medium">1400000 Ft</span>
+                Össeg:{' '}
+                <span className="font-medium"> {reservation.total} Ft</span>
               </p>
             </div>
             <div className="grid items-end">
               <div className="flex space-x-5">
                 <Button
-                  title="Kifizetve"
+                  title={reservation.payed ? 'Nincs kifizetve' : 'Kifizetve'}
                   className="!bg-white py-2 px-5 !text-main-text hover:!bg-main-blue hover:!text-white"
                 />
                 <Button title="Törlés" className="py-2 px-5" />
