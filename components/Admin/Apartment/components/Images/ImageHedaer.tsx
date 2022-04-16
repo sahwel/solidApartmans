@@ -11,9 +11,10 @@ const ImageHedaer: FunctionComponent<ImageHeaderProps> = memo(
   function ImageHeader({ handleAddImg, error }) {
     const handleAdd = useCallback(
       (e) => {
-        let file = e.target.files[0]
-        handleAddImg(file)
-        e.target.value = ''
+        const files = Array.from(e.target.files) as File[]
+        files.forEach((file) => {
+          handleAddImg(file)
+        })
       },
       [handleAddImg]
     )
@@ -33,6 +34,7 @@ const ImageHedaer: FunctionComponent<ImageHeaderProps> = memo(
             className="h-10 w-10"
           />
           <input
+            multiple
             onChange={handleAdd}
             type="file"
             accept="image/*"

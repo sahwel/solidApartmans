@@ -29,10 +29,11 @@ const ImageCard: FunctionComponent<ImageCardProps> = memo(
       <div className="mb-4 flex h-[10rem] justify-between border-2 border-main-blue">
         <div className="w-1/2">
           <CustomImage
+            fromLocal={true}
             url={img}
             isFromApi={!isCreate}
             alt="image of the apartment"
-            className="w-full h-full"
+            className="h-full w-full"
           />
         </div>
         <div className="flex p-2">

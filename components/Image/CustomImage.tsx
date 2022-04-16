@@ -9,6 +9,7 @@ interface CustomImageProps {
   imageClassName?: string
   isFromApi?: boolean
   onClick?: () => void
+  fromLocal?: boolean
 }
 
 const CustomImage: FunctionComponent<CustomImageProps> = memo(
@@ -19,11 +20,18 @@ const CustomImage: FunctionComponent<CustomImageProps> = memo(
     imageClassName = '',
     isFromApi = false,
     onClick = () => ({}),
+    fromLocal = false,
   }) {
     return (
       <div className={cl('relative', className)} onClick={onClick}>
         <Image
-          src={isFromApi ? process.env.NEXT_PUBLIC_BASE_URL + url : '/' + url}
+          src={
+            fromLocal
+              ? url
+              : isFromApi
+              ? process.env.NEXT_PUBLIC_BASE_URL + url
+              : '/' + url
+          }
           className={imageClassName}
           layout="fill"
           alt={alt}

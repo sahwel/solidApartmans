@@ -34,22 +34,21 @@ export const useImages = (
 
   const handleAddImg = useCallback(
     (newImg: File) => {
-      const newImages = [...images]
       const reader = new FileReader()
       reader.readAsDataURL(newImg)
       reader.onloadend = function () {
-        newImages.unshift(reader.result?.toString() || '')
-        if (newImages.length === 0) setValue('image', '')
+        let newImage = reader.result?.toString()
+        if (!newImage) setValue('image', '')
         else {
           setValue('image', 'true')
           setError('image', {
             message: undefined,
           })
         }
-        setImages(newImages)
+        setImages((oldArray) => [...oldArray, newImage + ''])
       }
     },
-    [images, setError, setValue]
+    [setError, setValue]
   )
   return { handleAddImg, moveImg, images, handleDeleteImg }
 }
