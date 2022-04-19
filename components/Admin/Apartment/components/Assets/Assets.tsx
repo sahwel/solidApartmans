@@ -7,22 +7,21 @@ import {
 } from '../../../../../services/apartmentDefinitions'
 
 interface AssetsProps {
-  isCreate: boolean
   facilities: AdminFacility[]
   handleFacilitiesChange: (_id: string) => void
 }
 
 const Assets: FunctionComponent<AssetsProps> = memo(
-  function Assets({ isCreate, facilities, handleFacilitiesChange }) {
+  function Assets({ facilities, handleFacilitiesChange }) {
     return (
       <div
         className={cl(
-          'h-[20rem] w-full auto-rows-min grid-cols-2 items-start gap-5 overflow-y-auto rounded-lg border-2 border-main-blue p-3 xl:grid'
+          'h-[20rem] w-full auto-rows-min grid-cols-2 items-start gap-5 space-y-2 overflow-y-auto rounded-lg border-2 border-main-blue p-3 xl:grid xl:space-y-0'
         )}
       >
         {facilities.map((e) => (
           <Asset
-            key={e.nameEN}
+            key={e._id}
             {...e}
             handleFacilitiesChange={handleFacilitiesChange}
           />
@@ -31,8 +30,7 @@ const Assets: FunctionComponent<AssetsProps> = memo(
     )
   },
   (oldProps, newProps) =>
-    oldProps.isCreate === newProps.isCreate &&
-    (oldProps.facilities.length === newProps.facilities.length
+    oldProps.facilities.length === newProps.facilities.length
       ? oldProps.facilities.every(
           (e, i) =>
             e._id === newProps.facilities[i]._id &&
@@ -41,7 +39,7 @@ const Assets: FunctionComponent<AssetsProps> = memo(
             e.selected === newProps.facilities[i].selected &&
             e.selected === newProps.facilities[i].selected
         )
-      : false)
+      : false
 )
 
 export default Assets

@@ -2,7 +2,10 @@ import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import React, { FunctionComponent, memo } from 'react'
 import ApartmentContainer from '../../../components/Admin/Apartment/components/ApartmentContainer'
-import { AdminApartmentDefinitions } from '../../../services/apartmentDefinitions'
+import {
+  AdminApartmentDefinitions,
+  AdminFacility,
+} from '../../../services/apartmentDefinitions'
 import { axiosInstance } from '../../../services/axiosInstance'
 import { validateExpire } from '../../../services/userDefinitions'
 
@@ -66,10 +69,31 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   let apartment: AdminApartmentDefinitions = response.data
 
-  apartment.facilities = apartment.facilities.map((e) => ({
+  const mappedFacilites = apartment.facilities.map((e) => e._id)
+  /*  apartment.facilities = apartment.facilities.map((e) => ({
     ...e,
     selected: true,
   }))
+ */
+  const allFacilitiesResponse = await axiosInstance.get('/facility/', {
+    headers: { 'auth-token': session.token as string },
+  })
+
+  const allFacility = allFacilitiesResponse.data as AdminFacility[]
+
+  apartment.facilities = allFacility
+
+  apartment.facilities = apartment.facilities.map((e) => {
+    const index = mappedFacilites.indexOf(e._id)
+    if (index === -1) {
+      return {
+        ...e,
+        selected: false,
+      }
+    }
+
+    return { ...e, selected: true }
+  })
 
   return {
     props: { apartment },

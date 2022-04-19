@@ -1,35 +1,78 @@
-import { useCallback, useState } from 'react'
+import { getSession } from 'next-auth/react'
+import router from 'next/router'
+import { Dispatch, SetStateAction, useCallback, useState } from 'react'
 import {
   UseFormGetValues,
   UseFormSetError,
   UseFormSetValue,
 } from 'react-hook-form'
 import { AdminApartmentDefinitions } from '../../../../services/apartmentDefinitions'
+import { axiosInstance } from '../../../../services/axiosInstance'
+import { useToast } from '../../../Common/Toast/Toast'
 
 export const useImages = (
   setValue: UseFormSetValue<AdminApartmentDefinitions>,
   setError: UseFormSetError<AdminApartmentDefinitions>,
-  _images?: string[]
+  setImages: Dispatch<SetStateAction<string[]>>,
+  setImagesHidden: Dispatch<SetStateAction<File[] | undefined>>
 ) => {
-  const [images, setImages] = useState<string[]>(_images ? _images : [])
+  const toast = useToast()
+
   const handleDeleteImg = useCallback(
-    (index: number) => () => {
-      let newImages = [...images]
-      newImages.splice(index, 1)
-      setImages(newImages)
+    (index: number) => async () => {
+      try {
+        const session = await getSession()
+        const { id } = router.query
+        await axiosInstance.delete(`apartment/image/${id}/${index}`, {
+          headers: { 'auth-token': session?.token as string },
+        })
+        /*  let newImages = [...images]
+        newImages.splice(index, 1) */
+        setImages((oldImages) => oldImages.splice(index, 1))
+      } catch (error: any) {
+        toast.error(
+          error.response
+            ? error.response.data
+              ? error.response.data.msgHU
+              : 'Egy hiba lépett fel a kérés közben!'
+            : error
+        )
+      }
     },
-    [images]
+    [setImages, toast]
   )
 
   const moveImg = useCallback(
-    (index: number, isUp: boolean, toFirst: boolean) => () => {
-      const newImages = [...images]
-      const oldImg = newImages[toFirst ? 0 : index - (isUp ? 1 : -1)]
-      newImages[toFirst ? 0 : index - (isUp ? 1 : -1)] = newImages[index]
-      newImages[index] = oldImg
-      setImages(newImages)
+    (index: number, isUp: boolean, toFirst: boolean) => async () => {
+      try {
+        const session = await getSession()
+        const { id } = router.query
+        await axiosInstance.patch(
+          `apartment/image/${id}/${index}/${isUp}/${toFirst}`,
+          {},
+          {
+            headers: { 'auth-token': session?.token as string },
+          }
+        )
+
+        setImages((oldImages) => {
+          const newImages = [...oldImages]
+          const oldImg = newImages[toFirst ? 0 : index - (isUp ? 1 : -1)]
+          newImages[toFirst ? 0 : index - (isUp ? 1 : -1)] = newImages[index]
+          newImages[index] = oldImg
+          return newImages
+        })
+      } catch (error: any) {
+        toast.error(
+          error.response
+            ? error.response.data
+              ? error.response.data.msgHU
+              : 'Egy hiba lépett fel a kérés közben!'
+            : error
+        )
+      }
     },
-    [images]
+    [setImages, toast]
   )
 
   const handleAddImg = useCallback(
@@ -45,10 +88,17 @@ export const useImages = (
             message: undefined,
           })
         }
+        setImagesHidden((oldImages) => {
+          if (oldImages) return [...oldImages, newImg]
+
+          const newImages: File[] = []
+          newImages.push(newImg)
+          return newImages
+        })
         setImages((oldArray) => [...oldArray, newImage + ''])
       }
     },
-    [setError, setValue]
+    [setError, setImages, setImagesHidden, setValue]
   )
-  return { handleAddImg, moveImg, images, handleDeleteImg }
+  return { handleAddImg, moveImg, handleDeleteImg }
 }

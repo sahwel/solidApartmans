@@ -42,25 +42,11 @@ const FaqForm: FunctionComponent<FaqFormProps> = memo(
         <AdminInput
           labeFor="faq-answer-hu"
           label="Válasz"
-          error={errors.questionEN?.message}
+          error={errors.answerHU?.message}
         >
           <FaqInput
             id="faq-answer-hu"
             placeholder="Igen, van ingyenes wifi."
-            register={register('questionEN', {
-              required: 'Ez a mező kötelező!',
-            })}
-            error={errors.questionEN?.message}
-          />
-        </AdminInput>
-        <AdminInput
-          labeFor="faq-question-en"
-          label="Question"
-          error={errors.answerHU?.message}
-        >
-          <FaqInput
-            id="faq-question-en"
-            placeholder="Is the wifi free?"
             register={register('answerHU', {
               required: 'Ez a mező kötelező!',
             })}
@@ -68,9 +54,23 @@ const FaqForm: FunctionComponent<FaqFormProps> = memo(
           />
         </AdminInput>
         <AdminInput
+          labeFor="faq-question-en"
+          label="Question"
+          error={errors.questionEN?.message}
+        >
+          <FaqInput
+            id="faq-question-en"
+            placeholder="Is the wifi free?"
+            register={register('questionEN', {
+              required: 'Ez a mező kötelező!',
+            })}
+            error={errors.questionEN?.message}
+          />
+        </AdminInput>
+        <AdminInput
           labeFor="faq-answer-en"
           label="Answer"
-          error={errors.answerHU?.message}
+          error={errors.answerEN?.message}
         >
           <FaqInput
             id="faq-answer-en"
@@ -78,7 +78,7 @@ const FaqForm: FunctionComponent<FaqFormProps> = memo(
             register={register('answerEN', {
               required: 'Ez a mező kötelező!',
             })}
-            error={errors.answerHU?.message}
+            error={errors.answerEN?.message}
           />
         </AdminInput>
 
@@ -86,7 +86,7 @@ const FaqForm: FunctionComponent<FaqFormProps> = memo(
           {!isCreate && (
             <Button
               title="Törlés"
-              className="px-4 py-1 !bg-white !text-main-text hover:!bg-main-blue hover:!text-white"
+              className="!bg-white px-4 py-1 !text-main-text hover:!bg-main-blue hover:!text-white"
               onClick={handleDelete}
             />
           )}
@@ -96,8 +96,6 @@ const FaqForm: FunctionComponent<FaqFormProps> = memo(
     )
   },
   (oldProps, newProps) => {
-    console.log({ oldProps, newProps })
-
     return (
       oldProps.faq?._id === newProps.faq?._id &&
       oldProps.faq?.questionEN === newProps.faq?.questionEN &&

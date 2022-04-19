@@ -15,31 +15,41 @@ import { useApartmentContainer } from '../services/useApartmentContainer'
 interface ApartmentContainerProps {
   isCreate?: boolean
   defaultValue?: AdminApartmentDefinitions
+  facilites?: AdminFacility[]
 }
 
 const ApartmentContainer: FunctionComponent<ApartmentContainerProps> = memo(
   function ApartmentContainer({
     isCreate = false,
     defaultValue = DefaultAdminApartment,
+    facilites = [],
   }) {
+    const [facilities, setFacilities] = useState<AdminFacility[]>(
+      isCreate ? facilites : defaultValue.facilities
+    )
+    const [images, setImages] = useState<string[]>(
+      defaultValue.images ? defaultValue.images : []
+    )
+
+    const [imagesHidden, setImagesHidden] = useState<File[]>()
+    
     const { register, handleSubmit, onSubmit, formState, setValue, setError } =
-      useApartmentContainer(defaultValue)
-    const { handleAddImg, moveImg, images, handleDeleteImg } = useImages(
+      useApartmentContainer(defaultValue, facilities, imagesHidden, isCreate)
+    const { handleAddImg, moveImg, handleDeleteImg } = useImages(
       setValue,
       setError,
-      defaultValue.images
+      setImages,
+      setImagesHidden
     )
     const { errors } = formState
 
-    const [facilities, setFacilities] = useState<AdminFacility[]>(
-      defaultValue.facilities
-    ) // todo: get all facilites
-
     const handleFacilitiesChange = useCallback((_id: string) => {
       setFacilities((oldFacilities) =>
-        oldFacilities.map((e) =>
-          e._id === _id ? { ...e, selected: !e.selected } : e
-        )
+        oldFacilities.map((e) => {
+          console.log(_id)
+
+          return e._id === _id ? { ...e, selected: !e.selected } : e
+        })
       )
     }, [])
 
@@ -68,7 +78,6 @@ const ApartmentContainer: FunctionComponent<ApartmentContainerProps> = memo(
             />
             <div className="mt-5 flex space-x-3">
               <Assets
-                isCreate={isCreate}
                 facilities={facilities}
                 handleFacilitiesChange={handleFacilitiesChange}
               />

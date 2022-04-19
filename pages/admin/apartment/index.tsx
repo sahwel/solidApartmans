@@ -1,14 +1,23 @@
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
-import React, { memo } from 'react'
+import React, { FunctionComponent, memo } from 'react'
 import ApartmentContainer from '../../../components/Admin/Apartment/components/ApartmentContainer'
+import { AdminFacility } from '../../../services/apartmentDefinitions'
+import { axiosInstance } from '../../../services/axiosInstance'
 import { validateExpire } from '../../../services/userDefinitions'
 
-const index = memo(function Index() {
-  return <ApartmentContainer isCreate={true} />
+interface IndexProps {
+  facilites: AdminFacility[]
+}
+
+const index: FunctionComponent<IndexProps> = memo(function Index({
+  facilites,
+}) {
+  return <ApartmentContainer isCreate={true} facilites={facilites} />
 })
 
 export default index
+
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context)
 
@@ -21,7 +30,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   }
 
+  const response = await axiosInstance.get('/facility/', {
+    headers: { 'auth-token': session.token as string },
+  })
+
   return {
-    props: { session },
+    props: { facilites: response.data },
   }
 }

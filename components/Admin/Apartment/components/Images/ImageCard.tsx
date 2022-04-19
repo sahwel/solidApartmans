@@ -29,7 +29,7 @@ const ImageCard: FunctionComponent<ImageCardProps> = memo(
       <div className="mb-4 flex h-[10rem] justify-between border-2 border-main-blue">
         <div className="w-1/2">
           <CustomImage
-            fromLocal={true}
+            fromLocal={!img.startsWith('uploads')}
             url={img}
             isFromApi={!isCreate}
             alt="image of the apartment"
