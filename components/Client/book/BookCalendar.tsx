@@ -28,6 +28,7 @@ interface BookCalendarProps {
   setValue: UseFormSetValue<BookFormModel>
   formValue: keyof BookFormModel
   error?: string
+  excludeDates: Date[]
   clearErrors: UseFormClearErrors<BookFormModel>
 }
 
@@ -43,6 +44,7 @@ const BookCalendar: FunctionComponent<BookCalendarProps> = memo(
     error,
     clearErrors,
     control,
+    excludeDates,
   }) {
     const handleChange = useCallback(
       () => (date: Date) => {
@@ -63,6 +65,7 @@ const BookCalendar: FunctionComponent<BookCalendarProps> = memo(
             rules={{ required: t('form.required') + '' }}
             render={() => (
               <DatePicker
+                excludeDates={excludeDates}
                 autoComplete="off"
                 placeholderText="2022-11-12"
                 readOnly={readOnly}

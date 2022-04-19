@@ -24,10 +24,11 @@ interface BookFormProps {
   isCompany: boolean
   address: Address
   name: string
+  notFreeTimes: Date[]
 }
 
 const BookForm: FunctionComponent<BookFormProps> = memo(
-  function BookForm({ isCompany, address, name }) {
+  function BookForm({ isCompany, address, name, notFreeTimes }) {
     const {
       register,
       formState,
@@ -225,6 +226,7 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
         </div>
 
         <BookCalendar
+          excludeDates={notFreeTimes.map((e) => new Date(e))}
           clearErrors={clearErrors}
           control={control}
           setValue={setValue}
@@ -238,6 +240,7 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
         <BookCalendar
           clearErrors={clearErrors}
           control={control}
+          excludeDates={[]}
           formValue="leave"
           setValue={setValue}
           getter={leave}

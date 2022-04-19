@@ -13,10 +13,11 @@ interface BookProps {
   id: string
   name: string
   address: Address
+  notFreeTimes: Date[]
 }
 
 const index: FunctionComponent<BookProps> = memo(
-  function Book({ id, name, address }) {
+  function Book({ name, address, notFreeTimes }) {
     const [isCompany, setIsComapny] = useState(false)
     const handleTypeChange = useCallback((newState: boolean) => {
       return () => setIsComapny(newState)
@@ -29,7 +30,12 @@ const index: FunctionComponent<BookProps> = memo(
           isCompany={isCompany}
           setIsCompany={handleTypeChange}
         />
-        <BookForm isCompany={isCompany} address={address} name={name} />
+        <BookForm
+          isCompany={isCompany}
+          address={address}
+          name={name}
+          notFreeTimes={notFreeTimes}
+        />
       </Container>
     )
   },
@@ -46,9 +52,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const response = await axiosInstance.get(`apartment/book/datas/${id}`)
 
+  const notFreeTimes = await axiosInstance.get(`reservation/${id}`)
+  console.log(notFreeTimes.data.result)
+
   return {
     props: {
       ...response.data,
+      notFreeTimes: notFreeTimes.data.result,
     },
   }
 }
