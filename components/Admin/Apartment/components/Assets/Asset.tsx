@@ -12,8 +12,6 @@ interface AssetProps extends AdminFacility {
 const Asset: FunctionComponent<AssetProps> = memo(
   function Asset({ nameHU, url, _id, handleFacilitiesChange, selected }) {
     const handleChange = useCallback(() => {
-      console.log(_id)
-
       handleFacilitiesChange(_id)
     }, [_id, handleFacilitiesChange])
 

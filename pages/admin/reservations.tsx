@@ -48,7 +48,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const apartmentResponse = await axiosInstance.get('apartment/options', {
     headers: { 'auth-token': session.token as string },
   })
-  console.log(apartmentResponse.data)
 
   return {
     props: {

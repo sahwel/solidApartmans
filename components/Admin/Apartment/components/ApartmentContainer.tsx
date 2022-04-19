@@ -11,6 +11,9 @@ import Datas from './Datas'
 import Images from './Images/Images'
 import { useImages } from '../services/useImages'
 import { useApartmentContainer } from '../services/useApartmentContainer'
+import { useModal } from '../../../Modal/ModalProvider'
+import AparmentDeleteModal from './ApartmentDeleteModal'
+import ApartmentDeleteModal from './ApartmentDeleteModal'
 
 interface ApartmentContainerProps {
   isCreate?: boolean
@@ -32,9 +35,17 @@ const ApartmentContainer: FunctionComponent<ApartmentContainerProps> = memo(
     )
 
     const [imagesHidden, setImagesHidden] = useState<File[]>()
-    
-    const { register, handleSubmit, onSubmit, formState, setValue, setError } =
-      useApartmentContainer(defaultValue, facilities, imagesHidden, isCreate)
+
+    const {
+      register,
+      handleSubmit,
+      onSubmit,
+      formState,
+      setValue,
+      setError,
+      getValues,
+    } = useApartmentContainer(defaultValue, facilities, imagesHidden, isCreate)
+
     const { handleAddImg, moveImg, handleDeleteImg } = useImages(
       setValue,
       setError,
@@ -46,21 +57,32 @@ const ApartmentContainer: FunctionComponent<ApartmentContainerProps> = memo(
     const handleFacilitiesChange = useCallback((_id: string) => {
       setFacilities((oldFacilities) =>
         oldFacilities.map((e) => {
-          console.log(_id)
-
           return e._id === _id ? { ...e, selected: !e.selected } : e
         })
       )
     }, [])
 
+    const modal = useModal()
+    const openModal = useCallback(() => {
+      const name = getValues('name')
+      modal.show(
+        <ApartmentDeleteModal
+          name={name}
+          id={defaultValue._id}
+          hide={modal.hide}
+        />
+      )
+    }, [defaultValue._id, getValues, modal])
     return (
       <form className="p-10" onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="hidden"
-          {...register('image', { required: 'true', min: 1 })}
-        />
+        <input type="hidden" {...register('image', { required: 'true' })} />
         <div className="mb-4 flex w-full justify-end space-x-4">
           <Button
+            title="Naptár"
+            className="!bg-white py-1 px-10 !text-main-text hover:!bg-main-blue hover:!text-white"
+          />
+          <Button
+            onClick={openModal}
             title="Törlés"
             className="!bg-white py-1 px-10 !text-main-text hover:!bg-main-blue hover:!text-white"
           />

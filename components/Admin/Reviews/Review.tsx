@@ -1,8 +1,8 @@
 import { StarIcon } from '@heroicons/react/solid'
 import { XIcon } from '@heroicons/react/outline'
 import { FunctionComponent, useCallback, useState } from 'react'
-import { useModal } from '../Modal/ModalProvider'
-import ReviewDeleteModal from '../Admin/Reviews/ReviewDeleteModal'
+import { useModal } from '../../Modal/ModalProvider'
+import ReviewDeleteModal from './ReviewDeleteModal'
 
 interface ReviewProps {
   review: string

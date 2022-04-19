@@ -21,7 +21,6 @@ export const useReservationFilter = (
       try {
         if (data.apartment === 'null')
           data.apartment = JSON.parse(data.apartment)
-        console.log(data)
 
         const session = await getSession()
         let query: string = '?'

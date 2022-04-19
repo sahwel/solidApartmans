@@ -81,13 +81,12 @@ export const useImages = (
       reader.readAsDataURL(newImg)
       reader.onloadend = function () {
         let newImage = reader.result?.toString()
-        if (!newImage) setValue('image', '')
-        else {
-          setValue('image', 'true')
-          setError('image', {
-            message: undefined,
-          })
-        }
+
+        setValue('image', 'true')
+        setError('image', {
+          message: undefined,
+        })
+
         setImagesHidden((oldImages) => {
           if (oldImages) return [...oldImages, newImg]
 

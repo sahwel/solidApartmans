@@ -25,7 +25,6 @@ const login: FunctionComponent<LoginProps> = memo(
     const onSubmit = async (data: LoginModel) => {
       try {
         const response = await axiosInstance.post('admin/login', { ...data })
-        console.log(response.data)
 
         signIn('credentials', {
           ...response.data,

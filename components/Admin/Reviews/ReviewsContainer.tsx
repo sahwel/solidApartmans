@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import Review from '../../Common/Review'
+import Review from './Review'
 
 const ReviewsContainer = memo(function ReviewsContainer() {
   return (

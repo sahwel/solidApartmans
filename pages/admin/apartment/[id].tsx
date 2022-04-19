@@ -70,11 +70,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   let apartment: AdminApartmentDefinitions = response.data
 
   const mappedFacilites = apartment.facilities.map((e) => e._id)
-  /*  apartment.facilities = apartment.facilities.map((e) => ({
-    ...e,
-    selected: true,
-  }))
- */
   const allFacilitiesResponse = await axiosInstance.get('/facility/', {
     headers: { 'auth-token': session.token as string },
   })

@@ -15,9 +15,9 @@ export const useApartmentContainer = (
   images: File[] | undefined,
   isCreate: boolean
 ) => {
-  const { register, handleSubmit, formState, setValue, setError } =
+  const { register, handleSubmit, formState, setValue, setError, getValues } =
     useForm<AdminApartmentDefinitions>({
-      defaultValues: { ...defaultValue, image: 'yes' },
+      defaultValues: { ...defaultValue },
     })
   const toast = useToast()
   const onSubmit = useCallback(
@@ -44,13 +44,12 @@ export const useApartmentContainer = (
         formData.append('detailsHU', data.detailsHU)
         formData.append('capacity[capacity]', data.capacity.capacity.toString())
         formData.append('capacity[bedrooms]', data.capacity.bedrooms.toString())
-        console.log(formData)
-
-        if (isCreate)
+        if (isCreate) {
           await axiosInstance.post('apartment/', formData, {
             headers: { 'auth-token': session?.token as string },
           })
-        else {
+          router.push('/admin')
+        } else {
           const { id } = router.query
           await axiosInstance.patch(
             `apartment/${id}`,
@@ -93,5 +92,6 @@ export const useApartmentContainer = (
     onSubmit,
     formState,
     setValue,
+    getValues,
   }
 }
