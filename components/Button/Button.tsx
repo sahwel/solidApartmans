@@ -31,6 +31,7 @@ export const Button: FunctionComponent<ButtonProps> = memo(
   },
   (oldProps: ButtonProps, newProps: ButtonProps) =>
     oldProps.className === newProps.className &&
+    oldProps.onClick === newProps.onClick &&
     oldProps.type === newProps.type &&
     oldProps.title === newProps.title
 )

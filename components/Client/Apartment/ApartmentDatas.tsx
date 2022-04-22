@@ -1,6 +1,6 @@
 import { StarIcon } from '@heroicons/react/solid'
 import { FunctionComponent, memo } from 'react'
-import { Address } from '../../../services/apartmentDefinitions'
+import { Address, lookAddress } from '../../../services/apartmentDefinitions'
 
 interface ApartmentDatasProps {
   address: Address
@@ -36,7 +36,7 @@ const ApartmentDatas: FunctionComponent<ApartmentDatasProps> = memo(
     )
   },
   (oldProps, newProps) =>
-    oldProps.address === newProps.address &&
+    lookAddress(oldProps.address, newProps.address) &&
     oldProps.stars === newProps.stars &&
     oldProps.name === newProps.name &&
     oldProps.price === newProps.price

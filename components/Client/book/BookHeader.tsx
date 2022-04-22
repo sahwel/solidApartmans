@@ -1,6 +1,6 @@
 import { FunctionComponent, memo } from 'react'
 import cl from 'classnames'
-import { Address } from '../../../services/apartmentDefinitions'
+import { Address, lookAddress } from '../../../services/apartmentDefinitions'
 import { useTranslation } from 'react-i18next'
 
 interface BookHeaderProps {
@@ -61,7 +61,7 @@ const BookHeader: FunctionComponent<BookHeaderProps> = memo(
     )
   },
   (oldProps, newProps) =>
-    oldProps.address === newProps.address &&
+    lookAddress(oldProps.address, newProps.address) &&
     oldProps.isCompany === newProps.isCompany &&
     oldProps.name === newProps.name &&
     oldProps.setIsCompany === newProps.setIsCompany

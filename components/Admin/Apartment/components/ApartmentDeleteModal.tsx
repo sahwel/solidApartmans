@@ -12,7 +12,7 @@ interface ApartmentDeleteModalProps {
 }
 
 const ApartmentDeleteModal: FunctionComponent<ApartmentDeleteModalProps> = memo(
-  function ReviewDeleteModal({ name, hide, id }) {
+  function ApartmentDeleteModal({ name, hide, id }) {
     const toast = useToast()
     const router = useRouter()
     const handleDelete = useCallback(async () => {

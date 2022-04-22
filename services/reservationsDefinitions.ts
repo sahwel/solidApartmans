@@ -1,9 +1,12 @@
+import { PaymentMethod } from '../components/Admin/Reservations/services/definitions'
+
 export interface AdmiReservationModel {
   _id: string
   arrive: Date
   leave: Date
   total: number
   payed: boolean
+  method: PaymentMethod
   customer: {
     firstName: string
     lastName: string

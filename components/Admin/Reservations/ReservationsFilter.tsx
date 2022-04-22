@@ -83,7 +83,15 @@ const ReservationsFilter: FunctionComponent<ReservationFilterProps> = memo(
         </form>
       </div>
     )
-  }
+  },
+  (oldProps, newProps) =>
+    oldProps.setReservations === newProps.setReservations &&
+    oldProps.apartments.length === newProps.apartments.length &&
+    oldProps.apartments.every(
+      (e, i) =>
+        e._id === newProps.apartments[i]._id &&
+        e.name === newProps.apartments[i].name
+    )
 )
 
 export default ReservationsFilter

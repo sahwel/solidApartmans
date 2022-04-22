@@ -45,6 +45,8 @@ const CustomImage: FunctionComponent<CustomImageProps> = memo(
     oldProps.alt === newProps.alt &&
     oldProps.url === newProps.url &&
     oldProps.isFromApi === newProps.isFromApi &&
+    oldProps.fromLocal === newProps.fromLocal &&
+    oldProps.onClick === newProps.onClick &&
     oldProps.imageClassName === newProps.imageClassName
 )
 

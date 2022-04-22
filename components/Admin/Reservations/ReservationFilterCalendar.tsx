@@ -54,6 +54,9 @@ const ReservationFilterCalendar: FunctionComponent<ReservationFilterCalendarProp
     (oldProps, newProps) =>
       oldProps.getter === newProps.getter &&
       oldProps.formValue === newProps.formValue &&
+      oldProps.id === newProps.id &&
+      oldProps.label === newProps.label &&
+      oldProps.placeholderText === newProps.placeholderText &&
       oldProps.setter === newProps.setter &&
       oldProps.setValue === newProps.setValue
   )

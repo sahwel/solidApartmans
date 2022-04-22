@@ -89,3 +89,9 @@ export const DefaultAdminApartment: AdminApartmentDefinitions = {
   detailsEN: '',
   reviews: [],
 }
+
+export const lookAddress = (oldAddress: Address, newAddress: Address) =>
+  oldAddress.city === newAddress.city &&
+  oldAddress.house_number === newAddress.house_number &&
+  oldAddress.street === newAddress.street &&
+  oldAddress.zip_code === newAddress.zip_code

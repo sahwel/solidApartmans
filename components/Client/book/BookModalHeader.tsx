@@ -1,5 +1,5 @@
 import { FunctionComponent, memo } from 'react'
-import { Address } from '../../../services/apartmentDefinitions'
+import { Address, lookAddress } from '../../../services/apartmentDefinitions'
 
 interface BookModalHeaderProps {
   address: Address
@@ -24,6 +24,7 @@ const BookModalHeader: FunctionComponent<BookModalHeaderProps> = memo(
     )
   },
   (oldProps, newProps) =>
-    oldProps.address === newProps.address && oldProps.name === newProps.name
+    lookAddress(oldProps.address, newProps.address) &&
+    oldProps.name === newProps.name
 )
 export default BookModalHeader

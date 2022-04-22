@@ -1,9 +1,9 @@
-import { FunctionComponent, useContext, useMemo } from 'react'
+import { FunctionComponent, memo, useContext, useMemo } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import { ToastContext, ToastContextModel } from './ToestContext'
 import 'react-toastify/dist/ReactToastify.css'
 
-const Toast: FunctionComponent = ({ children }) => {
+const Toast: FunctionComponent = memo(function Toast({ children })  {
   const contextValue: ToastContextModel = useMemo(
     () => ({
       public: {
@@ -32,7 +32,7 @@ const Toast: FunctionComponent = ({ children }) => {
       {children}
     </ToastContext.Provider>
   )
-}
+})
 
 export default Toast
 

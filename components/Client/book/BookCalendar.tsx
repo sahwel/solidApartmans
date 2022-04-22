@@ -17,6 +17,7 @@ import {
 } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import ErrorMsg from '../../Common/ErrorMsg'
+import { axiosInstance } from '../../../services/axiosInstance'
 
 interface BookCalendarProps {
   isCompany: boolean
@@ -28,8 +29,10 @@ interface BookCalendarProps {
   setValue: UseFormSetValue<BookFormModel>
   formValue: keyof BookFormModel
   error?: string
-  excludeDates: Date[]
+  setEndLeave?: Dispatch<SetStateAction<Date | null>>
+  excludeDates?: Date[]
   clearErrors: UseFormClearErrors<BookFormModel>
+  includeDateIntervals?: { start: Date; end: Date }[]
 }
 
 const BookCalendar: FunctionComponent<BookCalendarProps> = memo(
@@ -44,15 +47,23 @@ const BookCalendar: FunctionComponent<BookCalendarProps> = memo(
     error,
     clearErrors,
     control,
-    excludeDates,
+    excludeDates = [],
+    includeDateIntervals,
+    setEndLeave = () => ({}),
   }) {
     const handleChange = useCallback(
-      () => (date: Date) => {
+      () => async (date: Date) => {
         setter(date)
+        if (formValue === 'arrive') {
+          const response = await axiosInstance.get(
+            `reservation/freeTimeEnd/?start=${date}`
+          )
+          setEndLeave(response.data.result)
+        }
         setValue(formValue, date)
         clearErrors(formValue)
       },
-      [clearErrors, formValue, setValue, setter]
+      [clearErrors, formValue, setEndLeave, setValue, setter]
     )
 
     const { t } = useTranslation('Book')
@@ -65,6 +76,7 @@ const BookCalendar: FunctionComponent<BookCalendarProps> = memo(
             rules={{ required: t('form.required') + '' }}
             render={() => (
               <DatePicker
+                includeDateIntervals={includeDateIntervals}
                 excludeDates={excludeDates}
                 autoComplete="off"
                 placeholderText="2022-11-12"
@@ -102,7 +114,17 @@ const BookCalendar: FunctionComponent<BookCalendarProps> = memo(
     oldProps.setValue === newProps.setValue &&
     oldProps.control === newProps.control &&
     oldProps.clearErrors === newProps.clearErrors &&
-    oldProps.readOnly === newProps.readOnly
+    oldProps.readOnly === newProps.readOnly &&
+    oldProps.includeDateIntervals?.length ===
+      (newProps.includeDateIntervals?.length &&
+        newProps.includeDateIntervals !== undefined &&
+        oldProps.includeDateIntervals?.every((e, i) => {
+          if (!newProps.includeDateIntervals) return false
+          return (
+            e.end === newProps.includeDateIntervals[i].end &&
+            e.start === newProps.includeDateIntervals[i].start
+          )
+        }))
 )
 
 export default BookCalendar

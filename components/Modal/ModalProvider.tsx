@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { FunctionComponent, useContext, useMemo, useState } from 'react'
+import { FunctionComponent, memo, useContext, useMemo, useState } from 'react'
 import {
   defaultModalState,
   ModalContext,
@@ -8,7 +8,7 @@ import {
 } from './ModalContext'
 import { XCircleIcon } from '@heroicons/react/outline'
 
-const Modal: FunctionComponent = ({ children }) => {
+const Modal: FunctionComponent = memo(function Modal({ children }) {
   const [currentModal, setCurrentModal] =
     useState<ModalState>(defaultModalState)
   const contextValue: ModalContextModel = useMemo(
@@ -61,7 +61,7 @@ const Modal: FunctionComponent = ({ children }) => {
       {children}
     </ModalContext.Provider>
   )
-}
+})
 
 export default Modal
 

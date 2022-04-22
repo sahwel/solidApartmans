@@ -13,7 +13,7 @@ import { BookFormModel } from './definitions'
 import cl from 'classnames'
 import { useModal } from '../../Modal/ModalProvider'
 import CustomImage from '../../Image/CustomImage'
-import { Address } from '../../../services/apartmentDefinitions'
+import { Address, lookAddress } from '../../../services/apartmentDefinitions'
 import { useTranslation } from 'react-i18next'
 import BookCalendar from './BookCalendar'
 
@@ -55,6 +55,7 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
 
     const [arrive, setArrive] = useState<Date | null>(null)
     const [leave, setLeave] = useState<Date | null>(null)
+    const [endLeave, setEndLeave] = useState<Date | null>(null)
 
     const [isUnderTwoYears, setIsUnderTwoYears] = useState(false)
     const _setIsUnderTwoYears = useCallback(() => {
@@ -226,6 +227,7 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
         </div>
 
         <BookCalendar
+          setEndLeave={setEndLeave}
           excludeDates={notFreeTimes.map((e) => new Date(e))}
           clearErrors={clearErrors}
           control={control}
@@ -237,10 +239,16 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
           setter={setArrive}
           isCompany={isCompany}
         />
+        {endLeave}
         <BookCalendar
           clearErrors={clearErrors}
           control={control}
-          excludeDates={[]}
+          includeDateIntervals={[
+            {
+              start: new Date(new Date(arrive as Date).getTime() + 86400000),
+              end: new Date(endLeave as Date),
+            },
+          ]}
           formValue="leave"
           setValue={setValue}
           getter={leave}
@@ -263,7 +271,7 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
   },
   (oldProps, newProps) =>
     oldProps.isCompany === newProps.isCompany &&
-    oldProps.address === newProps.address &&
+    lookAddress(oldProps.address, newProps.address) &&
     oldProps.name === newProps.name
 )
 

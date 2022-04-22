@@ -4,7 +4,10 @@ import HomeData from './HomeData'
 import HomeFacilites from './HomeFacilites'
 import { useRouter } from 'next/router'
 import HomeCapacity from './HomeCapacity'
-import { ApartmentDefinitions } from '../../../services/apartmentDefinitions'
+import {
+  ApartmentDefinitions,
+  lookAddress,
+} from '../../../services/apartmentDefinitions'
 import { Button } from '../../Button'
 import { useTranslation } from 'react-i18next'
 
@@ -62,10 +65,7 @@ export const ApartmentContainer: FunctionComponent<ApartmentDefinitions> = memo(
   },
   (oldProps: ApartmentDefinitions, newProps: ApartmentDefinitions) =>
     oldProps._id === newProps._id &&
-    oldProps.address.city === newProps.address.city &&
-    oldProps.address.house_number === newProps.address.house_number &&
-    oldProps.address.street === newProps.address.street &&
-    oldProps.address.zip_code === newProps.address.zip_code &&
+    lookAddress(oldProps.address, newProps.address) &&
     oldProps.name === newProps.name &&
     oldProps.stars === newProps.stars &&
     oldProps.capacity.capacity === newProps.capacity.capacity &&

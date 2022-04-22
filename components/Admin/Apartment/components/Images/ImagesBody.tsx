@@ -45,7 +45,8 @@ const ImagesBody: FunctionComponent<ImagesBodyProps> = memo(
       : false) &&
     oldProps.imagesLength === newProps.imagesLength &&
     oldProps.handleDeleteImg === newProps.handleDeleteImg &&
-    oldProps.moveImg === newProps.moveImg
+    oldProps.moveImg === newProps.moveImg &&
+    oldProps.isCreate === newProps.isCreate
 )
 
 export default ImagesBody

@@ -2,10 +2,9 @@ import React, { FunctionComponent, memo, useCallback, useState } from 'react'
 import { AdmiReservationModel } from '../../../services/reservationsDefinitions'
 import { FormatDate } from '../../../services/ReservationServices'
 import { Button } from '../../Button'
-
-interface ReservationProps {
-  reservation: AdmiReservationModel
-}
+import { useModal } from '../../Modal/ModalProvider'
+import ReservationPayedModal from './ReservationPayedModal'
+import { lookReservation, ReservationProps } from './services/definitions'
 
 const Reservation: FunctionComponent<ReservationProps> = memo(
   function Reservation({ reservation }) {
@@ -13,6 +12,34 @@ const Reservation: FunctionComponent<ReservationProps> = memo(
     const handleOpen = useCallback(() => {
       setIsOpen((oldState) => !oldState)
     }, [])
+
+    const [payed, setPayed] = useState(reservation.payed)
+
+    const modal = useModal()
+    const handleSetPayed = useCallback(() => {
+      modal.show(
+        <ReservationPayedModal
+          setPayed={setPayed}
+          hide={modal.hide}
+          name={
+            reservation.customer.lastName + ' ' + reservation.customer.firstName
+          }
+          isPayed={payed}
+          date={
+            FormatDate(reservation.arrive) + '-' + FormatDate(reservation.leave)
+          }
+          id={reservation._id}
+        />
+      )
+    }, [
+      modal,
+      reservation.customer.lastName,
+      reservation.customer.firstName,
+      reservation.arrive,
+      reservation.leave,
+      reservation._id,
+      payed,
+    ])
     return (
       <div className="mx-auto  w-[90%]  rounded-lg border-2 border-main-blue p-3 hover:shadow-lg">
         <div
@@ -32,7 +59,7 @@ const Reservation: FunctionComponent<ReservationProps> = memo(
           <div className="flex items-center space-x-5">
             <p className="text-sm">{reservation.apartment.name}</p>
             <p>
-              {FormatDate(reservation.arrive)} - {FormatDate(reservation.leave)}{' '}
+              {FormatDate(reservation.arrive)} - {FormatDate(reservation.leave)}
             </p>
           </div>
         </div>
@@ -74,7 +101,8 @@ const Reservation: FunctionComponent<ReservationProps> = memo(
                   <p>Cégnév: {reservation.customer.companyName}</p>
                 </>
               )}
-              <p>Kifiztve: {reservation.payed ? 'Igen' : 'Nem'}</p>
+              <p>Kifiztve: {payed ? 'Igen' : 'Nem'}</p>
+              <p>Fizetés típusa: {reservation.method}</p>
               <p>
                 Össeg:{' '}
                 <span className="font-medium"> {reservation.total} Ft</span>
@@ -82,10 +110,13 @@ const Reservation: FunctionComponent<ReservationProps> = memo(
             </div>
             <div className="grid items-end">
               <div className="flex space-x-5">
-                <Button
-                  title={reservation.payed ? 'Nincs kifizetve' : 'Kifizetve'}
-                  className="!bg-white py-2 px-5 !text-main-text hover:!bg-main-blue hover:!text-white"
-                />
+                {reservation.method === 'bank transfer' && (
+                  <Button
+                    onClick={handleSetPayed}
+                    title={payed ? 'Nincs kifizetve' : 'Kifizetve'}
+                    className="!bg-white py-2 px-5 !text-main-text hover:!bg-main-blue hover:!text-white"
+                  />
+                )}
                 <Button title="Törlés" className="py-2 px-5" />
               </div>
             </div>
@@ -93,7 +124,9 @@ const Reservation: FunctionComponent<ReservationProps> = memo(
         )}
       </div>
     )
-  }
+  },
+  (oldProps, newProps) =>
+    lookReservation(oldProps.reservation, newProps.reservation)
 )
 
 export default Reservation
