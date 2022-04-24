@@ -4,7 +4,7 @@ import CustomImage from '../../Image/CustomImage'
 
 const ContactContacts = memo(function ContactContacts() {
   return (
-    <div className="!mt-20 grid w-full  justify-center space-y-8 lg:!mt-4 lg:!mb-10 lg:flex lg:items-center lg:space-y-0 lg:space-x-5 ">
+    <div className="!mt-28 grid w-full justify-center space-y-8 md:!mt-0 md:bg-white lg:!mt-4 lg:!mb-10 lg:flex lg:items-center lg:space-y-0 lg:space-x-5 ">
       <ContactIcon title="+36701234567">
         <CustomImage
           className="h-10 w-10"

@@ -43,7 +43,9 @@ export const useReservationFilter = (
         toast.error(
           error.response
             ? error.response.data
-              ? error.response.data.msg
+              ? error.response.data.msgHU
+                ? error.response.data.msgHU
+                : error.response.data.msg
               : 'Egy hiba lépett fel a kérés közben!'
             : error
         )

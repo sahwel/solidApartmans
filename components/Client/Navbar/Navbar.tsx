@@ -7,7 +7,7 @@ import cl from 'classnames'
 import CustomImage from '../../Image/CustomImage'
 import { useTranslation } from 'react-i18next'
 
-export const Navbar = memo(function Navbar() {
+const Navbar = memo(function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const setOpen = useCallback(() => {
     setIsOpen((oldState) => !oldState)
@@ -109,3 +109,5 @@ export const Navbar = memo(function Navbar() {
     </div>
   )
 })
+
+export default Navbar

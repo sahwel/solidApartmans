@@ -1,24 +1,11 @@
-import {
-  FunctionComponent,
-  memo,
-  useCallback,
-  useState,
-  lazy,
-  Suspense,
-} from 'react'
-import { useForm } from 'react-hook-form'
+import { FunctionComponent, memo } from 'react'
 import BookCheckbox from './BookCheckbox'
 import BookInput from './BookInput'
-import { BookFormModel } from './definitions'
 import cl from 'classnames'
-import { useModal } from '../../Modal/ModalProvider'
 import CustomImage from '../../Image/CustomImage'
 import { Address, lookAddress } from '../../../services/apartmentDefinitions'
-import { useTranslation } from 'react-i18next'
 import BookCalendar from './BookCalendar'
-
-const ModalHeader = lazy(() => import('./BookModalHeader'))
-const BookModal = lazy(() => import('./BookModal'))
+import { useBook } from './services/useBook'
 
 interface BookFormProps {
   isCompany: boolean
@@ -30,42 +17,25 @@ interface BookFormProps {
 const BookForm: FunctionComponent<BookFormProps> = memo(
   function BookForm({ isCompany, address, name, notFreeTimes }) {
     const {
-      register,
-      formState,
       handleSubmit,
-      setValue,
+      onSubmit,
+      register,
+      t,
+      formState,
+      _setIsUnderTwoYears,
+      isUnderTwoYears,
+      setEndLeave,
+      setLeave,
+      leave,
+      arrive,
+      _setArrive,
       control,
       clearErrors,
-    } = useForm<BookFormModel>()
-    const commonT = useTranslation('Common')
-    const onSubmit = (data: BookFormModel) =>
-      modal.show(
-        <Suspense fallback={<p>{commonT.t('loading')}</p>}>
-          <BookModal
-            arrive="2022-11-02"
-            left="2022-11-07"
-            numberOfAdults={1}
-            numberOfKids={1}
-          />
-        </Suspense>,
-        <Suspense fallback={<p>{commonT.t('loading')}</p>}>
-          <ModalHeader address={address} name={name} />
-        </Suspense>
-      )
-
-    const [arrive, setArrive] = useState<Date | null>(null)
-    const [leave, setLeave] = useState<Date | null>(null)
-    const [endLeave, setEndLeave] = useState<Date | null>(null)
-
-    const [isUnderTwoYears, setIsUnderTwoYears] = useState(false)
-    const _setIsUnderTwoYears = useCallback(() => {
-      setIsUnderTwoYears((oldState) => !oldState)
-    }, [])
-
-    const modal = useModal()
+      setValue,
+      endLeave,
+    } = useBook(address, name, isCompany)
 
     const { errors } = formState
-    const { t } = useTranslation('Book')
 
     return (
       <form
@@ -149,12 +119,13 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
           register={register}
           type="number"
           className="lg:col-start-7 lg:col-end-10"
-          property={'street'}
+          property={'houseNumber'}
         />
         <BookInput
           formState={formState}
           url="other.svg"
           className="lg:col-start-10 lg:col-end-13"
+          isRequired={false}
           placeholder={t('form.other')}
           register={register}
           property={'other'}
@@ -228,6 +199,7 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
 
         <BookCalendar
           setEndLeave={setEndLeave}
+          minDate={new Date()}
           excludeDates={notFreeTimes.map((e) => new Date(e))}
           clearErrors={clearErrors}
           control={control}
@@ -236,10 +208,9 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
           error={errors.arrive?.message}
           className="cursor-pointer lg:col-start-7 lg:col-end-10 lg:row-start-5"
           getter={arrive}
-          setter={setArrive}
+          setter={_setArrive}
           isCompany={isCompany}
         />
-        {endLeave}
         <BookCalendar
           clearErrors={clearErrors}
           control={control}
@@ -251,7 +222,13 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
           ]}
           formValue="leave"
           setValue={setValue}
-          getter={leave}
+          getter={
+            leave
+              ? leave
+              : arrive
+              ? new Date(new Date(arrive as Date).getTime() + 86400000)
+              : null
+          }
           error={errors.leave?.message}
           className="cursor-pointer lg:col-start-10 lg:col-end-13 lg:row-start-5"
           setter={setLeave}

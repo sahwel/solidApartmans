@@ -32,9 +32,13 @@ const login: FunctionComponent<LoginProps> = memo(
         })
       } catch (error: any) {
         toast.error(
-          error.response.data
-            ? error.response.data.msg
-            : 'Egy hiba lépett fel a kérés közben!'
+          error.response
+            ? error.response.data
+              ? error.response.data.msgHU
+                ? error.response.data.msgHU
+                : error.response.data.msg
+              : 'Egy hiba lépett fel a kérés közben!'
+            : error
         )
       }
     }

@@ -17,7 +17,7 @@ const ContactUsForm = memo(function ContactUsForm() {
 
   const { t } = useTranslation('Contact')
   return (
-    <div className="bottom-0 grid w-full justify-items-center bg-white p-6">
+    <div className="bottom-0 grid w-full justify-items-center bg-white p-6 md:!mt-0 md:rounded-b-2xl">
       <p className="text-center">{t('form.header')}</p>
       <form className="mt-10 grid w-full justify-items-center space-y-5">
         <div className="relative w-full">

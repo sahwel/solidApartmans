@@ -1,7 +1,11 @@
 import { useRouter } from 'next/router'
 import React, { FunctionComponent, memo } from 'react'
 import AdminNavbar from '../Admin/Navbar/AdminNavbar'
-import { Navbar } from '../Client/Navbar/Navbar'
+import dynamic from 'next/dynamic'
+
+const Navbar = dynamic(() => import('../Client/Navbar/Navbar'), {
+  ssr: false,
+})
 
 const dontShowNavbar = '/admin/login'
 const showAdmin = '/admin'

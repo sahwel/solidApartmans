@@ -6,8 +6,6 @@ import { useToast } from '../../Common/Toast/Toast'
 import { useModal } from '../../Modal/ModalProvider'
 import CreateFaq from './CreateFaq'
 
-
-
 export const useFaq = (faqs: Faq[]) => {
   const [faqsInner, setFaqsInner] = useState<Faq[]>(faqs)
   const toast = useToast()
@@ -27,9 +25,13 @@ export const useFaq = (faqs: Faq[]) => {
         toast.success('Gyakori kérdés sikeresen létrehozva!')
       } catch (error: any) {
         toast.error(
-          error.response.data
-            ? error.response.data.msg
-            : 'Egy hiba lépett fel a kérés közben!'
+          error.response
+            ? error.response.data
+              ? error.response.data.msgHU
+                ? error.response.data.msgHU
+                : error.response.data.msg
+              : 'Egy hiba lépett fel a kérés közben!'
+            : error
         )
       }
     },
@@ -43,14 +45,18 @@ export const useFaq = (faqs: Faq[]) => {
         await axiosInstance.delete(`faq/${_id}`, {
           headers: { 'auth-token': session?.token as string },
         })
- 
+
         setFaqsInner((faqs) => faqs.filter((el) => el._id !== _id))
         toast.success('Gyakori kérdés sikeresen törölve!')
       } catch (error: any) {
         toast.error(
-          error.response.data
-            ? error.response.data.msg
-            : 'Egy hiba lépett fel a kérés közben!'
+          error.response
+            ? error.response.data
+              ? error.response.data.msgHU
+                ? error.response.data.msgHU
+                : error.response.data.msg
+              : 'Egy hiba lépett fel a kérés közben!'
+            : error
         )
       }
     },

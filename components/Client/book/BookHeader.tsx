@@ -19,7 +19,13 @@ const BookHeader: FunctionComponent<BookHeaderProps> = memo(
         <img
           src="/scndBg.svg"
           alt="background"
-          className="absolute top-0 w-full md:hidden"
+          className="absolute top-0 w-full xlms:hidden"
+        />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/thirdBg.svg"
+          alt="background"
+          className="absolute top-0 hidden w-full md:!hidden xlms:block "
         />
         <div className=" flex h-[10rem] w-full flex-col items-center justify-center sm:h-[14rem] lg:h-fit">
           <h1 className="relative z-40 w-full text-center text-2xl font-bold md:pt-0 lg:py-3">

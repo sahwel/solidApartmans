@@ -3,7 +3,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import { ToastContext, ToastContextModel } from './ToestContext'
 import 'react-toastify/dist/ReactToastify.css'
 
-const Toast: FunctionComponent = memo(function Toast({ children })  {
+const Toast: FunctionComponent = memo(function Toast({ children }) {
   const contextValue: ToastContextModel = useMemo(
     () => ({
       public: {
@@ -28,7 +28,7 @@ const Toast: FunctionComponent = memo(function Toast({ children })  {
   )
   return (
     <ToastContext.Provider value={contextValue}>
-      <ToastContainer closeButton={true} />
+      <ToastContainer closeButton={true} className="!z-[100000000000000]" />
       {children}
     </ToastContext.Provider>
   )

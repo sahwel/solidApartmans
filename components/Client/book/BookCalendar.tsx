@@ -24,8 +24,10 @@ interface BookCalendarProps {
   getter: Date | null
   readOnly?: boolean
   className: string
+  selected?: Date | null
+  minDate?: Date
   control: Control<BookFormModel, any>
-  setter: Dispatch<SetStateAction<Date | null>>
+  setter: Dispatch<SetStateAction<Date | null>> | ((date: Date) => void)
   setValue: UseFormSetValue<BookFormModel>
   formValue: keyof BookFormModel
   error?: string
@@ -50,6 +52,7 @@ const BookCalendar: FunctionComponent<BookCalendarProps> = memo(
     excludeDates = [],
     includeDateIntervals,
     setEndLeave = () => ({}),
+    minDate,
   }) {
     const handleChange = useCallback(
       () => async (date: Date) => {
@@ -76,6 +79,7 @@ const BookCalendar: FunctionComponent<BookCalendarProps> = memo(
             rules={{ required: t('form.required') + '' }}
             render={() => (
               <DatePicker
+                minDate={minDate}
                 includeDateIntervals={includeDateIntervals}
                 excludeDates={excludeDates}
                 autoComplete="off"
@@ -112,6 +116,8 @@ const BookCalendar: FunctionComponent<BookCalendarProps> = memo(
     oldProps.setter === newProps.setter &&
     oldProps.error === newProps.error &&
     oldProps.setValue === newProps.setValue &&
+    oldProps.minDate === newProps.minDate &&
+    oldProps.selected === newProps.selected &&
     oldProps.control === newProps.control &&
     oldProps.clearErrors === newProps.clearErrors &&
     oldProps.readOnly === newProps.readOnly &&

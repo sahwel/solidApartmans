@@ -1,13 +1,24 @@
 import { GetServerSideProps } from 'next'
 import { FunctionComponent, memo, useCallback, useState } from 'react'
-import BookForm from '../../../components/Client/book/BookForm'
-import BookHeader from '../../../components/Client/book/BookHeader'
 import Container from '../../../components/Container'
-import {
-  Address,
-  ExtendedApartmentDefinition,
-} from '../../../services/apartmentDefinitions'
+import { Address } from '../../../services/apartmentDefinitions'
 import { axiosInstance } from '../../../services/axiosInstance'
+
+import dynamic from 'next/dynamic'
+
+const BookHeader = dynamic(
+  () => import('../../../components/Client/book/BookHeader'),
+  {
+    ssr: false,
+  }
+)
+
+const BookForm = dynamic(
+  () => import('../../../components/Client/book/BookForm'),
+  {
+    ssr: false,
+  }
+)
 
 interface BookProps {
   id: string
@@ -53,12 +64,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const response = await axiosInstance.get(`apartment/book/datas/${id}`)
 
   const notFreeTimes = await axiosInstance.get(`reservation/${id}`)
-  console.log(notFreeTimes.data.result)
 
   return {
     props: {
       ...response.data,
-      notFreeTimes: notFreeTimes.data.result,
+      notFreeTimes: notFreeTimes.data.result.map((e: Date) =>
+        new Date(e).toLocaleDateString()
+      ),
     },
   }
 }

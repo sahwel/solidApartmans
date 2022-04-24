@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next'
 const ContactHeader = memo(function ContactHeader() {
   const { t } = useTranslation('Contact')
   return (
-    <div className="relative flex w-full items-center justify-center text-center text-white md:py-5 md:text-main-text lg:!mb-10 lg:py-2">
+    <div className="relative flex w-full items-center justify-center text-center text-white  md:rounded-t-2xl md:bg-white md:py-5 md:text-main-text lg:!mb-10 lg:py-2">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/scndBg.svg"
+        src="/thirdBg.svg"
         alt="background"
         className="absolute top-0 w-full md:hidden"
       />

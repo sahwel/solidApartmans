@@ -1,9 +1,27 @@
 import React, { memo } from 'react'
-import ContactContacts from '../components/Client/ContactUs/ContactContacts'
-import ContactHeader from '../components/Client/ContactUs/ContactHeader'
-import ContactUsForm from '../components/Client/ContactUs/ContactUsForm'
 import Container from '../components/Container'
+import dynamic from 'next/dynamic'
 
+const ContactUsForm = dynamic(
+  () => import('../components/Client/ContactUs/ContactUsForm'),
+  {
+    ssr: false,
+  }
+)
+
+const ContactHeader = dynamic(
+  () => import('../components/Client/ContactUs/ContactHeader'),
+  {
+    ssr: false,
+  }
+)
+
+const ContactContacts = dynamic(
+  () => import('../components/Client/ContactUs/ContactContacts'),
+  {
+    ssr: false,
+  }
+)
 const contact = memo(function contact() {
   return (
     <Container>

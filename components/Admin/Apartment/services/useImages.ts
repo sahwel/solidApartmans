@@ -34,6 +34,8 @@ export const useImages = (
           error.response
             ? error.response.data
               ? error.response.data.msgHU
+                ? error.response.data.msgHU
+                : error.response.data.msg
               : 'Egy hiba lépett fel a kérés közben!'
             : error
         )
@@ -67,6 +69,8 @@ export const useImages = (
           error.response
             ? error.response.data
               ? error.response.data.msgHU
+                ? error.response.data.msgHU
+                : error.response.data.msg
               : 'Egy hiba lépett fel a kérés közben!'
             : error
         )
