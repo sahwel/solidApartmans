@@ -16,7 +16,7 @@ interface BookInputProps {
   url?: string
   type?: InputType
   min?: number
-  max?: number
+  max?: string
   formState: FormState<BookFormModel>
   className?: string
   onChange?: (e: any) => void
@@ -49,7 +49,7 @@ const BookInput: FunctionComponent<BookInputProps> = memo(
             )}
             min={min}
             onChange={onChange}
-            max={max}
+            max={max?.toString()}
             className={cl(
               'w-full rounded-sm border-[1px] border-main-blue py-2 px-4',
               url && 'pr-12',
