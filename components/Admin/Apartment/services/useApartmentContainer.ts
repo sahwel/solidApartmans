@@ -69,6 +69,8 @@ export const useApartmentContainer = (
               headers: { 'auth-token': session?.token as string },
             }
           )
+
+          toast.success('Apartman sikeresen mentve!')
         }
       } catch (error: any) {
         toast.error(
