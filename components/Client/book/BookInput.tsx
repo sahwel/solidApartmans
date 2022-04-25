@@ -16,7 +16,7 @@ interface BookInputProps {
   url?: string
   type?: InputType
   min?: number
-  max?: string
+  max?: number
   formState: FormState<BookFormModel>
   className?: string
   onChange?: (e: any) => void
