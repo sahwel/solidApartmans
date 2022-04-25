@@ -16,7 +16,8 @@ export const useBook = (address: Address, name: string, isCompany: boolean) => {
   const [leave, setLeave] = useState<Date | null>(null)
   const [endLeave, setEndLeave] = useState<Date | null>(null)
   const [isUnderTwoYears, setIsUnderTwoYears] = useState(false)
-
+  const [adults, setAdults] = useState(1)
+  const [kids, setKids] = useState(0)
   const { register, formState, handleSubmit, setValue, control, clearErrors } =
     useForm<BookFormModel>({ defaultValues: { numberOfAdults: 1 } })
   const commonT = useTranslation('Common')
@@ -65,6 +66,14 @@ export const useBook = (address: Address, name: string, isCompany: boolean) => {
 
   const { t } = useTranslation('Book')
 
+  const handleKidsChange = useCallback((e) => {
+    setKids(e.value)
+  }, [])
+
+  const handleAdultsChange = useCallback((e) => {
+    setAdults(e.value)
+  }, [])
+
   return {
     handleSubmit,
     onSubmit,
@@ -82,5 +91,9 @@ export const useBook = (address: Address, name: string, isCompany: boolean) => {
     clearErrors,
     setValue,
     endLeave,
+    adults,
+    handleAdultsChange,
+    kids,
+    handleKidsChange,
   }
 }

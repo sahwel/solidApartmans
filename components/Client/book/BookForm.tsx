@@ -11,11 +11,12 @@ interface BookFormProps {
   isCompany: boolean
   address: Address
   name: string
+  capacity: number
   notFreeTimes: Date[]
 }
 
 const BookForm: FunctionComponent<BookFormProps> = memo(
-  function BookForm({ isCompany, address, name, notFreeTimes }) {
+  function BookForm({ isCompany, address, name, notFreeTimes, capacity }) {
     const {
       handleSubmit,
       onSubmit,
@@ -33,6 +34,10 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
       clearErrors,
       setValue,
       endLeave,
+      adults,
+      handleAdultsChange,
+      kids,
+      handleKidsChange,
     } = useBook(address, name, isCompany)
 
     const { errors } = formState
@@ -158,13 +163,17 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
           type="number"
           className="lg:col-start-1 lg:col-end-4"
           min={1}
+          max={capacity - kids}
+          onChange={handleAdultsChange}
           register={register}
           property={'numberOfAdults'}
         />
         <BookInput
+          onChange={handleKidsChange}
           formState={formState}
           placeholder={t('form.kids')}
           isRequired={false}
+          max={capacity - adults}
           className="lg:col-start-4 lg:col-end-7"
           type="number"
           register={register}
@@ -248,6 +257,7 @@ const BookForm: FunctionComponent<BookFormProps> = memo(
   },
   (oldProps, newProps) =>
     oldProps.isCompany === newProps.isCompany &&
+    oldProps.capacity === newProps.capacity &&
     lookAddress(oldProps.address, newProps.address) &&
     oldProps.name === newProps.name
 )

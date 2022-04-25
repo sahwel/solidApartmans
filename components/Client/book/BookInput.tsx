@@ -16,8 +16,10 @@ interface BookInputProps {
   url?: string
   type?: InputType
   min?: number
+  max?: number
   formState: FormState<BookFormModel>
   className?: string
+  onChange?: (e: any) => void
 }
 
 const BookInput: FunctionComponent<BookInputProps> = memo(
@@ -29,6 +31,8 @@ const BookInput: FunctionComponent<BookInputProps> = memo(
     property,
     className = '',
     min = 0,
+    onChange = () => ({}),
+    max = undefined,
     isRequired = true,
     type = 'text',
   }) {
@@ -44,6 +48,8 @@ const BookInput: FunctionComponent<BookInputProps> = memo(
               isRequired ? { required: t('form.required') + '' } : undefined
             )}
             min={min}
+            onChange={onChange}
+            max={max}
             className={cl(
               'w-full rounded-sm border-[1px] border-main-blue py-2 px-4',
               url && 'pr-12',
@@ -65,9 +71,11 @@ const BookInput: FunctionComponent<BookInputProps> = memo(
     oldProps.placeholder === newProps.placeholder &&
     oldProps.url === newProps.url &&
     oldProps.register === newProps.register &&
+    oldProps.onChange === newProps.onChange &&
     oldProps.property === newProps.property &&
     oldProps.className === newProps.className &&
     oldProps.min === newProps.min &&
+    oldProps.max === newProps.max &&
     oldProps.formState === newProps.formState &&
     oldProps.isRequired === newProps.isRequired &&
     oldProps.type === newProps.type

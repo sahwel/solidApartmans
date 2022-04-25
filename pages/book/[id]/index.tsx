@@ -1,7 +1,11 @@
 import { GetServerSideProps } from 'next'
 import { FunctionComponent, memo, useCallback, useState } from 'react'
 import Container from '../../../components/Container'
-import { Address } from '../../../services/apartmentDefinitions'
+import {
+  Address,
+  Capacity,
+  lookAddress,
+} from '../../../services/apartmentDefinitions'
 import { axiosInstance } from '../../../services/axiosInstance'
 
 import dynamic from 'next/dynamic'
@@ -24,11 +28,12 @@ interface BookProps {
   id: string
   name: string
   address: Address
+  capacity: Capacity
   notFreeTimes: Date[]
 }
 
 const index: FunctionComponent<BookProps> = memo(
-  function Book({ name, address, notFreeTimes }) {
+  function Book({ name, address, notFreeTimes, capacity }) {
     const [isCompany, setIsComapny] = useState(false)
     const handleTypeChange = useCallback((newState: boolean) => {
       return () => setIsComapny(newState)
@@ -42,6 +47,7 @@ const index: FunctionComponent<BookProps> = memo(
           setIsCompany={handleTypeChange}
         />
         <BookForm
+          capacity={capacity.capacity}
           isCompany={isCompany}
           address={address}
           name={name}
@@ -52,7 +58,8 @@ const index: FunctionComponent<BookProps> = memo(
   },
   (oldProps, newProps) =>
     oldProps.id === newProps.id &&
-    oldProps.address === newProps.address &&
+    lookAddress(oldProps.address, newProps.address) &&
+    oldProps.capacity === newProps.capacity &&
     oldProps.name === newProps.name
 )
 

@@ -4,7 +4,7 @@ export interface ApartmentDefinitions {
   address: Address
   stars: number
   facilities: Facility[]
-  capacity: capacity
+  capacity: Capacity
   price: number
   image: string
 }
@@ -33,7 +33,7 @@ export interface AdminFacility extends Facility {
   selected: boolean
 }
 
-export interface capacity {
+export interface Capacity {
   capacity: number
   bedrooms: number
 }

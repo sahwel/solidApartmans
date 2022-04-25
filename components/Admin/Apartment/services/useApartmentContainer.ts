@@ -17,7 +17,7 @@ export const useApartmentContainer = (
 ) => {
   const { register, handleSubmit, formState, setValue, setError, getValues } =
     useForm<AdminApartmentDefinitions>({
-      defaultValues: { ...defaultValue },
+      defaultValues: { ...defaultValue, image: !isCreate ? 'Yes' : undefined },
     })
   const toast = useToast()
   const onSubmit = useCallback(

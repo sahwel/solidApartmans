@@ -80,6 +80,9 @@ const ApartmentContainer: FunctionComponent<ApartmentContainerProps> = memo(
           <Button
             title="Naptár"
             className="!bg-white py-1 px-10 !text-main-text hover:!bg-main-blue hover:!text-white"
+            onClick={() => {
+              console.log(getValues('image'))
+            }}
           />
           <Button
             onClick={openModal}
